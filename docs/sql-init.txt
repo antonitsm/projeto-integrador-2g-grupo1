@@ -1,0 +1,6 @@
+CREATE DATABASE mysite_db;
+CREATE USER mysite_user WITH PASSWORD '123456';
+ALTER ROLE mysite_user SET client_encoding TO 'utf8';
+ALTER ROLE mysite_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE mysite_user SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE mysite_db TO mysite_user;
