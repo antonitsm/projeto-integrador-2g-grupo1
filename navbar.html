@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOlmeia</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        /* navbar */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 105px;
+            background-color: black;
+        }
+
+        .logo img {
+
+        }
+
+        .navbar {
+            display: flex;
+            list-style-type: none;
+            gap: 225px;
+        }
+
+        .navbar li {
+            display: inline;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f8bf4d;
+            font-size: 14px;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f8bf4d;      
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .hr1 {
+            color: #fff4de;
+        }
+
+        /* sections */
+        
+        .s1{
+            background-color: white;
+            width: 1920px;
+            height: 1080px;
+        }
+
+        .s2{
+            color: white;
+            background-color: #221c1d;
+            width: 1920px;
+            height: 1080px;
+        }
+    </style>
+
+    <nav>
+        <div class="logo">
+            <a href="#"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul class="navbar">
+            <li><a href="#">INÍCIO</a></li>
+            <li><a href="#">MINHAS COLMEIAS</a></li>
+            <li><a href="#">DADOS</a></li>
+            <li><a href="#">REGISTRO</a></li>
+            <li><a href="#">PRODUÇÃO</a></li>
+        </ul>
+    </nav>
+
+    <section class="s1">
+        <h1>ola</h1>
+    </section>
+
+    <section class="s2">
+        <h1> ola </h1>
+    </section>
+
+    <hr class="linhanav">
+</body>
+
+</html>
