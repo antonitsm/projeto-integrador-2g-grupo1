@@ -3,4 +3,4 @@ section { padding: 30px; max-width: 800px; margin: auto; }
 h1, h2 { color: #fcd52e; }
 .preto { background: #151515; color: white; }
 button { background: #fcd52e; color: #000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px; }
-ul { padding-left: 20px; }
+ul { padding-left: 20px;} 
