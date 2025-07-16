@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Ecolmeia</title>
+  <link rel="stylesheet" href="../login/login.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      <a href="#"><img src="../images/logo.png" alt="Logo"></a>
+    </div>
+    <ul class="navbar">
+      <li><a href="#">INÍCIO</a></li>
+      <li><a href="#">MINHAS COLMEIAS</a></li>
+      <li><a href="#">DADOS</a></li>
+      <li><a href="#">REGISTRO</a></li>
+      <li><a href="#">PRODUÇÃO</a></li>
+    </ul>
+  </nav>
+
+  <!-- DECORAÇÃO -->
+  <div class="decoracao esquerda">
+    <img src="../images/favo_de_mel.png" alt="Favo Esquerda">
+  </div>
+  <div class="decoracao direita">
+    <img src="../images/favo_de_mel.png" alt="Favo Direita">
+  </div>
+
+  <!-- CONTEÚDO LOGIN -->
+  <div class="container-autenticacao">
+    <form class="formulario-autenticacao ativo">
+      <h2>Login</h2>
+      <div class="campo-formulario">
+        <label for="email-login">E-mail:</label>
+        <input type="email" id="email-login" required />
+      </div>
+      <div class="campo-formulario">
+        <label for="senha-login">Senha:</label>
+        <input type="password" id="senha-login" required />
+      </div>
+      <button type="submit" class="botao-enviar">Entrar</button>
+      <div class="alternar-formulario">
+        Não tem uma conta? <a href="../cadastro/cadastro.html">Cadastre-se</a>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>
