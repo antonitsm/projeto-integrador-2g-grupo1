@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container-autenticacao {
+  background-color: #000;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.formulario-autenticacao {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario-autenticacao.ativo {
+  display: flex;
+}
+
+.formulario-autenticacao h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #f8bf4d;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.campo-formulario label {
+  font-weight: 600;
+  color: #f8bf4d;
+}
+
+.campo-formulario input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.campo-formulario input:focus {
+  outline: none;
+  border-color: #f8bf4d;
+}
+
+.botao-enviar {
+  background-color: #f8bf4d;
+  color: #000;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.botao-enviar:hover {
+  background-color: #f1b437;
+}
+
+.alternar-formulario {
+  text-align: center;
+  margin-top: 1rem;
+  color: #fff;
+}
+
+.alternar-formulario a {
+  color: #f8bf4d;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.alternar-formulario a:hover {
+  text-decoration: underline;
+}
