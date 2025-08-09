@@ -1,7 +1,6 @@
-document.getElementById('cadastrar').addEventListener('click', function() {
-    alert('Cadastro');
-});
+console.log("Header carregado!");
 
-document.getElementById('cadastrar2').addEventListener('click', function() {
-    alert('Cadastro');
+// Redirecionar para cadastro.html ao clicar no botão de cadastro
+document.getElementById('cadastro2')?.addEventListener('click', function() {
+    window.location.href = "loginP2.html";
 });
