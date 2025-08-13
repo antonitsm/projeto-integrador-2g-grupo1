@@ -4,25 +4,27 @@
 {% block title %}Ecolmeia{% endblock %}
 
 {% block content %}
+    <section class="hero">
+        <img src="imagens/abelha.png" alt="Pote de mel com colmeia">
+        <h1>ECOLMEIA</h1>
+    </section>
+
     <section class="preto">
         <h2>COMO ESTÁ SUA COLMEIA?</h2>
-        <p>As abelhas são muito mais do que produtoras de mel — elas são pilares da vida no planeta...</p>
+        <p>As abelhas são muito mais do que produtoras de mel, elas são pilares da vida no planeta. Uma colmeia saudável representa equilíbrio ambiental, agricultura produtiva e biodiversidade preservada. 
+        Cuidar da saúde da sua colmeia é cuidar do futuro. Aqui, você aprende como fortalecer suas abelhas, prevenir doenças e transformar sua colmeia em um verdadeiro exemplo de sustentabilidade e produtividade.
+        </p>
     </section>
 
     <section>
         <h2>O QUE OFERECEMOS A VOCÊ:</h2>
-        <ul>
-            <li>Registre cada colmeia</li>
-            <li>Anote tudo o que observar</li>
-            <li>Veja o crescimento da sua produção</li>
-            <li>Use pelo celular, tablet ou computador</li>
-        </ul>
-        <button id="cadastrar">CADASTRE-SE AQUI</button>
     </section>
 
     <section class="preto">
         <h2>COMO FUNCIONA O ECOLMEIA?</h2>
-        <p>Nosso sistema foi criado para ajudar pequenos apicultores</p>
-        <button id="cadastrar2">CADASTRE-SE AQUI</button>
+        <p>Nosso sistema foi criado para ajudar pequenos apicultores a cuidarem melhor das suas colmeias. Com um sistema simples e eficiente, você pode registrar as principais informações da sua criação, como produção de mel, temperatura, umidade, peso, etc.
+        Ao reunir esses dados de forma organizada, você entende melhor o que está funcionando, o que precisa melhorar e se o manejo está sendo feito corretamente. O resultado? Colmeias mais saudáveis, produtivas e sustentáveis.
+        </p>
+        <a href="{% url 'cadastro' %}">CADASTRE-SE AQUI</a>
     </section>
 {% endblock %}
