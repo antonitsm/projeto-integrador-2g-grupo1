@@ -1,4 +1,4 @@
-/* ===== HEADER ===== */
+/* anotacoes para estudo aqui embaxio*/
 header {
   display: flex;
   align-items: center;
@@ -51,16 +51,16 @@ button { background: #fcd52e; color: #000; border: none; padding: 15px 30px; bor
 ul { padding-left: 20px; line-height: 1.6; }
 .hero {
     display: flex;
-    align-items: center; /* alinha verticalmente */
-    justify-content: center; /* centraliza horizontalmente */
-    gap: 20px; /* espaço entre imagem e título */
+    align-items: center; /* serve pra alinhar na vertical */
+    justify-content: center; /* pra centralizar */
+    gap: 20px; /* deixar espaço entre a imagem e título */
 }
 
 .hero img {
-    max-width: 150px; /* ajuste o tamanho conforme o necessário */
+    max-width: 150px; /* ajusta o tamanho aqui */
     height: auto;
 }
 
 .hero h1 {
-    font-size: 48px; /* ajuste conforme o necessário */
+    font-size: 48px; /* ajusta o tamanho tbm*/
 }
