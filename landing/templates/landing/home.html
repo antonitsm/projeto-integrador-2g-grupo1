@@ -1,7 +1,10 @@
 <!-- blog/templates/blog/home.html -->
 {% extends "landing/base.html" %}
+{% load static %}
 
 {% block title %}Ecolmeia{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'landing/css/home.css' %}">{% endblock %}
 
 {% block content %}
     <section class="hero">
@@ -27,4 +30,5 @@
         </p>
         <a href="{% url 'cadastro' %}">CADASTRE-SE AQUI</a>
     </section>
+<script src="{% static 'landing/js/home.js' %}"></script>
 {% endblock %}
