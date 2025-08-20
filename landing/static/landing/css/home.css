@@ -85,19 +85,25 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 525px;
   gap: 8rem;
 
 }
 
 .hero img {
-  max-width: 600px;
+  max-width: 400px;
   height: auto;
 }
+.colmeia_direita{
+  
+}
 
+.colmeia_baixo{
+
+}
 .hero h1 {
-  font-style:bold;
-  font-size: 85px;
-  /* ajuste conforme o necessário */
+  font-style: bold;
+  font-size: 70px;
 }
 
 .sublinhado {
@@ -105,13 +111,16 @@ ul {
   text-decoration-color: #fcd52e;
   text-decoration-thickness: 4px;
 }
+
 /* ====== SECTION ====== */
 .section_1 {
   position: relative;
   background: #1a1a1a;
   padding: 80px 20px;
-  overflow: hidden;           /* recorta qualquer coisa que passe da section */
-  isolation: isolate;         /* garante a ordem do z-index dentro da section */
+  overflow: hidden;
+  /* recorta qualquer coisa que passe da section */
+  isolation: isolate;
+  /* garante a ordem do z-index dentro da section */
   height: 550px;
 }
 
@@ -125,17 +134,18 @@ ul {
 
 .section_1 h1 {
   color: #f1c40f;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 800;
   margin-bottom: 20px;
 }
 
 .section_1 p {
   color: #f5f5f5;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.4;
   max-width: 900px;
   margin: 0 auto;
+  text-align: justify;
 }
 
 /* ====== DECORAÇÕES ====== */
@@ -143,22 +153,24 @@ ul {
 .section_1::after {
   content: "";
   position: absolute;
-  top: 50%;                  
-  width: min(28vw, 450px);  
-  aspect-ratio: 1 / 1;       
+  top: 50%;
+  width: min(28vw, 450px);
+  aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
-  background-size: contain;  
+  background-size: contain;
   background-position: center;
   pointer-events: none;
-  z-index: 0;                 
+  z-index: 0;
 }
 
 /* Imagem da esquerda - topo */
 .section_1::before {
   left: 0;
   background-image: var(--decor-left);
-  top: -10%;                             /* altura próxima do topo */
-  transform: translate(-60%, 0) rotate(-160deg); /* remove o -50% para não centralizar verticalmente */
+  top: -10%;
+  /* altura próxima do topo */
+  transform: translate(-60%, 0) rotate(-160deg);
+  /* remove o -50% para não centralizar verticalmente */
   transform-origin: center;
 }
 
@@ -166,17 +178,80 @@ ul {
 .section_1::after {
   right: 0;
   background-image: var(--decor-right);
-  top: 90%;                             /* altura próxima da base */
-  transform: translate(60%, -100%) rotate(90deg); /* ajusta para ficar completamente visível */
+  top: 90%;
+  /* altura próxima da base */
+  transform: translate(60%, -100%) rotate(90deg);
+  /* ajusta para ficar completamente visível */
   transform-origin: center;
 }
 
+/* SEÇÂO 2 */
+
+.section_2 {
+  position: relative;
+  padding: 60px 20px;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+  height: 600px;
+}
+
+.section_2 h1 {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-left: -40%;
+  color: #000;
+}
+
+.section_2 ul {
+  list-style: disc;
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding-left: 20px;
+  line-height: 1.4;
+}
+
+.section_2 li {
+  text-align: justify;
+  margin-left: -30%;
+justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+.section_2::before,
+.section_2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: min(50vw, 600px);
+  aspect-ratio: 1 / 1;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Imagem da esquerda */
+.section_2::before {
+  left: 0;
+  background-image: var(--decor-left);
+  top: 35%;
+  /* altura próxima do topo */
+  transform: translate(-75%, 0) rotate(-55deg);
+  /* remove o -50% para não centralizar verticalmente */
+  transform-origin: center;
+}
+
+/* SEÇÂO 3 */
 .section_3 {
   position: relative;
-  background: #1a1a1a;
+  background: #000000;
   padding: 80px 20px;
-  overflow: hidden;           /* recorta qualquer coisa que passe da section */
-  isolation: isolate;         /* garante a ordem do z-index dentro da section */
+  overflow: hidden;
+  isolation: isolate;
   height: 600px;
 }
 
@@ -190,14 +265,16 @@ ul {
 
 .section_3 h1 {
   color: #f1c40f;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 800;
   margin-bottom: 20px;
 }
 
 .section_3 p {
+  justify-content: start;
+  text-align: justify;
   color: #f5f5f5;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.4;
   max-width: 900px;
   margin: 0 auto;
@@ -208,26 +285,46 @@ ul {
 .section_3::after {
   content: "";
   position: absolute;
-  top: 50%;                  
-  width: min(28vw, 450px);  
-  aspect-ratio: 1 / 1;       
+  top: 50%;
+  width: min(50vw, 600px);
+  aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
-  background-size: contain;  
+  background-size: contain;
   background-position: center;
   pointer-events: none;
-  z-index: 0;                 
+  z-index: 0;
 }
 
 /* Imagem da direita - base */
 .section_3::after {
   right: 0;
   background-image: var(--decor-right);
-  top: 90%;                             /* altura próxima da base */
-  transform: translate(60%, -100%) rotate(90deg); /* ajusta para ficar completamente visível */
+  top: 115%;
+  /* altura próxima da base */
+  transform: translate(70%, -100%) rotate(290deg);
+  /* ajusta para ficar completamente visível */
   transform-origin: center;
 }
 
-a {
-  justify-content: center ;
-  justify-items: center;
+.button-container {
+  text-align: center; 
+  margin-top: 50px;   
+}
+
+.btn {
+  display: inline-block;
+  padding: 24px 60px;
+  font-size: 20px;
+  background-color:#f4b63f; 
+  color: white;           
+  text-decoration: none;    
+  border-radius: 50px;      
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s; 
+}
+
+.btn:hover {
+  background-color: #fcb72e; 
+  transform: scale(1.02);    
+  cursor: pointer;           
 }
