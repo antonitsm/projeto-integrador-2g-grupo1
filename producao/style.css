@@ -56,3 +56,26 @@ form button:hover {
   background-color: #444;
 }
     
+.decoracao {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.decoracao.esquerda {
+  top: 40%;
+  left: -20vh;
+  width: 400px;
+}
+
+.decoracao.direita {
+  top: 15%;
+  /* Mais para baixo */
+  right: -20vh;
+  width: 400px;
+}
+
+.decoracao img {
+  width: 100%;
+  height: auto;
+}
