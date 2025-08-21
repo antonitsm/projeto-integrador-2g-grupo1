@@ -27,18 +27,30 @@
   </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <section class="hero">
+  <!-- Imagem principal -->
       <div class="imagem_banner">
         <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
       </div>
 
+  <!-- Bloco do título e colmeias -->
+  <div class="titulo_colmeia">
+    <div class="texto_principal">
       <h1><span class="sublinhado">ECO</span>LMEIA</h1>
+    </div>
+
+    <div class="decoracoes">
       <div class="img_decora">
         <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
+      <img class="colmeia_baixo" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia baixo">
+    </div>
       </div>
     </section>
-
     <section class="section_1" style="
         --decor-left: url('{% static 'landing/img/favo_de_mel.png' %}');
         --decor-right: url('{% static 'landing/img/favo_de_mel.png' %}');
