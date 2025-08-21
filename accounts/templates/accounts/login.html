@@ -5,6 +5,31 @@
 {% block style %}<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">{% endblock %}
 
 {% block content %}
+
+<header>
+    <nav>
+      <div class="logo">
+        <a href="#"><img src="{% static 'landing/img/logo.png' %}" alt="Logo"></a>
+      </div>
+      <ul class="navbar">
+        <li><a href="#">INÍCIO</a></li>
+        <li><a href="#">MINHAS COLMEIAS</a></li>
+        <li><a href="#">DADOS</a></li>
+        <li><a href="#">REGISTRO</a></li>
+        <li><a href="#">PRODUÇÃO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- DECORAÇÃO -->
+<div class="decoracao esquerda">
+    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Esquerda">
+</div>
+<div class="decoracao direita">
+    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Direita">
+</div>
+
+
   <!-- CONTEÚDO LOGIN -->
   <div class="container-autenticacao">
     <form class="formulario-autenticacao ativo">
