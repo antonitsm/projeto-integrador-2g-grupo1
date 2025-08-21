@@ -8,3 +8,6 @@ def login_view(request):
 
 def cadastro_view(request):
     return render(request, 'accounts/cadastro.html')
+
+def conta_view(request):
+    return render(request, 'accounts/conta.html')

@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}inicio{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'dashboard/css/observacao.css' %}">{% endblock %}
+
+{% block content %}
+    <div class="registros">
+        <h1 class="titulo">REGISTRO</h1>
+        <p class="subtitulo"> <p class="subtituloColmeia">
+    O QUE VOCÊ OBSERVOU NA COLMEIA 
+    <input list="colmeias" name="colmeia" placeholder="Selecione ou digite" style="padding: 6px 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-left: 10px;">
+    <datalist id="colmeias">
+        <option value="Colmeia 1">
+        <option value="Colmeia 2">
+        <option value="Colmeia 3">
+    </datalist>
+    </p>
+    </p>
+
+        <div class="caixaRegistro">
+        <textarea class="areaRegistro" placeholder="Digite suas observações aqui..."></textarea>
+        </div>
+
+        <div class="botoes">
+        <button class="salvar">SALVAR</button>
+        <button class="ultimoRegistro">ABRIR ÚLTIMO REGISTRO &gt;</button>
+        </div>
+    </div>
+<script src="{% static 'dashboard/js/observacao.js' %}"></script>
+{% endblock %}

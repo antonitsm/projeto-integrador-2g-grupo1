@@ -1,0 +1,98 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'accounts/css/conta.css' %}">{% endblock %}
+
+{% block content %}
+  <div class="page">
+    <h1 class="page__title">Meu Perfil:</h1>
+
+    <!-- Dados pessoais -->
+    <section class="card">
+      <h2 class="card__title">Dados Pessoais:</h2>
+      <ul class="list">
+        <li>Nome</li>
+        <li>Email registrado</li>
+      </ul>
+    </section>
+
+    <!-- Minhas colmeias -->
+    <section class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__summary">
+          <span class="accordion__summary-text">
+            <strong>Minhas Colmeias:</strong>
+            <span class="muted">Acessar colmeias cadastradas</span>
+          </span>
+        </summary>
+
+        <div class="accordion__content">
+          <ul class="rows">
+            <li class="row">
+              <div>
+                <p class="row__title">C-01</p>
+                <p class="row__subtitle">Nome:</p>
+              </div>
+              <span class="row__meta">Quantidade: 12</span>
+            </li>
+            <li class="row">
+              <div>
+                <p class="row__title">C-02</p>
+                <p class="row__subtitle">Nome:</p>
+              </div>
+              <span class="row__meta">Quantidade: 12</span>
+            </li>
+            <li class="row">
+              <div>
+                <p class="row__title">C-03</p>
+                <p class="row__subtitle">Nome:</p>
+              </div>
+              <span class="row__meta">Quantidade: 12</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- Meus registros -->
+    <section class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__summary">
+          <span class="accordion__summary-text">
+            <strong>Meus Registros:</strong>
+            <span class="muted">Ver registros anteriores</span>
+          </span>
+        </summary>
+
+        <div class="accordion__content">
+          <ul class="rows">
+            <li class="row">
+              <div>
+                <p class="row__subtitle">12/07/2025</p>
+                <p class="row__title">Registro: </p>
+              </div>
+            </li>
+            <li class="row">
+              <div>
+                <p class="row__subtitle">05/07/2025</p>
+                <p class="row__title">Registro:</p>
+              </div>
+            </li>
+            <li class="row">
+              <div>
+                <p class="row__subtitle">28/06/2025</p>
+                <p class="row__title">Registro:</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <div class="actions">
+      <button class="btn btn--danger" type="button">Sair da conta</button>
+    </div>
+  </div>
+  <script src="{% static 'accounts/js/conta.js' %}"></script>
+{% endblock %}

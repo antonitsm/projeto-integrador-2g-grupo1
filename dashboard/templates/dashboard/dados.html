@@ -1,0 +1,40 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}inicio{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'dashboard/css/dados.css' %}">{% endblock %}
+
+{% block content %}
+    <div class="decoracao esquerda">
+        <img src="../images/favo_de_mel.png" alt="Favo Esquerda">
+    </div>
+    <div class="decoracao direita">
+        <img src="../images/favo_de_mel.png" alt="Favo Direita">
+    </div>
+
+    <div class="titulo">
+        <h1> DADOS DA COLMEIA</h1>
+    </div>
+    <div class="container-autenticacao">
+        <form class="formulario-autenticacao ativo">
+            <div class="campo-formulario">
+                <label for="nome-cadastro">Nome da Colmeia</label>
+                <input type="text" id="nome-cadastro" required />
+            </div>
+            <div class="campo-formulario">
+                <label for="email-cadastro">Temperatura</label>
+                <input type="email" id="email-cadastro" required />
+            </div>
+            <div class="campo-formulario">
+                <label for="senha-cadastro">Peso</label>
+                <input type="password" id="senha-cadastro" required />
+            </div>
+            <div class="campo-formulario">
+                <label for="confirmar-senha">Umidade</label>
+                <input type="password" id="confirmar-senha" required />
+            </div>
+            <button type="submit" class="botao-enviar">Salvar</button>
+        </form>
+    </div>
+<script src="{% static 'dashboard/js/dados.js' %}"></script>
+{% endblock %}
