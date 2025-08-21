@@ -42,10 +42,11 @@ a {
   box-sizing: border-box;
 }
 /* ===== HEADER E NAVBAR MELHORADA ===== */
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+}  
 
 header {
   position: fixed;
