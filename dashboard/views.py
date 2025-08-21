@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.http import HttpResponse
+
 def paginainicialdashboard_view(request):
     return render(request, 'dashboard/paginainicialdashboard.html')
 
