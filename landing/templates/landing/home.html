@@ -1,34 +1,97 @@
-<!-- blog/templates/blog/home.html -->
-{% extends "landing/base.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-{% block title %}Ecolmeia{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <title>Ecolmeia</title>
+  <link rel="stylesheet" href="{% static 'landing/css/home.css' %}">
+</head>
 
-{% block style %}<link rel="stylesheet" href="{% static 'landing/css/home.css' %}">{% endblock %}
+<body>
 
-{% block content %}
+  <!--NAVBAR-->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="#"><img src="{% static 'landing/img/logo.png' %}" alt="Logo"></a>
+      </div>
+      <ul class="navbar">
+        <li><a href="#">INÍCIO</a></li>
+        <li><a href="#">MINHAS COLMEIAS</a></li>
+        <li><a href="#">DADOS</a></li>
+        <li><a href="#">REGISTRO</a></li>
+        <li><a href="#">PRODUÇÃO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
     <section class="hero">
-        <img src="imagens/abelha.png" alt="Pote de mel com colmeia">
-        <h1>ECOLMEIA</h1>
+      <div class="imagem_banner">
+        <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
+      </div>
+
+      <h1><span class="sublinhado">ECO</span>LMEIA</h1>
+      <div class="img_decora">
+        <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
+      </div>
     </section>
 
-    <section class="preto">
-        <h2>COMO ESTÁ SUA COLMEIA?</h2>
-        <p>As abelhas são muito mais do que produtoras de mel, elas são pilares da vida no planeta. Uma colmeia saudável representa equilíbrio ambiental, agricultura produtiva e biodiversidade preservada. 
-        Cuidar da saúde da sua colmeia é cuidar do futuro. Aqui, você aprende como fortalecer suas abelhas, prevenir doenças e transformar sua colmeia em um verdadeiro exemplo de sustentabilidade e produtividade.
-        </p>
+    <section class="section_1" style="
+        --decor-left: url('{% static 'landing/img/favo_de_mel.png' %}');
+        --decor-right: url('{% static 'landing/img/favo_de_mel.png' %}');
+      ">
+      <h1>COMO ESTÁ SUA COLMEIA?</h1>
+      <p>As abelhas são muito mais do que produtoras de mel — elas são pilares
+        da vida no planeta. Uma colmeia saudável representa equilíbrio
+        ambiental, agricultura produtiva e biodiversidade preservada.
+        Cuidar da saúde da sua colmeia é cuidar do futuro. Aqui, você aprende
+        como fortalecer suas abelhas, prevenir doenças e transformar sua
+        colmeia em um verdadeiro exemplo de sustentabilidade e produtividade.</p>
     </section>
 
-    <section>
-        <h2>O QUE OFERECEMOS A VOCÊ:</h2>
+    <section class="section_2" style="
+        --decor-left: url('{% static 'landing/img/favo_esticado.png' %}');">
+      <div class="container">
+        <h1>O QUE OFERECEMOS A VOCÊ:</h1>
+        <ul>
+          <li>Registre cada colmeia com informações como temperatura, umidade, peso, problemas e etc. Assim, você
+            acompanha
+            tudo de forma organizada.</li>
+          <li>Anote tudo o que observar nas visitas: produção de mel, pragas, etc. Nada escapa!</li>
+          <li>Veja o crescimento da sua produção com gráficos simples. Compare colmeias, acompanhe ganhos e identifique
+            o
+            que pode melhorar.</li>
+          <li>Use pelo celular, tablet ou computador, mesmo no campo. Tudo fica salvo e seguro para você acessar quando
+            quiser.</li>
+        </ul>
+        <div class="honeycomb"></div>
+      </div>
     </section>
 
-    <section class="preto">
-        <h2>COMO FUNCIONA O ECOLMEIA?</h2>
-        <p>Nosso sistema foi criado para ajudar pequenos apicultores a cuidarem melhor das suas colmeias. Com um sistema simples e eficiente, você pode registrar as principais informações da sua criação, como produção de mel, temperatura, umidade, peso, etc.
-        Ao reunir esses dados de forma organizada, você entende melhor o que está funcionando, o que precisa melhorar e se o manejo está sendo feito corretamente. O resultado? Colmeias mais saudáveis, produtivas e sustentáveis.
-        </p>
-        <a href="{% url 'cadastro' %}">CADASTRE-SE AQUI</a>
+    <section class="section_3" style="
+        --decor-right: url('{% static 'landing/img/favo_esticado.png' %}');">
+      <h1>COMO FUNCIONA O ECOLMEIA?</h1>
+      <p>Nosso sistema foi criado para ajudar pequenos apicultores a cuidarem melhor das suas colmeias. Com um sistema
+        simples e eficiente, você pode registrar as principais informações da sua criação, como produção de mel,
+        temperatura, umidade, peso, etc.
+        Ao reunir esses dados de forma organizada, você entende melhor o que está funcionando, o que precisa melhorar e
+        se o
+        manejo está sendo feito corretamente. O resultado? Colmeias mais saudáveis, produtivas e sustentáveis.</p>
+      <div class="button-container">
+        <a href="{% url 'cadastro' %}" class="btn">CADASTRE-SE AQUI</a>
+      </div>
     </section>
-<script src="{% static 'landing/js/home.js' %}"></script>
-{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Ecolmeia</p>
+  </footer>
+
+  <script src="{% static 'landing/js/home.js' %}"></script>
+</body>
+
+</html>

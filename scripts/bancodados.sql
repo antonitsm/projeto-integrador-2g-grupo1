@@ -20,7 +20,7 @@ CREATE TABLE agricultor(
     senha VARCHAR(50) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     id_usuario INT PRIMARY KEY,
-    fk_colmeia_id_colmeia INT REFERENCES (id_colmeia)
+    fk_colmeia_id_colmeia INT REFERENCES colmeia (id_colmeia)
 );
 
 CREATE TABLE registros(
@@ -28,7 +28,7 @@ CREATE TABLE registros(
     dia DATE,
     mes INT,
     ano INT,
-    fk_colmeia_id_colmeia INT REFERENCES (id_colmeia)
+    fk_colmeia_id_colmeia INT REFERENCES colmeia (id_colmeia)
 );
 
 -- dados para inserir
