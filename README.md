@@ -1,4 +1,18 @@
 # pi2-site
+NOME: Ecolmeia
+
+DESCRIÇÃO: Esse projeto foi criado com o intuito de auxiliar os apicultores a cuidar de sua criação de abelhas, "guardando" informações sobre o bem estar delas. Para acessar o projeto é necessário cadastro do usuário, após isso o usuário é direcionado á página de "Dados da colmeia", aqui é solicitado o nome das colmeias e informações como Temperatura, peso, umidade e problemas. Ná pagina de produção o usuário coloca dados de quantidade de mel retirado e quantidade de abelhas, além de selecionar um mês para isso, gerando assim um gráfico. Na página de registro o usuário coloca o que observou nas colmeias naquele dia. Além disso o Django (framework) foi usado nesse projeto.
+
+TECNOLOGIAS UTILIZADAS:
+
+Python 3.x
+
+Django
+
+HTML5, CSS3, JAVASCRIPT
+
+Banco de dados configurável (SQLite por padrão, compatível com PostgreSQL/MySQL)
+
 
 1. instale git no seu computador pelo google
 após instalar digite os seguintes codigos no terminal do VScode:
@@ -38,4 +52,15 @@ python manage.py migrate
 6. rode o servidor no terminal bash
 ```
 python manage.py runserver
-```
+
+
+
+
+
+
+
+
+
+
+
+
