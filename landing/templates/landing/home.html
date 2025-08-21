@@ -28,24 +28,16 @@
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main>
-   <section class="hero">
-  <!-- Imagem principal -->
-  <div class="imagem_banner">
-    <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
-  </div>
+    <section class="hero">
+      <div class="imagem_banner">
+        <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
+      </div>
 
-  <!-- Bloco do título e colmeias -->
-  <div class="titulo_colmeia">
-    <div class="texto_principal">
       <h1><span class="sublinhado">ECO</span>LMEIA</h1>
-    </div>
-
-    <div class="decoracoes">
-      <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
-      <img class="colmeia_baixo" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia baixo">
-    </div>
-  </div>
-</section>
+      <div class="img_decora">
+        <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
+      </div>
+    </section>
 
     <section class="section_1" style="
         --decor-left: url('{% static 'landing/img/favo_de_mel.png' %}');
@@ -96,10 +88,35 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Ecolmeia</p>
+    <div class="footer-left">
+      <img src="{% static 'landing/img/logo.png' %}" alt="Logo abelha">
+    </div>
+
+    <div class="footer-center">
+      <div>
+        <h4>FALE CONOSCO</h4>
+        <div class="social-icons">
+          <a href="#"><img src="{% static 'landing/img/facebook.png' %}" alt="Facebook"></a>
+          <a href="#"><img src="{% static 'landing/img/instagram.png' %}" alt="Instagram"></a>
+          <a href="#"><img src="{% static 'landing/img/whats.png' %}" alt="WhatsApp"></a>
+          <a href="#"><img src="{% static 'landing/img/linkedin.png' %}" alt="LinkedIn"></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>SOBRE O ECOLMEIA</h4>
+      </div>
+
+      <div>
+        <h4>VOLTE A PÁGINA INICIAL</h4>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <img src="{% static 'landing/img/ifclogo.png' %}" alt="Instituto Federal Catarinense">
+    </div>
   </footer>
 
   <script src="{% static 'landing/js/home.js' %}"></script>
 </body>
-
 </html>
