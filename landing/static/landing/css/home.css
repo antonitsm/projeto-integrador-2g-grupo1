@@ -1,53 +1,13 @@
-/* ===== HEADER ===== */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #000;
-  padding: 10px 30px;
-  color: #f4b63f;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo img {
-  width: 30px;
-  height: 30px;
-}
-
-nav {
-  display: flex;
-  gap: 30px;
-}
-
-nav a {
-  color: #f4b63f;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.85rem;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #fff;
-}
-
-.user-icon img {
-  width: 28px;
-  height: 28px;
-  border: 2px solid #f4b63f;
-  border-radius: 50%;
-  padding: 3px;
+/* ===== RESET E GLOBAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
 }
 
 section {
@@ -56,23 +16,9 @@ section {
   box-sizing: border-box;
 }
 
-h1,
-h2 {
+h1, h2 {
   color: #fcd52e;
   margin: 20px 0;
-}
-
-
-a {
-  background: #fcd52e;
-  color: #000;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 20px;
-  font-size: 16px;
 }
 
 ul {
@@ -80,30 +26,112 @@ ul {
   line-height: 1.6;
 }
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+
+
+
+/* ===== HEADER E NAVBAR ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8vh;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.logo {
+  padding-left: 45px;
+  position: absolute;
+  left: 30px;
+}
+
+.logo img {
+  max-width: 6vh;
+  height: auto;
+}
+
+.navbar {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  color: #f8bf4d;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #d4a017;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 7%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #d4a017;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 90%;
+}
+
+
+
+
+
+
+
+/* HERO */
 .hero {
-  font-style: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 525px;
   gap: 8rem;
-
 }
 
 .hero img {
   max-width: 400px;
   height: auto;
 }
-.colmeia_direita{
-  
-}
 
-.colmeia_baixo{
-
-}
 .hero h1 {
-  font-style: bold;
   font-size: 70px;
+  font-weight: bold;
 }
 
 .sublinhado {
@@ -112,23 +140,21 @@ ul {
   text-decoration-thickness: 4px;
 }
 
-/* ====== SECTION ====== */
+
+
+
+
+
+
+
+/* SEÇÃO 1 */
 .section_1 {
   position: relative;
   background: #1a1a1a;
   padding: 80px 20px;
   overflow: hidden;
-  /* recorta qualquer coisa que passe da section */
   isolation: isolate;
-  /* garante a ordem do z-index dentro da section */
   height: 550px;
-}
-
-/* Conteúdo por cima da decoração */
-.section_1 h1,
-.section_1 p {
-  position: relative;
-  z-index: 1;
   text-align: center;
 }
 
@@ -137,6 +163,8 @@ ul {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .section_1 p {
@@ -146,14 +174,14 @@ ul {
   max-width: 900px;
   margin: 0 auto;
   text-align: justify;
+  position: relative;
+  z-index: 1;
 }
 
-/* ====== DECORAÇÕES ====== */
 .section_1::before,
 .section_1::after {
   content: "";
   position: absolute;
-  top: 50%;
   width: min(28vw, 450px);
   aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
@@ -163,30 +191,30 @@ ul {
   z-index: 0;
 }
 
-/* Imagem da esquerda - topo */
 .section_1::before {
   left: 0;
-  background-image: var(--decor-left);
   top: -10%;
-  /* altura próxima do topo */
+  background-image: var(--decor-left);
   transform: translate(-60%, 0) rotate(-160deg);
-  /* remove o -50% para não centralizar verticalmente */
   transform-origin: center;
 }
 
-/* Imagem da direita - base */
 .section_1::after {
   right: 0;
-  background-image: var(--decor-right);
   top: 90%;
-  /* altura próxima da base */
+  background-image: var(--decor-right);
   transform: translate(60%, -100%) rotate(90deg);
-  /* ajusta para ficar completamente visível */
   transform-origin: center;
 }
 
-/* SEÇÂO 2 */
 
+
+
+
+
+
+
+/* SEÇÃO 2  */
 .section_2 {
   position: relative;
   padding: 60px 20px;
@@ -216,10 +244,11 @@ ul {
 .section_2 li {
   text-align: justify;
   margin-left: -30%;
-justify-content: center;
+  justify-content: center;
   margin-bottom: 20px;
   font-size: 1.6rem;
 }
+
 .section_2::before,
 .section_2::after {
   content: "";
@@ -234,33 +263,29 @@ justify-content: center;
   z-index: 0;
 }
 
-/* Imagem da esquerda */
 .section_2::before {
   left: 0;
-  background-image: var(--decor-left);
   top: 35%;
-  /* altura próxima do topo */
+  background-image: var(--decor-left);
   transform: translate(-75%, 0) rotate(-55deg);
-  /* remove o -50% para não centralizar verticalmente */
   transform-origin: center;
 }
 
-/* SEÇÂO 3 */
+
+
+
+
+
+
+
+/* SEÇÃO 3 */
 .section_3 {
   position: relative;
-  background: #000000;
+  background: #000;
   padding: 80px 20px;
   overflow: hidden;
   isolation: isolate;
   height: 600px;
-}
-
-/* Conteúdo por cima da decoração */
-.section_3 h1,
-.section_3 p {
-  position: relative;
-  z-index: 1;
-  text-align: center;
 }
 
 .section_3 h1 {
@@ -268,19 +293,22 @@ justify-content: center;
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
 .section_3 p {
-  justify-content: start;
-  text-align: justify;
   color: #f5f5f5;
   font-size: 1.5rem;
   line-height: 1.4;
   max-width: 900px;
   margin: 0 auto;
+  text-align: justify;
+  position: relative;
+  z-index: 1;
 }
 
-/* ====== DECORAÇÕES ====== */
 .section_3::before,
 .section_3::after {
   content: "";
@@ -295,36 +323,41 @@ justify-content: center;
   z-index: 0;
 }
 
-/* Imagem da direita - base */
 .section_3::after {
   right: 0;
-  background-image: var(--decor-right);
   top: 115%;
-  /* altura próxima da base */
+  background-image: var(--decor-right);
   transform: translate(70%, -100%) rotate(290deg);
-  /* ajusta para ficar completamente visível */
   transform-origin: center;
 }
 
+
+
+
+
+
+
+
+/* BOTÕES */
 .button-container {
-  text-align: center; 
-  margin-top: 50px;   
+  text-align: center;
+  margin-top: 50px;
 }
 
 .btn {
   display: inline-block;
   padding: 24px 60px;
   font-size: 20px;
-  background-color:#f4b63f; 
-  color: white;           
-  text-decoration: none;    
-  border-radius: 50px;      
+  background-color: #f4b63f;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
   font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s; 
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-  background-color: #fcb72e; 
-  transform: scale(1.02);    
-  cursor: pointer;           
+  background-color: #fcb72e;
+  transform: scale(1.02);
+  cursor: pointer;
 }
