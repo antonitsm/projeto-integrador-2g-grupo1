@@ -10,55 +10,35 @@
 
 <body>
 
-  <header id="header">
+  <!--NAVBAR-->
+  <header>
     <nav>
       <div class="logo">
-        <a href="#">
-          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
-        </a>
+        <a href="#"><img src="{% static 'landing/img/logo.png' %}" alt="Logo"></a>
       </div>
-
-      <ul class="navbar" id="navbar">
-        <li><a href="#" class="active">INÍCIO</a></li>
+      <ul class="navbar">
+        <li><a href="#">INÍCIO</a></li>
         <li><a href="#">MINHAS COLMEIAS</a></li>
         <li><a href="#">DADOS</a></li>
         <li><a href="#">REGISTRO</a></li>
         <li><a href="#">PRODUÇÃO</a></li>
       </ul>
-
-      <div class="user-profile">
-        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
-      </div>
-
-      <div class="mobile-menu-toggle" id="mobile-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
   </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <section class="hero">
-      <!-- Imagem principal -->
       <div class="imagem_banner">
         <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
       </div>
 
-      <!-- Bloco do título e colmeias -->
-      <div class="titulo_colmeia">
-        <div class="texto_principal">
-          <h1><span class="sublinhado">ECO</span>LMEIA</h1>
-        </div>
-
-        <div class="decoracoes">
-          <div class="img_decora">
-            <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
-            <img class="colmeia_baixo" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia baixo">
-          </div>
-        </div>
+      <h1><span class="sublinhado">ECO</span>LMEIA</h1>
+      <div class="img_decora">
+        <img class="colmeia_direita" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia direita">
+      </div>
     </section>
+
     <section class="section_1" style="
         --decor-left: url('{% static 'landing/img/favo_de_mel.png' %}');
         --decor-right: url('{% static 'landing/img/favo_de_mel.png' %}');
@@ -107,9 +87,6 @@
   </main>
 
   <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Ecolmeia</p>
-  </footer>
 
   <script src="{% static 'landing/js/home.js' %}"></script>
 </body>

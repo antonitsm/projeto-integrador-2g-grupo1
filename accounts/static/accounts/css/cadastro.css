@@ -16,45 +16,32 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVBAR */
-header {
+/* ================= NAVBAR ================= */
+nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 8vh;
-  background-color: #000;
+  background-color: black;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 0 30px;
+  padding: 15px 30px;
   z-index: 1000;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  width: 100%;
-  max-width: 900px;
-}
-
-.logo {
-  padding-left: 45px;
-  position: absolute;
-  left: 30px;
+  height: 8vh;
 }
 
 .logo img {
   max-width: 6vh;
-  height: auto;
 }
 
 .navbar {
   display: flex;
-  list-style: none;
-  gap: 40px;
+  list-style-type: none;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .navbar li {
@@ -62,32 +49,28 @@ nav {
 }
 
 .navbar a {
+  text-decoration: none;
   color: #f8bf4d;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   position: relative;
-  padding: 8px 15px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.navbar a:hover {
-  color: #d4a017;
+  padding-bottom: 5px;
+  transition: color 0.2s ease;
 }
 
 .navbar a::after {
-  content: "";
+  content: '';
   position: absolute;
-  left: 7%;
+  left: 0;
   bottom: 0;
   width: 0;
   height: 2px;
-  background-color: #d4a017;
+  background-color: #f8bf4d;
   transition: width 0.3s ease;
 }
 
 .navbar a:hover::after {
-  width: 90%;
+  width: 100%;
 }
 
 /* ================= DECORAÇÕES ================= */
