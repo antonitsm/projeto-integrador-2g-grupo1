@@ -1,0 +1,216 @@
+// Elementos DOM
+const colmeiaCards = document.querySelectorAll('.colmeia-card');
+const btnAdicionarColmeia = document.querySelector('.btn-adicionar-colmeia');
+
+// Função para adicionar efeitos de hover e animações
+function inicializarEfeitos() {
+    // Adicionar efeitos de hover mais suaves para os cartões
+    colmeiaCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Efeito de hover para o botão adicionar colmeia
+    if (btnAdicionarColmeia) {
+        btnAdicionarColmeia.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        btnAdicionarColmeia.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    }
+}
+
+// Animação de entrada para os cartões de colmeias
+function animarEntrada() {
+    colmeiaCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+}
+
+// Função para confirmar exclusão de colmeia (para futuras expansões)
+function confirmarExclusao(colmeiaId, colmeiaNome) {
+    return confirm(`Tem certeza que deseja excluir a colmeia "${colmeiaNome}"? Esta ação não pode ser desfeita.`);
+}
+
+// Função para filtrar colmeias (para futuras expansões)
+function filtrarColmeias(filtro) {
+    colmeiaCards.forEach(card => {
+        const nome = card.querySelector('.colmeia-nome').textContent.toLowerCase();
+        
+        if (nome.includes(filtro.toLowerCase())) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Função para ordenar colmeias (para futuras expansões)
+function ordenarColmeias(criterio) {
+    const lista = document.querySelector('.colmeias-lista');
+    const cards = Array.from(colmeiaCards);
+    
+    cards.sort((a, b) => {
+        const nomeA = a.querySelector('.colmeia-nome').textContent;
+        const nomeB = b.querySelector('.colmeia-nome').textContent;
+        
+        switch (criterio) {
+            case 'nome':
+                return nomeA.localeCompare(nomeB);
+            case 'nome-desc':
+                return nomeB.localeCompare(nomeA);
+            default:
+                return 0;
+        }
+    });
+    
+    // Reordenar os elementos no DOM
+    cards.forEach(card => {
+        lista.appendChild(card);
+    });
+}
+
+// Função para mostrar notificação (para futuras expansões)
+function mostrarNotificacao(mensagem, tipo = 'info') {
+    const notificacao = document.createElement('div');
+    notificacao.className = `notificacao notificacao-${tipo}`;
+    notificacao.textContent = mensagem;
+    
+    // Estilos da notificação
+    notificacao.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+    `;
+    
+    // Cores baseadas no tipo
+    const cores = {
+        'info': '#2196F3',
+        'success': '#4CAF50',
+        'warning': '#FF9800',
+        'error': '#f44336'
+    };
+    
+    notificacao.style.backgroundColor = cores[tipo] || cores.info;
+    
+    document.body.appendChild(notificacao);
+    
+    // Animar entrada
+    setTimeout(() => {
+        notificacao.style.opacity = '1';
+        notificacao.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remover após 3 segundos
+    setTimeout(() => {
+        notificacao.style.opacity = '0';
+        notificacao.style.transform = 'translateX(100%)';
+        
+        setTimeout(() => {
+            document.body.removeChild(notificacao);
+        }, 300);
+    }, 3000);
+}
+
+// Função para validar formulário de nova colmeia (para futuras expansões)
+function validarFormularioColmeia(dados) {
+    const erros = [];
+    
+    if (!dados.nome || dados.nome.trim() === '') {
+        erros.push('Nome da colmeia é obrigatório');
+    }
+    
+    if (!dados.localizacao || dados.localizacao.trim() === '') {
+        erros.push('Localização é obrigatória');
+    }
+    
+    if (!dados.dataInstalacao) {
+        erros.push('Data de instalação é obrigatória');
+    }
+    
+    return erros;
+}
+
+// Event listeners para botões de ação
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    
+    // Confirmar ações importantes
+    if (target.classList.contains('btn-excluir')) {
+        const colmeiaCard = target.closest('.colmeia-card');
+        const colmeiaNome = colmeiaCard.querySelector('.colmeia-nome').textContent;
+        const colmeiaId = colmeiaCard.getAttribute('data-colmeia');
+        
+        if (!confirmarExclusao(colmeiaId, colmeiaNome)) {
+            event.preventDefault();
+        }
+    }
+    
+    // Feedback visual para cliques em botões
+    if (target.classList.contains('btn-action')) {
+        target.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            target.style.transform = '';
+        }, 150);
+    }
+});
+
+// Inicializar quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarEfeitos();
+    animarEntrada();
+    
+    // Log para debug
+    console.log('Página de colmeias carregada com sucesso');
+    console.log(`Total de colmeias: ${colmeiaCards.length}`);
+});
+
+// Função para atualizar contador de colmeias (para futuras expansões)
+function atualizarContador() {
+    const contador = document.querySelector('.contador-colmeias');
+    if (contador) {
+        contador.textContent = `Total: ${colmeiaCards.length} colmeias`;
+    }
+}
+
+// Função para busca em tempo real (para futuras expansões)
+function configurarBusca() {
+    const campoBusca = document.querySelector('#busca-colmeias');
+    if (campoBusca) {
+        campoBusca.addEventListener('input', function() {
+            const termo = this.value;
+            filtrarColmeias(termo);
+        });
+    }
+}
+
+// Exportar funções para uso global (se necessário)
+window.ColmeiasPage = {
+    filtrarColmeias,
+    ordenarColmeias,
+    mostrarNotificacao,
+    confirmarExclusao,
+    validarFormularioColmeia
+};
