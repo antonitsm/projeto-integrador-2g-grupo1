@@ -19,6 +19,7 @@ body {
 }
 
 header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: fixed;
   top: 0;
   left: 0;
@@ -29,7 +30,8 @@ header {
   border-bottom: 1px solid rgba(248, 191, 77, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Mantém o espaço entre logo, navbar e user-profile */
+  justify-content: space-between;
+  /* Mantém o espaço entre logo, navbar e user-profile */
   padding: 0 40px;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -45,7 +47,8 @@ header.scrolled {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Distribui os elementos: logo, navbar, user-profile */
+  justify-content: space-between;
+  /* Distribui os elementos: logo, navbar, user-profile */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -86,8 +89,10 @@ nav {
   list-style: none;
   gap: 8px;
   align-items: center;
-  flex-grow: 1; /* Permite que a navbar ocupe o espaço disponível */
-  justify-content: center; /* Centraliza os links dentro da navbar */
+  flex-grow: 1;
+  /* Permite que a navbar ocupe o espaço disponível */
+  justify-content: center;
+  /* Centraliza os links dentro da navbar */
 }
 
 .navbar li {
@@ -271,7 +276,8 @@ nav {
   }
 
   .user-profile {
-    display: none; /* Esconde o perfil do usuário no mobile, se desejar */
+    display: none;
+    /* Esconde o perfil do usuário no mobile, se desejar */
   }
 }
 
@@ -293,6 +299,7 @@ nav {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -303,11 +310,25 @@ nav {
   animation: fadeInUp 0.6s ease forwards;
 }
 
-.navbar li:nth-child(1) { animation-delay: 0.1s; }
-.navbar li:nth-child(2) { animation-delay: 0.2s; }
-.navbar li:nth-child(3) { animation-delay: 0.3s; }
-.navbar li:nth-child(4) { animation-delay: 0.4s; }
-.navbar li:nth-child(5) { animation-delay: 0.5s; }
+.navbar li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.navbar li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.navbar li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.navbar li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.navbar li:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 
 /* ================= DECORAÇÕES (do segundo CSS, sem mudar) ================= */
@@ -336,6 +357,7 @@ nav {
 
 /* RESPONSIVO DECORAÇÕES */
 @media (max-width: 1024px) {
+
   .decoracao.esquerda,
   .decoracao.direita {
     width: 250px;
@@ -343,24 +365,25 @@ nav {
 }
 
 @media (max-width: 768px) {
+
   .decoracao.esquerda,
   .decoracao.direita {
     display: none;
   }
-  
+
   .navbar {
     gap: 20px;
   }
-  
+
   .navbar a {
     font-size: 13px;
     padding: 6px 10px;
   }
-  
+
   .logo {
     padding-left: 20px;
   }
-  
+
   .logo-text {
     font-size: 16px;
   }
@@ -373,7 +396,7 @@ nav {
   border-radius: 10px;
   width: 500px;
   max-width: 90%;
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(248, 191, 77, 0.1);
   position: relative;
@@ -406,6 +429,7 @@ nav {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -537,15 +561,15 @@ nav {
     padding: 1.8rem;
     width: 95%;
   }
-  
+
   .formulario-autenticacao h2 {
     font-size: 1.6rem;
   }
-  
+
   .campo-formulario input {
     padding: 0.8rem;
   }
-  
+
   .botao-enviar {
     padding: 0.8rem;
     font-size: 0.95rem;

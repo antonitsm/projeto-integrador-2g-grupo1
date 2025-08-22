@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Colmeias - Ecolmeia</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard/css/minhas_colmeias.css' %}">
+</head>
+
+<body>
+  
+  <!--NAVBAR-->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="#">
+          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
+        </a>
+      </div>
+
+      <ul class="navbar">
+        <li><a href="#">INÍCIO</a></li>
+        <li><a href="#">MINHAS COLMEIAS</a></li>
+        <li><a href="#">DADOS</a></li>
+        <li><a href="#">REGISTRO</a></li>
+        <li><a href="#">PRODUÇÃO</a></li>
+      </ul>
+
+      <div class="user-profile">
+        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
+      </div>
+
+      <div class="mobile-menu-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+</header>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main-content">
+    <div class="container">
+      <h1 class="page-title">Minhas Colmeias</h1>
+
+      <!-- BOTÃO ADICIONAR COLMEIA -->
+      <section class="adicionar-section">
+        <a href="{% url 'nova_colmeia' %}" class="btn-adicionar-colmeia">Adicionar colmeia +</a>
+      </section>
+
+      <!-- LISTA DE COLMEIAS -->
+      <section class="colmeias-section">
+        <div class="colmeias-lista">
+          {% for colmeia in colmeias %}
+          <div class="colmeia-card" data-colmeia="{{ colmeia.id }}">
+            <div class="colmeia-header">
+              <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
+            </div>
+
+            <div class="colmeia-actions">
+              <a href="{% url 'editar_producao' colmeia.id %}" class="btn-action btn-producao">
+                editar produção
+              </a>
+              <a href="{% url 'adicionar_registro' colmeia.id %}" class="btn-action btn-registro">
+                adicionar registro
+              </a>
+              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">
+                editar
+              </a>
+            </div>
+          </div>
+          {% empty %}
+          <div class="sem-colmeias">
+            <p>Nenhuma colmeia encontrada.</p>
+            <a href="{% url 'nova_colmeia' %}" class="btn-primeira-colmeia">Criar Primeira Colmeia</a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <img src="{% static 'dashboard/img/logo.png' %}" alt="Logo abelha">
+    </div>
+
+    <div class="footer-center">
+      <div>
+        <h4>FALE CONOSCO</h4>
+        <div class="social-icons">
+          <a href="#"><img src="{% static 'dashboard/img/facebook.png' %}" alt="Facebook"></a>
+          <a href="#"><img src="{% static 'dashboard/img/instagram.png' %}" alt="Instagram"></a>
+          <a href="#"><img src="{% static 'dashboard/img/whats.png' %}" alt="WhatsApp"></a>
+          <a href="#"><img src="{% static 'dashboard/img/linkedin.png' %}" alt="LinkedIn"></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>SOBRE O ECOLMEIA</h4>
+      </div>
+
+      <div>
+        <h4>VOLTE A PÁGINA INICIAL</h4>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <img src="{% static 'dashboard/img/ifclogo.png' %}" alt="Instituto Federal Catarinense">
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="{% static 'dashboard/js/minhas_colmeias.js' %}"></script>
+</body>
+</html>
