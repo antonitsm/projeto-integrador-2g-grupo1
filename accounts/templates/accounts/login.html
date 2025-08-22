@@ -5,12 +5,15 @@
 {% block style %}<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">{% endblock %}
 
 {% block content %}
-
-<header>
+ <!--NAVBAR-->
+  <header>
     <nav>
       <div class="logo">
-        <a href="#"><img src="{% static 'landing/img/logo.png' %}" alt="Logo"></a>
+        <a href="#">
+          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
+        </a>
       </div>
+
       <ul class="navbar">
         <li><a href="#">INÍCIO</a></li>
         <li><a href="#">MINHAS COLMEIAS</a></li>
@@ -18,8 +21,17 @@
         <li><a href="#">REGISTRO</a></li>
         <li><a href="#">PRODUÇÃO</a></li>
       </ul>
-    </nav>
-  </header>
+
+      <div class="user-profile">
+        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
+      </div>
+
+      <div class="mobile-menu-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+</header>
 
 <!-- DECORAÇÃO -->
 <div class="decoracao esquerda">

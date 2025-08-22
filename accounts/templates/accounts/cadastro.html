@@ -3,7 +3,8 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'accounts/css/cadastro.css' %}">{% endblock %}
+<link rel="stylesheet" href="{% static 'accounts/css/cadastro.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -19,6 +20,9 @@
         <li><a href="#">REGISTRO</a></li>
         <li><a href="#">PRODUÇÃO</a></li>
       </ul>
+      <div class="user-profile">
+        <img src="{% static 'accounts/img/user.png' %}" alt="Usuário">
+      </div>
     </nav>
   </header>
 
@@ -52,10 +56,10 @@
         </div>
         <button type="submit" class="botao-enviar">Cadastrar</button>
         <div class="alternar-formulario">
-
             Já tem uma conta? <a href="{% url 'login' %}">Fazer login</a>
         </div>
     </form>
 </div>
 <script src="{% static 'accounts/js/cadastro.js' %}"></script>
 {% endblock %}
+
