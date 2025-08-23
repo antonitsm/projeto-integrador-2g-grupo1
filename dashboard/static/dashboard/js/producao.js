@@ -3,8 +3,9 @@ const meses = [
   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
-let abelhasData = [10, 5, 40, 30, 35, 45, 47, 44, 43, 50, 55, 52];
-let melData = [15, 8, 25, 18, 60, 75, 72, 70, 68, 74, 76, 72];
+let abelhasData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let melData = [0, 0, , 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 
 const ctx = document.getElementById("beeChart").getContext("2d");
 const chart = new Chart(ctx, {
@@ -39,6 +40,13 @@ const chart = new Chart(ctx, {
         labels: {
           usePointStyle: true
         }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        min: 0,
+        max: 100
       }
     }
   }
