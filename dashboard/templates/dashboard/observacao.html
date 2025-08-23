@@ -1,10 +1,43 @@
-{% extends 'dashboard/base.html' %}
 {% load static %}
-{% block title %}Registro de Observações{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-{% block style %}<link rel="stylesheet" href="{% static 'dashboard/css/observacao.css' %}">{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <title>Ecolmeia</title>
+  <link rel="stylesheet" href="{% static 'dashboard/css/observacao.css' %}">
+</head>
 
-{% block content %}
+<body>
+
+  <!--NAVBAR-->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="#">
+          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
+        </a>
+      </div>
+
+      <ul class="navbar">
+        <li><a href="#">INÍCIO</a></li>
+        <li><a href="#">MINHAS COLMEIAS</a></li>
+        <li><a href="#">DADOS</a></li>
+        <li><a href="#">REGISTRO</a></li>
+        <li><a href="#">PRODUÇÃO</a></li>
+      </ul>
+
+      <div class="user-profile">
+        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
+      </div>
+
+      <div class="mobile-menu-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+</header>
+
     <div class="registros">
         <h1 class="titulo">REGISTRO DE OBSERVAÇÕES</h1>
         
@@ -48,7 +81,7 @@
             <!-- Botões de Ação -->
             <div class="botoes">
                 <button type="button" class="salvar" id="btn-salvar">SALVAR REGISTRO</button>
-                <button type="button" class="ultimoRegistro" id="btn-ultimo">ABRIR ÚLTIMO REGISTRO &gt;</button>
+                <button type="button" class="ultimoRegistro" id="btn-ultimo">ABRIR ÚLTIMOS REGISTRO &gt;</button>
                 <button type="button" class="limpar" id="btn-limpar">LIMPAR CAMPOS</button>
             </div>
         </div>
@@ -57,6 +90,60 @@
         <div id="mensagem-status" class="mensagem-status" style="display: none;"></div>
     </div>
 
-<script src="{% static 'dashboard/js/observacao.js' %}"></script>
-{% endblock %}
+    <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section footer-brand">
+        <div class="footer-logo">
+          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Ecolmeia">
+          <span class="footer-logo-text">ECOLMEIA</span>
+        </div>
+        <p class="footer-description">
+          Cuidando do futuro através da apicultura sustentável. Monitoramento inteligente para colmeias mais saudáveis e produtivas.
+        </p>
+      </div>
 
+      <div class="footer-section footer-nav">
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Minhas Colmeias</a></li>
+          <li><a href="#">Dados</a></li>
+          <li><a href="#">Registro</a></li>
+          <li><a href="#">Produção</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-contact">
+        <h3>Contato</h3>
+        <ul>
+          <li><a href="mailto:contato@ecolmeia.com">contato@ecolmeia.com</a></li>
+          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li>São Paulo, SP - Brasil</li>
+        </ul>
+      </div>
+
+      <!-- Logo da Escola -->
+      <div class="footer-section footer-school">
+        <h3>Instituto</h3>
+        <div class="school-logo">
+          <img src="{% static 'landing/img/logo_ifc.png' %}" alt="logo">
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2025 Ecolmeia. Todos os direitos reservados.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <script src="{% static 'dashboard/js/observacao.js' %}"></script>
+</body>
+</html>
