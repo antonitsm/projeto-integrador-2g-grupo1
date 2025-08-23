@@ -45,3 +45,31 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("Página de cadastro carregada com sucesso!");
 });
 
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        // Remove active de todos os links
+        navLinks.forEach(l => l.classList.remove("active"));
+        
+        // Adiciona active ao link clicado
+        this.classList.add("active");
+        
+        // Fecha menu mobile se estiver aberto
+        if (navbar.classList.contains("active")) {
+            navbar.classList.remove("active");
+            mobileToggle.classList.remove("active");
+        }
+    });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname; // pega a URL atual
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+});

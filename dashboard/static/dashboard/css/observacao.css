@@ -1,114 +1,425 @@
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ================= RESET E BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: "Montserrat", sans-serif;
-      background-color: #f9f9f9;
-    }
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  min-height: 100vh;
+  position: relative;
+  padding-top: 100px; /* Espaço para header fixo */
+  padding-bottom: 80px; /* Espaço para footer */
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 95px;
-      background-color: black;
-      max-width: 100%;
-    }
+/* ================= CONTAINER PRINCIPAL ================= */
+.registros {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(248, 191, 77, 0.1);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
 
-    .navbar {
-      display: flex;
-      list-style-type: none;
-      gap: 225px;
-      
-    }
+.registros::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f8bf4d 0%, #d4a017 100%);
+}
 
-    .navbar a {
-      text-decoration: none;
-      color: #f8bf4d;
-      font-size: 14px;
-      font-weight: bold;
-      position: relative;
-      padding-bottom: 5px;
-      transition: color 0.2s ease;
-    }
+/* ================= TÍTULO PRINCIPAL ================= */
+.titulo {
+  color: #f3d111;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 800;
+  text-shadow: 
+    0 4px 8px rgba(243, 209, 17, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+  position: relative;
+}
 
-    .navbar a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background-color: #f8bf4d;
-      transition: width 0.3s ease;
-    }
+.titulo::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #f8bf4d, #d4a017);
+  border-radius: 2px;
+}
 
+/* ================= FORMULÁRIO DE REGISTRO ================= */
+.formulario-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
-    .registros {
-      max-width: 800px;
-      margin: 60px auto;
-      
-    }
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    .titulo {
-      color: #f3d111;
-      font-size: 45px;
-      text-align: center;
-    }
+.campo-formulario label {
+  font-weight: 700;
+  color: #333;
+  font-size: 16px;
+  margin-left: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
-    .subtitulo {
-      color: #333;
-      font-size: 16px;
-      margin-bottom: 30px;
-   
-    }
+/* ================= INPUTS ================= */
+.input-titulo,
+.input-data,
+.input-colmeia {
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .subtituloColmeia {
-        border-color: #000000;
-        border: 2px;
-    }
+.input-titulo:focus,
+.input-data:focus,
+.input-colmeia:focus {
+  outline: none;
+  border-color: #f8bf4d;
+  box-shadow: 
+    0 0 0 3px rgba(248, 191, 77, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fefefe;
+  transform: translateY(-1px);
+}
 
-    .caixaRegistro {
-      background-color: black;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 17px;
-      
-    }
+.input-titulo::placeholder,
+.input-colmeia::placeholder {
+  color: #999;
+  font-style: italic;
+}
 
-    .areaRegistro {
-      width: 100%;
-      height: 200px;
-      border-radius: 8px;
-      padding: 15px;
-      font-size: 14px;
-      font-family: "Montserrat", sans-serif;
-      
-    }
+/* ================= SUBTÍTULO COLMEIA ================= */
+.subtituloColmeia {
+  position: relative;
+}
 
+.subtituloColmeia::before {
+  content: '🐝';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none;
+  z-index: 1;
+}
 
+/* ================= ÁREA DE REGISTRO ================= */
+.caixaRegistro {
+  background: linear-gradient(145deg, #000000 0%, #1a1a1a 100%);
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 10px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
 
-    .salvar,
-    .ultimoRegistro {
-      background-color: #f3d214;
-      color: black;
-      padding: 12px 30px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-      margin-top: 20px;
-    }
+.caixaRegistro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f8bf4d, #d4a017);
+}
 
-    .ultimoRegistro {
-      background-color: black;
-      color: white;
-    }
+.areaRegistro {
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  background: #ffffff;
+  color: #333;
+  resize: vertical;
+  min-height: 200px;
+  max-height: 400px;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .salvar:hover,
-    .ultimoRegistro:hover {
-      opacity: 0.9;
-    }
+.areaRegistro:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(248, 191, 77, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: scale(1.01);
+}
+
+.areaRegistro::placeholder {
+  color: #666;
+  line-height: 1.8;
+}
+
+/* ================= BOTÕES ================= */
+.botoes {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.salvar,
+.ultimoRegistro,
+.limpar {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  min-width: 180px;
+}
+
+/* Botão Salvar */
+.salvar {
+  background: linear-gradient(135deg, #f3d214 0%, #d4a017 100%);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(243, 210, 20, 0.3);
+}
+
+.salvar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.salvar:hover::before {
+  left: 100%;
+}
+
+.salvar:hover {
+  background: linear-gradient(135deg, #d4a017 0%, #b8941a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(243, 210, 20, 0.4);
+}
+
+/* Botão Último Registro */
+.ultimoRegistro {
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
+  color: #f8bf4d;
+  border: 2px solid #f8bf4d;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ultimoRegistro:hover {
+  background: linear-gradient(135deg, #f8bf4d 0%, #d4a017 100%);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(248, 191, 77, 0.4);
+}
+
+/* Botão Limpar */
+.limpar {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.limpar:hover {
+  background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* ================= MENSAGEM DE STATUS ================= */
+.mensagem-status {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.mensagem-status.sucesso {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensagem-status.erro {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.mensagem-status.info {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .registros {
+    margin: 20px auto;
+    padding: 25px 20px;
+    border-radius: 15px;
+  }
+
+  .titulo {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .formulario-registro {
+    gap: 20px;
+  }
+
+  .campo-formulario label {
+    font-size: 14px;
+  }
+
+  .input-titulo,
+  .input-data,
+  .input-colmeia {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+
+  .caixaRegistro {
+    padding: 20px;
+  }
+
+  .areaRegistro {
+    height: 200px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .botoes {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .salvar,
+  .ultimoRegistro,
+  .limpar {
+    padding: 12px 20px;
+    font-size: 14px;
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .registros {
+    margin: 15px;
+    padding: 20px 15px;
+  }
+
+  .titulo {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .campo-formulario label {
+    font-size: 13px;
+  }
+
+  .input-titulo,
+  .input-data,
+  .input-colmeia {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .areaRegistro {
+    height: 180px;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .caixaRegistro {
+    padding: 15px;
+  }
+}
+
+/* ================= ANIMAÇÕES ================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registros {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.campo-formulario {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.campo-formulario:nth-child(1) { animation-delay: 0.1s; }
+.campo-formulario:nth-child(2) { animation-delay: 0.2s; }
+.campo-formulario:nth-child(3) { animation-delay: 0.3s; }
+.campo-formulario:nth-child(4) { animation-delay: 0.4s; }
+
+.botoes {
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+

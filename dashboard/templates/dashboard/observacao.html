@@ -1,31 +1,62 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
-{% block title %}inicio{% endblock %}
+{% block title %}Registro de Observações{% endblock %}
 
 {% block style %}<link rel="stylesheet" href="{% static 'dashboard/css/observacao.css' %}">{% endblock %}
 
 {% block content %}
     <div class="registros">
-        <h1 class="titulo">REGISTRO</h1>
-        <p class="subtitulo"> <p class="subtituloColmeia">
-    O QUE VOCÊ OBSERVOU NA COLMEIA 
-    <input list="colmeias" name="colmeia" placeholder="Selecione ou digite" style="padding: 6px 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-left: 10px;">
-    <datalist id="colmeias">
-        <option value="Colmeia 1">
-        <option value="Colmeia 2">
-        <option value="Colmeia 3">
-    </datalist>
-    </p>
-    </p>
+        <h1 class="titulo">REGISTRO DE OBSERVAÇÕES</h1>
+        
+        <!-- Formulário de Registro -->
+        <div class="formulario-registro">
+            <!-- Campo Título -->
+            <div class="campo-formulario">
+                <label for="titulo-registro">Título do Registro</label>
+                <input type="text" id="titulo-registro" name="titulo" placeholder="Digite o título da observação..." class="input-titulo">
+            </div>
 
-        <div class="caixaRegistro">
-        <textarea class="areaRegistro" placeholder="Digite suas observações aqui..."></textarea>
+            <!-- Campo Data -->
+            <div class="campo-formulario">
+                <label for="data-registro">Data da Observação</label>
+                <input type="date" id="data-registro" name="data" class="input-data">
+            </div>
+
+            <!-- Campo Colmeia -->
+            <div class="campo-formulario">
+                <label for="colmeia-registro">Colmeia Observada</label>
+                <div class="subtituloColmeia">
+                    <input list="colmeias" id="colmeia-registro" name="colmeia" placeholder="Selecione ou digite a colmeia..." class="input-colmeia">
+                    <datalist id="colmeias">
+                        <option value="Colmeia 1">
+                        <option value="Colmeia 2">
+                        <option value="Colmeia 3">
+                        <option value="Colmeia 4">
+                        <option value="Colmeia 5">
+                    </datalist>
+                </div>
+            </div>
+
+            <!-- Área de Observações -->
+            <div class="campo-formulario">
+                <label for="observacoes">Observações Detalhadas</label>
+                <div class="caixaRegistro">
+                    <textarea id="observacoes" class="areaRegistro" placeholder="Digite suas observações detalhadas aqui...&#10;&#10;Exemplo:&#10;- Estado geral da colmeia&#10;- Comportamento das abelhas&#10;- Presença da rainha&#10;- Produção de mel&#10;- Sinais de doenças ou pragas&#10;- Condições climáticas"></textarea>
+                </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="botoes">
+                <button type="button" class="salvar" id="btn-salvar">SALVAR REGISTRO</button>
+                <button type="button" class="ultimoRegistro" id="btn-ultimo">ABRIR ÚLTIMO REGISTRO &gt;</button>
+                <button type="button" class="limpar" id="btn-limpar">LIMPAR CAMPOS</button>
+            </div>
         </div>
 
-        <div class="botoes">
-        <button class="salvar">SALVAR</button>
-        <button class="ultimoRegistro">ABRIR ÚLTIMO REGISTRO &gt;</button>
-        </div>
+        <!-- Mensagem de Status -->
+        <div id="mensagem-status" class="mensagem-status" style="display: none;"></div>
     </div>
+
 <script src="{% static 'dashboard/js/observacao.js' %}"></script>
 {% endblock %}
+

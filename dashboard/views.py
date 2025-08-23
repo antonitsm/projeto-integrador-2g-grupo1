@@ -160,4 +160,8 @@ def editar_producao_view(request, colmeia_id):
 def adicionar_registro_view(request, colmeia_id):
     return render(request, 'dashboard/novo_registro.html', {})
 
+def conta_view(request):
+    return render(request, "dashboard/conta.html")
+
+
 

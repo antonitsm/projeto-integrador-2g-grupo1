@@ -12,5 +12,8 @@ def cadastro_view(request):
 def conta_view(request):
     return render(request, 'accounts/conta.html')
 
+def paginainicialdashboard_view(request):
+    return render(request, "dashboard/paginainicialdashboard.html")
+
 
 
