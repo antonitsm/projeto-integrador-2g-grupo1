@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'landing',
     'accounts',
+    'widget_tweaks',
     'dashboard',
 
 ]
@@ -82,7 +83,7 @@ DATABASES = {
         'NAME': 'mysite_db',
         'USER': 'postgres',
         'PASSWORD': '123456',
-        'HOST': 'localhost',   # or use your DB server
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

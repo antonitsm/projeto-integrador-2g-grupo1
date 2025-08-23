@@ -162,6 +162,3 @@ def adicionar_registro_view(request, colmeia_id):
 
 def conta_view(request):
     return render(request, "dashboard/conta.html")
-
-
-

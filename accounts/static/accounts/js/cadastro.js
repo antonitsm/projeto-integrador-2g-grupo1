@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Ação de cadastro
   formCadastro.addEventListener("submit", function (e) {
-    e.preventDefault();
+    //e.preventDefault();
     
     const nome = document.getElementById("nome-cadastro").value;
     const email = document.getElementById("email-cadastro").value;
@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     console.log("Cadastro:", nome, email, senha);
-    alert("Cadastro realizado com sucesso!");
+    //alert("Cadastro realizado com sucesso!");
     
     // Limpar formulário
-    formCadastro.reset();
+    //formCadastro.reset();
     
     // Opcional: redirecionar para página de login
     // window.location.href = "login.html";
@@ -49,7 +49,6 @@ const navLinks = document.querySelectorAll(".navbar a");
 
 navLinks.forEach(link => {
     link.addEventListener("click", function(e) {
-        e.preventDefault();
         
         // Remove active de todos os links
         navLinks.forEach(l => l.classList.remove("active"));
