@@ -33,12 +33,29 @@ document.addEventListener("DOMContentLoaded", function() {
                         <span class="detalhe-label">Colmeia:</span>
                         <span class="detalhe-valor">${item.querySelector(".registro-colmeia").textContent.replace('Colmeia: ','')}</span>
                     </div>
-                    <div class="detalhe-item">
-                        <span class="detalhe-label">Tipo de Inspeção:</span>
-                        <span class="detalhe-valor">${item.querySelector(".registro-tipo").textContent}</span>
-                    </div>
                 `;
             }
         });
+    });
+});
+
+// Script para destacar link ativo
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        // Remove active de todos os links
+        navLinks.forEach(l => l.classList.remove("active"));
+        
+        // Adiciona active ao link clicado
+        this.classList.add("active");
+        
+        // Fecha menu mobile se estiver aberto
+        if (navbar.classList.contains("active")) {
+            navbar.classList.remove("active");
+            mobileToggle.classList.remove("active");
+        }
     });
 });

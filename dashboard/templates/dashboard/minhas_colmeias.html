@@ -1,12 +1,18 @@
-{% extends 'dashboard/base.html' %}
 {% load static %}
-{% block title %}produção{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-{% block style %}<link rel="stylesheet" href="{% static 'dashboard/css/producao.css' %}">{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Colmeias - Ecolmeia</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard/css/minhas_colmeias.css' %}">
+</head>
 
-
-{% block content %}
-<!--NAVBAR-->
+<body>
+  
+  <!--NAVBAR-->
   <header>
     <nav>
       <div class="logo">
@@ -34,45 +40,49 @@
       </div>
 </header>
   <!-- CONTEÚDO PRINCIPAL -->
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+  <main class="main-content">
     <div class="container">
-        <div class="chart-container">
-        <canvas id="beeChart"></canvas>
+      <h1 class="page-title">Minhas Colmeias</h1>
+
+      <!-- BOTÃO ADICIONAR COLMEIA -->
+      <section class="adicionar-section">
+        <a href="{% url 'nova_colmeia' %}" class="btn-adicionar-colmeia">Adicionar colmeia +</a>
+      </section>
+
+      <!-- LISTA DE COLMEIAS -->
+      <section class="colmeias-section">
+        <div class="colmeias-lista">
+          {% for colmeia in colmeias %}
+          <div class="colmeia-card" data-colmeia="{{ colmeia.id }}">
+            <div class="colmeia-header">
+              <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
+            </div>
+
+            <div class="colmeia-actions">
+              <a href="{% url 'editar_producao' colmeia.id %}" class="btn-action btn-producao">
+                editar produção
+              </a>
+              <a href="{% url 'adicionar_registro' colmeia.id %}" class="btn-action btn-registro">
+                adicionar registro
+              </a>
+              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">
+                editar
+              </a>
+            </div>
+          </div>
+          {% empty %}
+          <div class="sem-colmeias">
+            <p>Nenhuma colmeia encontrada.</p>
+            <a href="{% url 'nova_colmeia' %}" class="btn-primeira-colmeia">Criar Primeira Colmeia</a>
+          </div>
+          {% endfor %}
         </div>
-
-        <div class="form-container">
-        <form id="dataForm">
-            <label for="abelhas">Quantidade de abelhas:</label>
-            <input type="number" id="abelhas" required />
-
-            <label for="mel">Quantidade de mel:</label>
-            <input type="number" id="mel" required />
-
-            <label for="mes">Selecione um mês:</label>
-            <select id="mes" required>
-            <option value="" disabled selected>Selecione um mês:</option>
-            <option value="0">Janeiro</option>
-            <option value="1">Fevereiro</option>
-            <option value="2">Março</option>
-            <option value="3">Abril</option>
-            <option value="4">Maio</option>
-            <option value="5">Junho</option>
-            <option value="6">Julho</option>
-            <option value="7">Agosto</option>
-            <option value="8">Setembro</option>
-            <option value="9">Outubro</option>
-            <option value="10">Novembro</option>
-            <option value="11">Dezembro</option>
-            </select>
-
-            <button type="submit">Registrar</button>
-        </form>
-        </div>
+      </section>
     </div>
+  </main>
 
-     <!-- FOOTER -->
+  
+  <!-- FOOTER -->
 
 <footer>
   <div class="footer-container">
@@ -128,5 +138,7 @@
     </div>
   </div>
 </footer>
-<script src="{% static 'dashboard/js/producao.js' %}"></script>
-{% endblock %}
+  <!-- JS -->
+  <script src="{% static 'dashboard/js/minhas_colmeias.js' %}"></script>
+</body>
+</html>

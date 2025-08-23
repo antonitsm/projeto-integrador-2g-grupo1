@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333333;
   line-height: 1.6;
 }
 
@@ -16,7 +16,6 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
 /* ===== HEADER E NAVBAR MELHORADA ===== */
 * {
   margin: 0;
@@ -244,14 +243,6 @@ nav {
     transition: transform 0.3s ease;
   }
 
-  .navbar a.active {
-  background: #ffc107;
-  color: #1a1a1a;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  border-radius: 6px;
-}
-
   .navbar.active {
     transform: translateX(0);
   }
@@ -329,6 +320,7 @@ nav {
   margin-top: 8vh;
   min-height: calc(100vh - 8vh);
   padding: 40px 20px;
+  background-color: #f5f5f5;
 }
 
 .container {
@@ -341,79 +333,59 @@ nav {
   font-weight: bold;
   margin-bottom: 40px;
   text-align: center;
-  color: #ffffff;
+  color: #333333;
 }
 
-/* ===== SEÇÃO DE REGISTROS ===== */
-.registros-section {
+/* ===== SEÇÃO ADICIONAR COLMEIA ===== */
+.adicionar-section {
   margin-bottom: 40px;
-}
-
-.section-header {
-  margin-bottom: 30px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
 }
 
-.section-header h2 {
-  font-size: 1.8rem;
-  color: #f8bf4d;
-  margin-bottom: 10px;
-}
-
-.section-description {
-  color: #cccccc;
-  font-size: 1rem;
-}
-
-.btn-novo-registro {
+.btn-adicionar-colmeia {
   background-color: #f8bf4d;
   color: #000;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 15px 40px;
+  border-radius: 25px;
   font-weight: bold;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-}
-
-.btn-novo-registro:hover {
-  background-color: #d4a017;
-  transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
 }
 
-.registros-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.btn-adicionar-colmeia:hover {
+  background-color: #d4a017;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(248, 191, 77, 0.4);
 }
 
-/* ===== REGISTRO WRAPPER (ACORDEÃO) ===== */
-.registro-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+/* ===== SEÇÃO DE COLMEIAS ===== */
+.colmeias-section {
+  margin-bottom: 40px;
 }
 
-.registro-item {
-  background-color: #2a2a2a;
-  border: 1px solid #404040;
-  border-radius: 12px;
-  padding: 20px;
+.colmeias-lista {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.colmeia-card {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 25px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.registro-item::before {
+.colmeia-card::before {
   content: '';
   position: absolute;
   left: 0;
@@ -425,185 +397,111 @@ nav {
   transition: transform 0.3s ease;
 }
 
-.registro-item:hover {
-  background-color: #333333;
-  border-color: #f8bf4d;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(248, 191, 77, 0.15);
+.colmeia-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.registro-item:hover::before {
+.colmeia-card:hover::before {
   transform: scaleY(1);
 }
 
-.registro-item.active {
-  background-color: #3a3a3a;
-  border-color: #d4a017;
+.colmeia-header {
+  margin-bottom: 20px;
 }
 
-.registro-item.active::before {
-  transform: scaleY(1);
-  background-color: #d4a017;
-}
-
-.registro-info h3 {
-  font-size: 1.3rem;
+.colmeia-nome {
+  font-size: 2rem;
   color: #ffffff;
-  margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.registro-data,
-.registro-colmeia,
-.registro-tipo {
-  font-size: 0.9rem;
-  color: #cccccc;
-  margin-bottom: 4px;
-}
-
-.registro-colmeia {
-  color: #f8bf4d;
-  font-weight: 500;
-}
-
-.registro-tipo {
-  color: #a0a0a0;
-  font-style: italic;
-}
-
-.registro-arrow {
-  font-size: 1.2rem;
-  color: #f8bf4d;
-  transition: transform 0.3s ease;
-}
-
-.registro-item:hover .registro-arrow {
-  transform: translateX(5px);
-  color: #d4a017;
-}
-
-.registro-item.active .registro-arrow {
-  transform: rotate(90deg);
-}
-
-/* ===== DETALHES DO REGISTRO ===== */
-.registro-detalhes {
-  background-color: #2a2a2a;
-  border: 1px solid #404040;
-  border-radius: 12px;
-  padding: 15px 20px;
-  display: none;
-  animation: slideDown 0.3s ease;
-}
-
-.registro-detalhes.show {
-  display: block;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.detalhes-header {
+.colmeia-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #404040;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-.detalhes-header h2 {
-  font-size: 1.8rem;
-  color: #f8bf4d;
-}
-
-.fechar-detalhes {
-  background: none;
-  border: none;
-  color: #cccccc;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.fechar-detalhes:hover {
-  background-color: #404040;
-  color: #ffffff;
-}
-
-.detalhes-content {
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-.selecione-registro {
-  text-align: center;
-  color: #888888;
-  font-style: italic;
-  margin-top: 50px;
-}
-
-.detalhe-item {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #333333;
+.btn-action {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 20px;
   border-radius: 8px;
-  border-left: 4px solid #f8bf4d;
-}
-
-.detalhe-label {
-  font-weight: bold;
-  color: #f8bf4d;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.detalhe-valor {
-  color: #ffffff;
-}
-
-/* ===== SEM REGISTROS ===== */
-.sem-registros {
+  font-weight: 500;
   text-align: center;
-  padding: 60px 20px;
-  background-color: #2a2a2a;
-  border-radius: 12px;
-  border: 2px dashed #404040;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
-.sem-registros p {
-  font-size: 1.2rem;
-  color: #888888;
-  margin-bottom: 20px;
+.btn-producao {
+  background-color: #4CAF50;
+  color: white;
 }
 
+.btn-producao:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
 
+.btn-registro {
+  background-color: #2196F3;
+  color: white;
+}
 
-.btn-primeiro-registro {
+.btn-registro:hover {
+  background-color: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.btn-editar {
+  background-color: #FF9800;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #F57C00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+/* ===== SEM COLMEIAS ===== */
+.sem-colmeias {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px dashed #cccccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sem-colmeias p {
+  font-size: 1.3rem;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.btn-primeira-colmeia {
   background-color: #f8bf4d;
   color: #000;
-  padding: 15px 30px;
-  border-radius: 8px;
+  padding: 15px 35px;
+  border-radius: 25px;
   font-weight: bold;
   font-size: 1.1rem;
   transition: all 0.3s ease;
   display: inline-block;
+  box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
 }
 
-.btn-primeiro-registro:hover {
+.btn-primeira-colmeia:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(248, 191, 77, 0.3);
+  box-shadow: 0 6px 20px rgba(248, 191, 77, 0.4);
 }
 
 /* ===== FOOTER ===== */
@@ -651,57 +549,58 @@ footer {
   transform: scale(1.1);
 }
 
+/* ===== ANIMAÇÕES ===== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.colmeia-card {
+  animation: slideInUp 0.5s ease forwards;
+}
+
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
   }
-
+  
   .page-title {
     font-size: 2rem;
   }
-
-  .section-header {
+  
+  .colmeia-actions {
     flex-direction: column;
-    align-items: flex-start;
   }
-
-  .registro-item {
-    padding: 15px;
+  
+  .btn-action {
+    min-width: auto;
   }
-
-  .registro-info h3 {
-    font-size: 1.1rem;
+  
+  .colmeia-nome {
+    font-size: 1.6rem;
   }
-
-  .registro-data,
-  .registro-colmeia,
-  .registro-tipo {
-    font-size: 0.8rem;
-  }
-
-  .registro-detalhes {
-    padding: 20px;
-  }
-
-  .detalhes-header h2 {
-    font-size: 1.5rem;
-  }
-
+  
   .navbar {
     gap: 20px;
   }
-
+  
   .navbar a {
     font-size: 13px;
     padding: 6px 10px;
   }
-
+  
   footer {
     flex-direction: column;
     text-align: center;
   }
-
+  
   .footer-center {
     justify-content: center;
   }
@@ -711,39 +610,64 @@ footer {
   .main-content {
     padding: 20px 10px;
   }
-
+  
   .page-title {
     font-size: 1.8rem;
     margin-bottom: 30px;
   }
-
-  .registro-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  
+  .colmeia-card {
+    padding: 20px;
   }
-
-  .registro-arrow {
-    align-self: flex-end;
+  
+  .colmeia-nome {
+    font-size: 1.4rem;
   }
-
+  
+  .btn-action {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  
   .navbar {
     gap: 15px;
   }
-
+  
   .navbar a {
     font-size: 12px;
     padding: 5px 8px;
   }
-
-  .btn-novo-registro,
-  .btn-primeiro-registro {
+  
+  .btn-adicionar-colmeia,
+  .btn-primeira-colmeia {
     width: 100%;
     text-align: center;
   }
 }
 
+/* ===== ESTADOS DE LOADING ===== */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #f8bf4d;
+  font-size: 1.1rem;
+}
 
+.loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f8bf4d;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 /* FOOTER */
 footer {
