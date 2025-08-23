@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ECOlmeia — Meu Perfil</title>
+  <link rel="stylesheet" href="conta.css" />
+  <script src="conta.js" defer></script>
+</head>
+<body>
+
+
+
+  <main class="page">
+    <h1 class="page__title">Meu Perfil:</h1>
+
+    <!-- Dados pessoais -->
+    <section class="card">
+      <h2 class="card__title">Dados Pessoais:</h2>
+      <ul class="list">
+        <li>Nome</li>
+        <li>Email registrado</li>
+      </ul>
+    </section>
+
+    <!-- Minhas colmeias -->
+    <section class="accordion">
+      <details class="accordion__item" open>
+        <summary class="accordion__summary">
+          <span class="accordion__summary-text">
+            <strong>Minhas Colmeias:</strong>
+            <span class="muted">Acessar colmeias cadastradas</span>
+          </span>
+        </summary>
+
+        <div class="accordion__content">
+          <!-- Barra de adição -->
+          <div class="addbar">
+            <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-colmeia">
+              Adicionar colmeia
+            </button>
+
+            <form id="form-add-colmeia" class="form-inline hidden" onsubmit="return false;">
+              <div class="field">
+                <label class="label" for="add-id">ID (ex.: C-04)</label>
+                <input class="input" id="add-id" name="id" type="text"  />
+              </div>
+              <div class="field">
+                <label class="label" for="add-nome">Nome</label>
+                <input class="input" id="add-nome" name="nome" type="text" required />
+              </div>
+              <div class="field">
+                <label class="label" for="add-peso">Peso (kg)</label>
+                <input class="input" id="add-peso" name="peso" type="number"  />
+              </div>
+              <div class="field">
+                <label class="label" for="add-temp">Temperatura (°C)</label>
+                <input class="input" id="add-temp" name="temp" type="number"  />
+              </div>
+              <div class="field">
+                <label class="label" for="add-umid">Umidade (%)</label>
+                <input class="input" id="add-umid" name="umid" type="number"  />
+              </div>
+
+              <div class="actions-inline">
+                <button class="btn btn--sm js-add-colmeia" type="submit">Adicionar</button>
+                <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-colmeia" type="button">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+          <ul id="lista-colmeias" class="rows">
+            <!-- Colmeia 1 -->
+            <li class="row row--grid"
+                data-type="colmeia"
+                data-id="C-01"
+                data-nome="Laranjal"
+                data-peso="34.8"
+                data-temp="35.2"
+                data-umid="68">
+              <div class="row__left">
+                <p class="row__title">C-01</p>
+                <p class="row__subtitle js-colmeia-nome">Nome: Laranjal</p>
+                <ul class="metrics">
+                  <li class="chip"><span class="chip__k">Peso</span><span class="chip__v js-colmeia-peso">34,8 kg</span></li>
+                  <li class="chip"><span class="chip__k">Temp.</span><span class="chip__v js-colmeia-temp">35,2 °C</span></li>
+                  <li class="chip"><span class="chip__k">Umid.</span><span class="chip__v js-colmeia-umid">68%</span></li>
+                </ul>
+              </div>
+              <div class="row__actions">
+                <button class="btn btn--sm js-edit" type="button">Editar</button>
+                <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
+              </div>
+            </li>
+
+           
+
+           
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- Meus registros -->
+    <section class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__summary">
+          <span class="accordion__summary-text">
+            <strong>Meus Registros:</strong>
+            <span class="muted">Ver registros anteriores</span>
+          </span>
+        </summary>
+
+        <div class="accordion__content">
+          <!-- Barra de adição -->
+          <div class="addbar">
+            <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-registro">
+              Adicionar registro
+            </button>
+
+            <form id="form-add-registro" class="form-inline hidden" onsubmit="return false;">
+              <div class="field">
+                <label class="label" for="add-data">Data</label>
+                <input class="input" id="add-data" name="data" type="date" required />
+              </div>
+              <div class="field" style="grid-column: span 3;">
+                <label class="label" for="add-desc">Descrição</label>
+                <input class="input" id="add-desc" name="desc" type="text" placeholder="Ex.: Inspeção, tratamento..." required />
+              </div>
+
+              <div class="actions-inline">
+                <button class="btn btn--sm js-add-registro" type="submit">Adicionar</button>
+                <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-registro" type="button">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+          <ul id="lista-registros" class="rows">
+         
+
+            <li class="row row--grid"
+                data-type="registro"
+                data-id="3"
+                data-date="2025-06-28"
+                data-desc="Colheita 7,4 kg.">
+              <div class="row__left">
+                <p class="row__subtitle js-registro-data">28/06/2025</p>
+                <p class="row__title js-registro-desc">Registro: Colheita 7,4 kg.</p>
+              </div>
+              <div class="row__actions">
+                <button class="btn btn--sm js-edit" type="button">Editar</button>
+                <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+  </main>
+</body>
+</html>
