@@ -42,8 +42,8 @@ function animarEntrada() {
 }
 
 // Função para confirmar exclusão de colmeia (para futuras expansões)
-function confirmarExclusao(colmeiaId, colmeiaNome) {
-    return confirm(`Tem certeza que deseja excluir a colmeia "${colmeiaNome}"? Esta ação não pode ser desfeita.`);
+function confirmarExclusao() {
+    return confirm("Tem certeza que deseja excluir esta colmeia?");
 }
 
 // Função para filtrar colmeias (para futuras expansões)

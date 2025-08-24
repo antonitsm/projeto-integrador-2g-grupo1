@@ -64,8 +64,13 @@
             <!-- Ver Dados (collapse) -->
             <button class="btn-action btn-registro" data-target="dados-{{ colmeia.id }}">Ver Dados</button>
             <!-- Excluir -->
-            <a href="{% url 'excluir_colmeia' colmeia.id %}" class="btn-action btn-excluir">Excluir</a>
-          </div>
+            <div>
+
+              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" style="display:inline;" onsubmit="return confirmarExclusao();">
+                  {% csrf_token %}
+                  <button type="submit">Excluir</button>
+              </form>
+            </div>
 
           <!-- Dados colapsáveis -->
           <div id="dados-{{ colmeia.id }}" class="colmeia-detalhes collapse">
