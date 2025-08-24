@@ -1,9 +1,12 @@
-// js/conta.js
-// Editar / Excluir / Adicionar (colmeias e registros) com mocks de API.
-// Troque api* por fetch() para integrar com seu backend.
-
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.body;
+
+  // 🔹 Inicializa Perfil (carregar valores e setar botões Editar/Salvar)
+  initPerfilForm();
+
+  // 🔹 Renderiza listas a partir do armazenamento local
+  renderInitialColmeias();
+  renderInitialRegistros();
 
   // Toggle de formulários de adição
   root.addEventListener("click", (e) => {
@@ -27,15 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Submit de adicionar colmeia
   const formAddColmeia = document.getElementById("form-add-colmeia");
-  if (formAddColmeia) {
-    formAddColmeia.addEventListener("submit", handleAddColmeia);
-  }
+  if (formAddColmeia) formAddColmeia.addEventListener("submit", handleAddColmeia);
 
   // Submit de adicionar registro
   const formAddRegistro = document.getElementById("form-add-registro");
-  if (formAddRegistro) {
-    formAddRegistro.addEventListener("submit", handleAddRegistro);
-  }
+  if (formAddRegistro) formAddRegistro.addEventListener("submit", handleAddRegistro);
 
   // Delegação para Editar/Salvar/Cancelar/Excluir
   root.addEventListener("click", (e) => {
@@ -61,7 +60,137 @@ document.addEventListener("DOMContentLoaded", () => {
       exitEditMode(row, /*restore*/ true);
     }
   });
+
+  // 🔹 Sair da conta
+  const btnLogout = document.getElementById("btn-logout");
+  if (btnLogout) btnLogout.addEventListener("click", handleLogout);
 });
+
+/* ===== CHAVES DE ARMAZENAMENTO ===== */
+const PERFIL_KEY    = "ecolmeia.perfil";
+const COLMEIAS_KEY  = "ecolmeia.colmeias";
+const REGISTROS_KEY = "ecolmeia.registros";
+
+/* ===== PERFIL: carregar/editar/salvar ===== */
+function loadPerfil() {
+  try {
+    const raw = localStorage.getItem(PERFIL_KEY);
+    return raw ? JSON.parse(raw) : { nome: "", email: "" };
+  } catch {
+    return { nome: "", email: "" };
+  }
+}
+
+async function savePerfil(perfil) {
+  localStorage.setItem(PERFIL_KEY, JSON.stringify(perfil));
+  await apiUpdatePerfil(perfil); // troque por fetch do seu backend
+}
+
+function initPerfilForm() {
+  const form = document.getElementById("form-perfil");
+  if (!form) return;
+
+  const nomeEl = form.querySelector('[name="nome"]');
+  const emailEl = form.querySelector('[name="email"]');
+  const statusEl = document.getElementById("perfil-status");
+  const btnEdit = document.getElementById("btn-perfil-edit");
+  const btnSave = document.getElementById("btn-perfil-save");
+
+  // Carrega valores
+  const perfil = loadPerfil();
+  nomeEl.value = perfil.nome || "";
+  emailEl.value = perfil.email || "";
+
+  // Estado inicial: somente leitura
+  setPerfilEditing(false);
+
+  btnEdit.addEventListener("click", () => {
+    setPerfilEditing(true);
+    statusEl.textContent = "";
+    nomeEl.focus();
+  });
+
+  btnSave.addEventListener("click", async () => {
+    const novo = { nome: nomeEl.value.trim(), email: emailEl.value.trim() };
+    statusEl.textContent = "Salvando...";
+    try {
+      await savePerfil(novo);
+      statusEl.textContent = "Alterações salvas ✓";
+      setPerfilEditing(false);
+    } catch (err) {
+      statusEl.textContent = "Falha ao salvar";
+      alert(err);
+    }
+  });
+
+  function setPerfilEditing(isEditing) {
+    nomeEl.disabled = !isEditing;
+    emailEl.disabled = !isEditing;
+    btnSave.classList.toggle("hidden", !isEditing);
+    btnEdit.classList.toggle("hidden",  isEditing);
+    form.dataset.editing = isEditing ? "true" : "false";
+  }
+}
+
+/* ===== COLMEIAS: carregar/salvar/render ===== */
+function loadColmeias() {
+  try {
+    const raw = localStorage.getItem(COLMEIAS_KEY);
+    return raw ? JSON.parse(raw) : []; // [{id,nome,peso,temp,umid}]
+  } catch { return []; }
+}
+function saveColmeias(arr) {
+  localStorage.setItem(COLMEIAS_KEY, JSON.stringify(arr));
+  apiSyncColmeias(arr); // gancho p/ backend
+}
+function renderInitialColmeias() {
+  const list = document.getElementById("lista-colmeias");
+  if (!list) return;
+  list.innerHTML = "";
+  const itens = loadColmeias();
+  itens.forEach(item => list.appendChild(createColmeiaRow(item)));
+}
+function persistColmeiasFromDOM() {
+  const list = document.getElementById("lista-colmeias");
+  if (!list) return;
+  const items = [...list.querySelectorAll('li[data-type="colmeia"]')].map(li => ({
+    id: li.dataset.id,
+    nome: li.dataset.nome || "",
+    peso: li.dataset.peso ? Number(li.dataset.peso) : null,
+    temp: li.dataset.temp ? Number(li.dataset.temp) : null,
+    umid: li.dataset.umid ? Number(li.dataset.umid) : null,
+  }));
+  saveColmeias(items);
+}
+
+/* ===== REGISTROS: carregar/salvar/render ===== */
+function loadRegistros() {
+  try {
+    const raw = localStorage.getItem(REGISTROS_KEY);
+    return raw ? JSON.parse(raw) : []; // [{id,date,desc}]
+  } catch { return []; }
+}
+function saveRegistros(arr) {
+  localStorage.setItem(REGISTROS_KEY, JSON.stringify(arr));
+  apiSyncRegistros(arr); // gancho p/ backend
+}
+function renderInitialRegistros() {
+  const list = document.getElementById("lista-registros");
+  if (!list) return;
+  list.innerHTML = "";
+  const itens = loadRegistros();
+  itens.forEach(item => list.appendChild(createRegistroRow(item)));
+}
+function persistRegistrosFromDOM() {
+  const list = document.getElementById("lista-registros");
+  if (!list) return;
+  const items = [...list.querySelectorAll('li[data-type="registro"]')].map(li => ({
+    id: li.dataset.id,
+    date: li.dataset.date,
+    desc: li.dataset.desc || "",
+  }));
+  saveRegistros(items);
+}
 
 /* ======= ADD ======= */
 async function handleAddColmeia(e) {
@@ -70,25 +199,22 @@ async function handleAddColmeia(e) {
   const details = form.closest(".accordion__item");
   const list = document.getElementById("lista-colmeias");
 
-  // Leitura dos campos
-  const idRaw   = form.querySelector('input[name="id"]').value.trim();
-  const nome    = form.querySelector('input[name="nome"]').value.trim();
-  const peso    = parseFieldFloat(form.querySelector('input[name="peso"]').value);
-  const temp    = parseFieldFloat(form.querySelector('input[name="temp"]').value);
-  const umid    = parseFieldInt(form.querySelector('input[name="umid"]').value);
+  const idRaw = form.querySelector('input[name="id"]').value.trim();
+  const nome  = form.querySelector('input[name="nome"]').value.trim();
+  const peso  = parseFieldFloat(form.querySelector('input[name="peso"]').value);
+  const temp  = parseFieldFloat(form.querySelector('input[name="temp"]').value);
+  const umid  = parseFieldInt(form.querySelector('input[name="umid"]').value);
 
-  // Geração de ID se vazio
   const id = idRaw || nextColmeiaId(list);
-
   if (!nome) return alert("Informe o nome da colmeia.");
 
   const payload = { id, nome, peso, temp, umid };
 
   await apiCreateColmeia(payload);
-  const li = createColmeiaRow(payload);
-  list.appendChild(li);
+  list.appendChild(createColmeiaRow(payload));
+  persistColmeiasFromDOM();
 
-  if (details) details.open = true; // garante visualização
+  if (details) details.open = true;
   form.reset();
   form.classList.add("hidden");
 }
@@ -99,7 +225,7 @@ async function handleAddRegistro(e) {
   const details = form.closest(".accordion__item");
   const list = document.getElementById("lista-registros");
 
-  const date = form.querySelector('input[name="data"]').value; // yyyy-mm-dd
+  const date = form.querySelector('input[name="data"]').value;
   const desc = form.querySelector('input[name="desc"]').value.trim();
 
   if (!date || !desc) return alert("Preencha data e descrição.");
@@ -108,8 +234,8 @@ async function handleAddRegistro(e) {
   const payload = { id, date, desc };
 
   await apiCreateRegistro(payload);
-  const li = createRegistroRow(payload);
-  list.appendChild(li);
+  list.appendChild(createRegistroRow(payload));
+  persistRegistrosFromDOM();
 
   if (details) details.open = true;
   form.reset();
@@ -216,6 +342,7 @@ function handleSave(row) {
       row.dataset.temp = Number.isFinite(temp) ? String(temp) : "";
       row.dataset.umid = Number.isFinite(umid) ? String(umid) : "";
       renderColmeiaRow(row);
+      persistColmeiasFromDOM();
       exitEditMode(row, /*restore*/ false);
     }).catch(alert);
   }
@@ -232,6 +359,7 @@ function handleSave(row) {
       row.dataset.date = date;
       row.dataset.desc = desc;
       renderRegistroRow(row);
+      persistRegistrosFromDOM();
       exitEditMode(row, /*restore*/ false);
     }).catch(alert);
   }
@@ -246,7 +374,11 @@ function handleDelete(row) {
 
   const api = type === "colmeia" ? apiDeleteColmeia : apiDeleteRegistro;
 
-  api(id).then(() => row.remove()).catch(alert);
+  api(id).then(() => {
+    row.remove();
+    if (type === "colmeia") persistColmeiasFromDOM();
+    else persistRegistrosFromDOM();
+  }).catch(alert);
 }
 
 /* ======= RENDER HELPERS ======= */
@@ -290,7 +422,7 @@ function renderRegistroRow(row) {
   `;
 }
 
-/* Criação de elementos */
+/* ======= CRIAÇÃO DE ELEMENTOS ======= */
 function createColmeiaRow({ id, nome, peso, temp, umid }) {
   const li = document.createElement("li");
   li.className = "row row--grid";
@@ -311,11 +443,9 @@ function createColmeiaRow({ id, nome, peso, temp, umid }) {
         <li class="chip"><span class="chip__k">Umid.</span><span class="chip__v js-colmeia-umid">${fmtVal(umid,"%")}</span></li>
       </ul>
     </div>
-    <div class="row__actions">
-      <button class="btn btn--sm js-edit" type="button">Editar</button>
-      <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
-    </div>
+    <div class="row__actions"></div>
   `;
+  renderColmeiaRow(li);
   return li;
 }
 
@@ -332,17 +462,14 @@ function createRegistroRow({ id, date, desc }) {
       <p class="row__subtitle js-registro-data">${formatDateBrazil(date)}</p>
       <p class="row__title js-registro-desc">Registro: ${escapeHtml(desc)}</p>
     </div>
-    <div class="row__actions">
-      <button class="btn btn--sm js-edit" type="button">Editar</button>
-      <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
-    </div>
+    <div class="row__actions"></div>
   `;
+  renderRegistroRow(li);
   return li;
 }
 
 /* ======= UTIL ======= */
 function nextColmeiaId(list) {
-  // procura maior número em IDs "C-XX"
   const items = list.querySelectorAll('li[data-type="colmeia"]');
   let max = 0;
   items.forEach(li => {
@@ -394,15 +521,27 @@ function escapeHtml(str){
     .replaceAll("'","&#039;");
 }
 
-/* ======= API MOCKS ======= */
-// Substitua por fetch() do seu backend.
-function apiCreateColmeia(payload){ console.log("API CREATE COLMEIA", payload); return delay(250); }
-function apiUpdateColmeia(id, payload){ console.log("API UPDATE COLMEIA", id, payload); return delay(250); }
-function apiDeleteColmeia(id){ console.log("API DELETE COLMEIA", id); return delay(250); }
+/* ======= LOGOUT ======= */
+function handleLogout() {
+  // Limpa dados locais (ajuste conforme sua política)
+  localStorage.removeItem(PERFIL_KEY);
+  localStorage.removeItem(COLMEIAS_KEY);
+  localStorage.removeItem(REGISTROS_KEY);
+  apiLogout().finally(() => location.reload());
+}
 
-function apiCreateRegistro(payload){ console.log("API CREATE REGISTRO", payload); return delay(250); }
-function apiUpdateRegistro(id, payload){ console.log("API UPDATE REGISTRO", id, payload); return delay(250); }
-function apiDeleteRegistro(id){ console.log("API DELETE REGISTRO", id); return delay(250); }
+/* ======= API MOCKS (substituir por fetch do seu backend) ======= */
+function apiCreateColmeia(payload){ console.log("API CREATE COLMEIA", payload); return delay(150); }
+function apiUpdateColmeia(id, payload){ console.log("API UPDATE COLMEIA", id, payload); return delay(150); }
+function apiDeleteColmeia(id){ console.log("API DELETE COLMEIA", id); return delay(150); }
+function apiSyncColmeias(arr){ console.log("API SYNC COLMEIAS", arr); }
+
+function apiCreateRegistro(payload){ console.log("API CREATE REGISTRO", payload); return delay(150); }
+function apiUpdateRegistro(id, payload){ console.log("API UPDATE REGISTRO", id, payload); return delay(150); }
+function apiDeleteRegistro(id){ console.log("API DELETE REGISTRO", id); return delay(150); }
+function apiSyncRegistros(arr){ console.log("API SYNC REGISTROS", arr); }
+
+function apiUpdatePerfil(perfil){ console.log("API UPDATE PERFIL", perfil); return delay(150); }
+function apiLogout(){ console.log("API LOGOUT"); return delay(150); }
 
 function delay(ms){ return new Promise(res => setTimeout(res, ms)); }
-
