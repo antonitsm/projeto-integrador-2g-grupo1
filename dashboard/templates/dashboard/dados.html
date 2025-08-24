@@ -60,7 +60,8 @@
       <input type="number" id="umidade" name="umidade" step="0.01" required />
     </div>
 
-    <button type="submit" class="botao-enviar">Salvar</button>
+    <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
+
   </form>
 </div>
 

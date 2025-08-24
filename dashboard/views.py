@@ -26,8 +26,7 @@ def minhas_colmeias_view(request):
     colmeias = Colmeia.objects.all()
     return render(request, 'dashboard/minhas_colmeias.html', {"colmeias": colmeias})
 
-def minhas_colmeias(request):
-    pass
+
 
 def detalhes_colmeia(request, pk):
     pass
@@ -36,7 +35,18 @@ def adicionar_colmeia(request):
     pass
 
 def editar_colmeia(request, pk):
-    pass
+    colmeia = get_object_or_404(Colmeia, pk=pk)
+    
+    if request.method == "POST":
+        form = ColmeiaForm(request.POST, instance=colmeia)
+        if form.is_valid():
+            form.save()  # Atualiza os dados no banco
+            return redirect("minhas_colmeias")
+    else:
+        form = ColmeiaForm(instance=colmeia)  # 🔹 Form já preenchido
+    
+    return render(request, "dashboard/dados.html", {"form": form, "titulo": "Editar Colmeia"})
+    
 
 def excluir_colmeia(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk)

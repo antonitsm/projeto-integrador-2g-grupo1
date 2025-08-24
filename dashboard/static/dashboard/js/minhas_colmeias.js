@@ -217,20 +217,20 @@ window.ColmeiasPage = {
 
 
   document.addEventListener("DOMContentLoaded", function() {
-    const botoes = document.querySelectorAll(".btn-registro");
+  const botoes = document.querySelectorAll(".btn-registro");
 
-    botoes.forEach(botao => {
-      botao.addEventListener("click", function() {
-        const targetId = this.getAttribute("data-target");
-        const target = document.getElementById(targetId);
+  botoes.forEach(botao => {
+    botao.addEventListener("click", function() {
+      const targetId = this.getAttribute("data-target");
+      const target = document.getElementById(targetId);
 
-        if (target.classList.contains("show")) {
-          target.classList.remove("show");
-          this.textContent = "Ver Dados";
-        } else {
-          target.classList.add("show");
-          this.textContent = "Esconder Dados";
-        }
-      });
+      if (target.classList.contains("show")) {
+        target.classList.remove("show");
+        this.textContent = "Ver Dados";
+      } else {
+        target.classList.add("show");
+        this.textContent = "Esconder Dados";
+      }
     });
   });
+});
