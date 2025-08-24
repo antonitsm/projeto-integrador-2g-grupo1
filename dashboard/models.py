@@ -10,6 +10,20 @@ class Colmeia(models.Model):
     def __str__(self):
         return self.nome
 
+    def clean(self):
+        # Validação da temperatura
+        if self.temperatura < 0 or self.temperatura > 50:
+            raise ValidationError({'temperatura': "A temperatura deve estar entre 0°C e 50°C."})
+        
+        # Validação do peso
+        if self.peso <= 0:
+            raise ValidationError({'peso': "O peso deve ser maior que 0 kg."})
+        
+        # Validação da umidade
+        if self.umidade < 0 or self.umidade > 100:
+            raise ValidationError({'umidade': "A umidade deve estar entre 0% e 100%."})
+        
+        
 
 class Registro(models.Model):
     titulo = models.CharField(max_length=200)

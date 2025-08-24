@@ -18,44 +18,28 @@ document.addEventListener("DOMContentLoaded", function() {
             item.classList.toggle("active");
             detalhes.classList.toggle("show");
 
-            // Preenche detalhes se estiver abrindo
+            // Preenche detalhes apenas com a observação
             if(detalhes.classList.contains("show")) {
                 detalhes.innerHTML = `
-                    <div class="detalhe-item">
-                        <span class="detalhe-label">Título:</span>
-                        <span class="detalhe-valor">${item.querySelector("h3").textContent}</span>
-                    </div>
-                    <div class="detalhe-item">
-                        <span class="detalhe-label">Data:</span>
-                        <span class="detalhe-valor">${item.querySelector(".registro-data").textContent.replace('Data: ','')}</span>
-                    </div>
-                    <div class="detalhe-item">
-                        <span class="detalhe-label">Colmeia:</span>
-                        <span class="detalhe-valor">${item.querySelector(".registro-colmeia").textContent.replace('Colmeia: ','')}</span>
-                    </div>
+                    <p class="registro-observacao">${item.dataset.observacao}</p>
                 `;
             }
+            // Preenche detalhes apenas com a observação e subtítulo
+                if(detalhes.classList.contains("show")) {
+                    detalhes.innerHTML = `
+                        <h4 class="detalhe-subtitulo">Observação:</h4>
+                        <p class="registro-observacao">${item.dataset.observacao}</p>
+                    `;
+                }
+                // Seleciona todos os botões de editar
+                const editarBotoes = document.querySelectorAll(".btn-editar");
+
+                editarBotoes.forEach(botao => {
+                    botao.addEventListener("click", function(event) {
+                        event.stopPropagation(); // impede que o registro abra/feche
+                        // o link ainda vai funcionar normalmente
+                    });
+                });
         });
-    });
-});
-
-// Script para destacar link ativo
-const navLinks = document.querySelectorAll(".navbar a");
-
-navLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-        e.preventDefault();
-        
-        // Remove active de todos os links
-        navLinks.forEach(l => l.classList.remove("active"));
-        
-        // Adiciona active ao link clicado
-        this.classList.add("active");
-        
-        // Fecha menu mobile se estiver aberto
-        if (navbar.classList.contains("active")) {
-            navbar.classList.remove("active");
-            mobileToggle.classList.remove("active");
-        }
     });
 });

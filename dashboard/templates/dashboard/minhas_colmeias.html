@@ -39,59 +39,70 @@
         <span></span>
       </div>
 </header>
- <!-- ===== MAIN CONTENT ===== -->
+<!-- ===== MAIN CONTENT ===== -->
 <main class="main-content">
   <div class="container">
     <h1 class="page-title">Minhas Colmeias</h1>
 
     <!-- Botão de adicionar colmeia -->
     <section class="adicionar-section">
-      <a href="{% url 'dados' %}" class="btn-adicionar-colmeia">+ Adicionar Colmeia</a>
+      <a href="{% url 'dados' %}" class="btn btn-warning btn-lg rounded-pill shadow">
+        + Adicionar Colmeia
+      </a>
     </section>
 
     {% if colmeias %}
     <section class="colmeias-section">
       <div class="colmeias-lista">
         {% for colmeia in colmeias %}
-        <div class="colmeia-card" data-colmeia="{{ colmeia.id }}">
-          <div class="colmeia-header">
-            <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
-          </div>
+        <div class="colmeia-card card text-white bg-dark shadow" data-colmeia="{{ colmeia.id }}">
+          <div class="card-body">
+            <h2 class="card-title">{{ colmeia.nome }}</h2>
 
-          <div class="colmeia-actions">
-            <!-- Editar -->
-            <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
-            <!-- Ver Dados (collapse) -->
-            <button class="btn-action btn-registro" data-target="dados-{{ colmeia.id }}">Ver Dados</button>
-            <!-- Excluir -->
-            <div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <!-- Editar -->
+              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn btn-warning flex-fill">Editar</a>
 
-              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" style="display:inline;" onsubmit="return confirmarExclusao();">
-                  {% csrf_token %}
-                  <button type="submit">Excluir</button>
+              <!-- Ver Dados (collapse Bootstrap) -->
+              <button class="btn btn-primary flex-fill" 
+                      type="button" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target="#dados-{{ colmeia.id }}" 
+                      aria-expanded="false" 
+                      aria-controls="dados-{{ colmeia.id }}">
+                Ver Dados
+              </button>
+
+              <!-- Excluir -->
+              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" class="flex-fill" onsubmit="return confirmarExclusao();">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger w-100">Excluir</button>
               </form>
             </div>
 
-          <!-- Dados colapsáveis -->
-          <div id="dados-{{ colmeia.id }}" class="colmeia-detalhes collapse">
-            <p><strong>Temperatura:</strong> {{ colmeia.temperatura }} °C</p>
-            <p><strong>Peso:</strong> {{ colmeia.peso }} kg</p>
-            <p><strong>Umidade:</strong> {{ colmeia.umidade }} %</p>
+            <!-- Collapse dos Dados -->
+            <div class="collapse mt-3" id="dados-{{ colmeia.id }}">
+              <div class="card card-body bg-secondary text-white">
+                <p><strong>Temperatura:</strong> {{ colmeia.temperatura }} °C</p>
+                <p><strong>Peso:</strong> {{ colmeia.peso }} kg</p>
+                <p><strong>Umidade:</strong> {{ colmeia.umidade }} %</p>
+              </div>
+            </div>
           </div>
         </div>
         {% endfor %}
       </div>
     </section>
     {% else %}
-    <section class="sem-colmeias">
+    <section class="sem-colmeias text-center">
       <p>Você ainda não possui nenhuma colmeia cadastrada.</p>
-      <a href="{% url 'dados' %}" class="btn-primeira-colmeia">Cadastrar Primeira Colmeia</a>
+      <a href="{% url 'dados' %}" class="btn btn-warning btn-lg rounded-pill shadow">
+        Cadastrar Primeira Colmeia
+      </a>
     </section>
     {% endif %}
-
   </div>
 </main>
-
   
   <!-- FOOTER -->
 

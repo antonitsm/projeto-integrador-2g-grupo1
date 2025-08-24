@@ -20,6 +20,6 @@ urlpatterns = [
 
     # Registros
     path("registros/<int:pk>/", views.detalhe_registro, name="detalhe_registro"),
-    path("registros/<int:pk>/editar/", views.editar_registro, name="editar_registro"),
-    path("registros/<int:pk>/excluir/", views.excluir_registro, name="excluir_registro"),
+    path('observacao/<int:pk>/', views.observacao_view, name='editar_registro'),
+    path("observacao/<int:pk>/excluir/", views.excluir_registro, name="excluir_registro"),
 ]

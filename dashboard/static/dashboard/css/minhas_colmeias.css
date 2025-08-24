@@ -383,6 +383,32 @@ nav {
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Collapse fechado */
+.colmeia-detalhes {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  background: #2b2b2b;
+  border: 2px solid #f8bf4d;
+  border-radius: 12px;
+  padding: 0 15px;
+}
+
+
+/* Quando aberto */
+.colmeia-detalhes.show {
+  max-height: 500px;
+  opacity: 1;
+  padding: 15px;
 }
 
 .colmeia-card::before {

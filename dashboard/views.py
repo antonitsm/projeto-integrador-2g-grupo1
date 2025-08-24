@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ColmeiaForm
 from .models import Colmeia, Registro
 
+
 from .forms import RegistroForm
 
 # Página inicial do dashboard
@@ -56,15 +57,35 @@ def excluir_colmeia(request, pk):
 
 # Criar nova colmeia
 def nova_colmeia_view(request):
-    if request.method == "POST":
-        form = ColmeiaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("minhas_colmeias")
-    else:
-        form = ColmeiaForm()
-    return render(request, "dashboard/minhas_colmeias.html", {"form": form})
+    erros = {}
+    dados = {}
 
+    if request.method == "POST":
+        # Pega os dados enviados pelo formulário
+        dados = {
+            "nome": request.POST.get("nome"),
+            "temperatura": request.POST.get("temperatura"),
+            "peso": request.POST.get("peso"),
+            "umidade": request.POST.get("umidade"),
+        }
+
+        # Cria o objeto Colmeia
+        colmeia = Colmeia(
+            nome=dados["nome"],
+            temperatura=dados["temperatura"],
+            peso=dados["peso"],
+            umidade=dados["umidade"],
+        )
+
+        try:
+            # Valida usando o clean() do models
+            colmeia.full_clean()
+            colmeia.save()
+            return redirect("minhas_colmeias")
+        except ValidationError as e:
+            erros = e.message_dict  # Captura os erros para mostrar no template
+
+    return render(request, "dashboard/minhas_colmeias.html", {"erros": erros, "dados": dados})
 
 # Editar colmeia
 def editar_colmeia_view(request, colmeia_id):
@@ -94,27 +115,49 @@ def detalhe_registro(request, pk):
     return render(request, "registros/detalhe.html", {"registro": registro})
 
 # --- CRIAR ---
-def observacao_view(request):
-    if request.method == "POST":
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("tudo_registros")
+def observacao_view(request, pk=None):
+    if pk:
+        registro = get_object_or_404(Registro, pk=pk)  # Registro existente
     else:
-        form = RegistroForm()
-    return render(request, "dashboard/observacao.html", {"form": form})
+        registro = None  # Novo registro
 
-# --- EDITAR ---
-def editar_registro(request, pk):
-    registro = get_object_or_404(Registro, pk=pk)
     if request.method == "POST":
         form = RegistroForm(request.POST, instance=registro)
         if form.is_valid():
             form.save()
-            return redirect("detalhe_registro", pk=registro.pk)
+            return redirect("tudo_registros")
     else:
-        form = RegistroForm(instance=registro)
-    return render(request, "registros/form.html", {"form": form})
+        form = RegistroForm(instance=registro)  # Preenche se for edição
+
+    return render(request, "dashboard/observacao.html", {"form": form})
+
+# --- EDITAR ---
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import RegistroForm
+from .models import Registro
+
+def observacao_view(request, pk=None):
+    if pk:
+        # Registro existente (edição)
+        registro = get_object_or_404(Registro, pk=pk)
+        if request.method == "POST":
+            form = RegistroForm(request.POST, instance=registro)
+            if form.is_valid():
+                form.save()
+                return redirect("tudo_registros")
+        else:
+            form = RegistroForm(instance=registro)
+    else:
+        # Novo registro (criação)
+        if request.method == "POST":
+            form = RegistroForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect("tudo_registros")
+        else:
+            form = RegistroForm()
+
+    return render(request, "dashboard/observacao.html", {"form": form, "registro": registro if pk else None})
 
 # --- EXCLUIR ---
 def excluir_registro(request, pk):

@@ -256,6 +256,10 @@ document.addEventListener("DOMContentLoaded", () => {
             btnCancelar.onclick = () => {
                 modal.style.display = "none";
             };
+            function toggleCollapse(id) {
+                const el = document.getElementById(id);
+                el.classList.toggle("show");
+            }
         });
     });
 });
