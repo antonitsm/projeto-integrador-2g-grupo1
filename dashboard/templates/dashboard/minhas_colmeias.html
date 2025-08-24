@@ -46,45 +46,44 @@
 
     <!-- Botão de adicionar colmeia -->
     <section class="adicionar-section">
-      <button class="btn-adicionar-colmeia">+ Adicionar Colmeia</button>
+      <a href="{% url 'dados' %}" class="btn-adicionar-colmeia">+ Adicionar Colmeia</a>
     </section>
 
     <!-- Lista de colmeias -->
+    {% if colmeias %}
     <section class="colmeias-section">
       <div class="colmeias-lista">
-
-        <!-- Card de colmeia -->
-        <div class="colmeia-card" data-colmeia="1">
+        {% for colmeia in colmeias %}
+        <div class="colmeia-card" data-colmeia="{{ colmeia.id }}">
           <div class="colmeia-header">
-            <h2 class="colmeia-nome">Colmeia 1</h2>
+            <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
           </div>
           <div class="colmeia-actions">
-            <button class="btn-action btn-editar">Editar</button>
-            <button class="btn-action btn-registro">Ver Dados</button>
-            <button class="btn-action btn-excluir">Excluir</button>
+            <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
+            <button class="btn-action btn-registro" data-target="dados-{{ colmeia.id }}">Ver Dados</button>
+          <form method="POST" action="{% url 'excluir_colmeia' colmeia.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-action btn-excluir">Excluir</button>
+          </form>
+          </div>
+
+          <!-- Dados colapsáveis -->
+          <div id="dados-{{ colmeia.id }}" class="colmeia-detalhes collapse">
+            <p><strong>Temperatura:</strong> {{ colmeia.temperatura }} °C</p>
+            <p><strong>Peso:</strong> {{ colmeia.peso }} kg</p>
+            <p><strong>Umidade:</strong> {{ colmeia.umidade }} %</p>
           </div>
         </div>
-
-        <div class="colmeia-card" data-colmeia="2">
-          <div class="colmeia-header">
-            <h2 class="colmeia-nome">Colmeia 2</h2>
-          </div>
-          <div class="colmeia-actions">
-            <button class="btn-action btn-editar">Editar</button>
-            <button class="btn-action btn-registro">Ver Dados</button>
-            <button class="btn-action btn-excluir">Excluir</button>
-          </div>
-        </div>
-
+        {% endfor %}
       </div>
     </section>
-
+    {% else %}
     <!-- Caso não tenha colmeias -->
-    <section class="sem-colmeias" style="display: none;">
+    <section class="sem-colmeias">
       <p>Você ainda não possui nenhuma colmeia cadastrada.</p>
-      <a href="#" class="btn-primeira-colmeia">Cadastrar Primeira Colmeia</a>
+      <a href="{% url 'dados' %}" class="btn-primeira-colmeia">Cadastrar Primeira Colmeia</a>
     </section>
-
+    {% endif %}
   </div>
 </main>
 
