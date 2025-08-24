@@ -49,7 +49,6 @@
       <a href="{% url 'dados' %}" class="btn-adicionar-colmeia">+ Adicionar Colmeia</a>
     </section>
 
-    <!-- Lista de colmeias -->
     {% if colmeias %}
     <section class="colmeias-section">
       <div class="colmeias-lista">
@@ -58,13 +57,14 @@
           <div class="colmeia-header">
             <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
           </div>
+
           <div class="colmeia-actions">
+            <!-- Editar -->
             <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
+            <!-- Ver Dados (collapse) -->
             <button class="btn-action btn-registro" data-target="dados-{{ colmeia.id }}">Ver Dados</button>
-          <form method="POST" action="{% url 'excluir_colmeia' colmeia.id %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn-action btn-excluir">Excluir</button>
-          </form>
+            <!-- Excluir -->
+            <a href="{% url 'excluir_colmeia' colmeia.id %}" class="btn-action btn-excluir">Excluir</a>
           </div>
 
           <!-- Dados colapsáveis -->
@@ -78,12 +78,12 @@
       </div>
     </section>
     {% else %}
-    <!-- Caso não tenha colmeias -->
     <section class="sem-colmeias">
       <p>Você ainda não possui nenhuma colmeia cadastrada.</p>
       <a href="{% url 'dados' %}" class="btn-primeira-colmeia">Cadastrar Primeira Colmeia</a>
     </section>
     {% endif %}
+
   </div>
 </main>
 
