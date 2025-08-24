@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <!--NAVBAR-->
   <header>
     <nav>
@@ -23,7 +22,7 @@
         <li><a href="#">INÍCIO</a></li>
         <li><a href="#">MINHAS COLMEIAS</a></li>
         <li><a href="#">DADOS</a></li>
-        <li><a href="#">REGISTRO</a></li>
+        <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
         <li><a href="#">PRODUÇÃO</a></li>
       </ul>
 
@@ -36,61 +35,59 @@
         <span></span>
         <span></span>
       </div>
-</header>
+    </nav>
+  </header>
 
-    <div class="registros">
-        <h1 class="titulo">REGISTRO DE OBSERVAÇÕES</h1>
-        
-        <!-- Formulário de Registro -->
-        <div class="formulario-registro">
-            <!-- Campo Título -->
-            <div class="campo-formulario">
-                <label for="titulo-registro">Título do Registro</label>
-                <input type="text" id="titulo-registro" name="titulo" placeholder="Digite o título da observação..." class="input-titulo">
-            </div>
+  <div class="registros">
+    <h1 class="titulo">REGISTRO DE OBSERVAÇÕES</h1>
 
-            <!-- Campo Data -->
-            <div class="campo-formulario">
-                <label for="data-registro">Data da Observação</label>
-                <input type="date" id="data-registro" name="data" class="input-data">
-            </div>
+      <!-- Formulário de Registro -->
+      <form method="POST" class="formulario-registro">
+          {% csrf_token %}
 
-            <!-- Campo Colmeia -->
-            <div class="campo-formulario">
-                <label for="colmeia-registro">Colmeia Observada</label>
-                <div class="subtituloColmeia">
-                    <input list="colmeias" id="colmeia-registro" name="colmeia" placeholder="Selecione ou digite a colmeia..." class="input-colmeia">
-                    <datalist id="colmeias">
-                        <option value="Colmeia 1">
-                        <option value="Colmeia 2">
-                        <option value="Colmeia 3">
-                        <option value="Colmeia 4">
-                        <option value="Colmeia 5">
-                    </datalist>
-                </div>
-            </div>
+          <!-- Campo Título -->
+          <div class="campo-formulario">
+              <label for="{{ form.titulo.id_for_label }}">Título do Registro</label>
+              {{ form.titulo }}
+          </div>
 
-            <!-- Área de Observações -->
-            <div class="campo-formulario">
-                <label for="observacoes">Observações Detalhadas</label>
-                <div class="caixaRegistro">
-                    <textarea id="observacoes" class="areaRegistro" placeholder="Digite suas observações detalhadas aqui...&#10;&#10;Exemplo:&#10;- Estado geral da colmeia&#10;- Comportamento das abelhas&#10;- Presença da rainha&#10;- Produção de mel&#10;- Sinais de doenças ou pragas&#10;- Condições climáticas"></textarea>
-                </div>
-            </div>
+          <!-- Campo Data -->
+          <div class="campo-formulario">
+              <label for="{{ form.data_observacao.id_for_label }}">Data da Observação</label>
+              {{ form.data_observacao }}
+          </div>
 
-            <!-- Botões de Ação -->
-            <div class="botoes">
-                <button type="button" class="salvar" id="btn-salvar">SALVAR REGISTRO</button>
-                <button type="button" class="ultimoRegistro" id="btn-ultimo">ABRIR ÚLTIMOS REGISTRO &gt;</button>
-                <button type="button" class="limpar" id="btn-limpar">LIMPAR CAMPOS</button>
-            </div>
-        </div>
+          <!-- Campo Colmeia -->
+          <div class="campo-formulario">
+              <label for="{{ form.colmeia.id_for_label }}">Colmeia Observada</label>
+              {{ form.colmeia }}
+          </div>
 
-        <!-- Mensagem de Status -->
-        <div id="mensagem-status" class="mensagem-status" style="display: none;"></div>
-    </div>
+          <!-- Área de Observações -->
+          <div class="campo-formulario">
+              <label for="{{ form.observacoes.id_for_label }}">Observações Detalhadas</label>
+              {{ form.observacoes }}
+          </div>
 
-    <!-- FOOTER -->
+          <!-- Botões de Ação -->
+          <div class="botoes">
+              <button type="submit" class="salvar">SALVAR REGISTRO</button>
+              <a href="{% url 'tudo_registros' %}" class="ultimoRegistro">ABRIR ÚLTIMOS REGISTROS &gt;</a>
+              <button type="reset" class="limpar">LIMPAR CAMPOS</button>
+          </div>
+      </form>
+
+    <!-- Mensagem de Status -->
+    {% if messages %}
+      <div id="mensagem-status" class="mensagem-status">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-container">
       <div class="footer-section footer-brand">
@@ -109,7 +106,7 @@
           <li><a href="#">Início</a></li>
           <li><a href="#">Minhas Colmeias</a></li>
           <li><a href="#">Dados</a></li>
-          <li><a href="#">Registro</a></li>
+          <li><a href="{% url 'tudo_registros' %}">Registro</a></li>
           <li><a href="#">Produção</a></li>
         </ul>
       </div>
@@ -144,6 +141,6 @@
     </div>
   </footer>
 
-    <script src="{% static 'dashboard/js/observacao.js' %}"></script>
+  <script src="{% static 'dashboard/js/observacao.js' %}"></script>
 </body>
 </html>

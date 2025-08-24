@@ -42,7 +42,7 @@
 
         <div class="section-header">
           <h2>Lista de Registros</h2>
-          <a href="#" class="btn-novo-registro">+ Novo Registro</a>
+          <a href="{% url 'observacao' %}" class="btn-novo-registro">+ Novo Registro</a>
         </div>
 
         <div class="registros-lista">
@@ -51,9 +51,9 @@
             <div class="registro-item" data-registro="{{ registro.id }}">
               <div class="registro-info">
                 <h3>{{ registro.titulo }}</h3>
-                <p class="registro-data">Data: {{ registro.data_inspecao }}</p>
+                <p class="registro-data">Data: {{ registro.data_observacao }}</p>
                 <p class="registro-colmeia">Colmeia: {{ registro.colmeia.nome }}</p>
-                <p class="registro-tipo">{{ registro.tipo_inspecao }}</p>
+                <p class="registro-tipo">{{ registro.observacoes }}</p>
               </div>
               <div class="registro-arrow"><span>▶</span></div>
             </div>
@@ -64,7 +64,7 @@
           {% empty %}
           <div class="sem-registros">
             <p>Nenhum registro encontrado.</p>
-            <a href="#" class="btn-primeiro-registro">Criar Primeiro Registro</a>
+            <a href="{% url 'observacao' %}" class="btn-primeiro-registro">Criar Primeiro Registro</a>
           </div>
           {% endfor %}
         </div>

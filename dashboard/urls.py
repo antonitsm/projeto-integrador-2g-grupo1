@@ -16,4 +16,10 @@ urlpatterns = [
     path("colmeias/dados/<int:pk>/", views.editar_colmeia, name="editar_colmeia"), 
     path("colmeias/<int:pk>/", views.detalhes_colmeia, name="detalhes_colmeia"),
     path("colmeias/<int:pk>/excluir/", views.excluir_colmeia, name="excluir_colmeia"), 
+
+
+    # Registros
+    path("registros/<int:pk>/", views.detalhe_registro, name="detalhe_registro"),
+    path("registros/<int:pk>/editar/", views.editar_registro, name="editar_registro"),
+    path("registros/<int:pk>/excluir/", views.excluir_registro, name="excluir_registro"),
 ]

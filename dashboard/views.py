@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Colmeia
 from .forms import ColmeiaForm
+from .models import Colmeia, Registro
 
+from .forms import RegistroForm
 
 # Página inicial do dashboard
 def paginainicialdashboard_view(request):
@@ -12,14 +13,8 @@ def paginainicialdashboard_view(request):
 def dados_view(request): 
     return render(request, 'dashboard/dados.html')
 
-def observacao_view(request): 
-    return render(request, 'dashboard/observacao.html')
-
 def producao_view(request): 
     return render(request, 'dashboard/producao.html')
-
-def tudo_registros_view(request): 
-    return render(request, 'dashboard/tudo_registros.html')
 
 # Listar colmeias cadastradas
 def minhas_colmeias_view(request):
@@ -82,3 +77,49 @@ def editar_colmeia_view(request, colmeia_id):
     else:
         form = ColmeiaForm(instance=colmeia)
     return render(request, "dashboard/editar_colmeia.html", {"form": form, "colmeia": colmeia})
+
+
+
+
+  # vamos criar um form para facilitar
+
+# --- LISTAR REGISTROS ---
+def tudo_registros_view(request):
+    registros = Registro.objects.all().order_by("-data_observacao")
+    return render(request, "dashboard/tudo_registros.html", {"registros": registros})
+
+# --- DETALHE ---
+def detalhe_registro(request, pk):
+    registro = get_object_or_404(Registro, pk=pk)
+    return render(request, "registros/detalhe.html", {"registro": registro})
+
+# --- CRIAR ---
+def observacao_view(request):
+    if request.method == "POST":
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("tudo_registros")
+    else:
+        form = RegistroForm()
+    return render(request, "dashboard/observacao.html", {"form": form})
+
+# --- EDITAR ---
+def editar_registro(request, pk):
+    registro = get_object_or_404(Registro, pk=pk)
+    if request.method == "POST":
+        form = RegistroForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            return redirect("detalhe_registro", pk=registro.pk)
+    else:
+        form = RegistroForm(instance=registro)
+    return render(request, "registros/form.html", {"form": form})
+
+# --- EXCLUIR ---
+def excluir_registro(request, pk):
+    registro = get_object_or_404(Registro, pk=pk)
+    if request.method == "POST":
+        registro.delete()
+        return redirect("tudo_registros")
+    return render(request, "registros/confirmar_exclusao.html", {"registro": registro})
