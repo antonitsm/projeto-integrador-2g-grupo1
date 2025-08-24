@@ -34,34 +34,38 @@
   <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Direita">
 </div>
 
-
 <div class="container-autenticacao">
-  <form class="formulario-autenticacao ativo" method="post" action="{% url 'nova_colmeia' %}">
+  <form class="formulario-autenticacao ativo" method="post" 
+        action="{% if colmeia.id %}{% url 'editar_colmeia' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
     {% csrf_token %}
     <h2>Dados da Colmeia</h2>
 
     <div class="campo-formulario">
       <label for="nome">Nome da Colmeia</label>
-      <input type="text" id="nome" name="nome" required />
+      <input type="text" id="nome" name="nome" value="{{ colmeia.nome }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="temperatura">Temperatura (°C)</label>
-      <input type="number" id="temperatura" name="temperatura" step="0.01" required />
+      <input type="number" id="temperatura" name="temperatura" step="0.01" 
+             value="{{ colmeia.temperatura }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="peso">Peso (kg)</label>
-      <input type="number" id="peso" name="peso" step="0.01" required />
+      <input type="number" id="peso" name="peso" step="0.01" 
+             value="{{ colmeia.peso }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="umidade">Umidade (%)</label>
-      <input type="number" id="umidade" name="umidade" step="0.01" required />
+      <input type="number" id="umidade" name="umidade" step="0.01" 
+             value="{{ colmeia.umidade }}" required />
     </div>
 
-    <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
-
+    <button type="submit" class="botao-enviar">
+        {% if colmeia.id %}Salvar alterações{% else %}Salvar{% endif %}
+    </button>
   </form>
 </div>
 

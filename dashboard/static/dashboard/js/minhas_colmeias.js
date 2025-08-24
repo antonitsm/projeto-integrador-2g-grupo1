@@ -234,3 +234,28 @@ window.ColmeiasPage = {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal-confirmacao");
+    const btnCancelar = document.getElementById("cancelar-exclusao");
+    const btnConfirmar = document.getElementById("confirmar-exclusao");
+
+    // Quando clicar em "Excluir" (botão de cada colmeia), abrir modal
+    document.querySelectorAll(".btn-excluir").forEach(botao => {
+        botao.addEventListener("click", (e) => {
+            e.preventDefault(); // não deixa ir pro link direto
+            const url = botao.getAttribute("data-url"); // pega a URL do botão
+            modal.style.display = "flex";
+
+            // Se confirmar, vai para a URL de exclusão
+            btnConfirmar.onclick = () => {
+                window.location.href = url;
+            };
+
+            // Se cancelar, fecha modal
+            btnCancelar.onclick = () => {
+                modal.style.display = "none";
+            };
+        });
+    });
+});

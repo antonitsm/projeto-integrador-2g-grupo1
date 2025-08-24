@@ -12,7 +12,7 @@ urlpatterns = [
     # URLs para Colmeias
 
     path("minhas_colmeias/", views.minhas_colmeias_view, name="minhas_colmeias"),
-#    path("colmeias/adicionar/", views.adicionar_colmeia, name="adicionar_colmeia"),
+    path("colmeias/adicionar/", views.adicionar_colmeia, name="adicionar_colmeia"),
     path("colmeias/dados/<int:pk>/", views.editar_colmeia, name="editar_colmeia"), 
     path("colmeias/<int:pk>/", views.detalhes_colmeia, name="detalhes_colmeia"),
     path("colmeias/<int:pk>/excluir/", views.excluir_colmeia, name="excluir_colmeia"), 

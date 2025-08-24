@@ -37,15 +37,15 @@ def adicionar_colmeia(request):
 def editar_colmeia(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk)
     
-    if request.method == "POST":
+    if request.method == 'POST':
         form = ColmeiaForm(request.POST, instance=colmeia)
         if form.is_valid():
-            form.save()  # Atualiza os dados no banco
-            return redirect("minhas_colmeias")
+            form.save()
+            return redirect('minhas_colmeias')  # ou para a página de detalhes
     else:
-        form = ColmeiaForm(instance=colmeia)  # 🔹 Form já preenchido
-    
-    return render(request, "dashboard/dados.html", {"form": form, "titulo": "Editar Colmeia"})
+        form = ColmeiaForm(instance=colmeia)  # aqui os dados já vêm preenchidos
+
+    return render(request, 'dashboard/dados.html', {'form': form, 'colmeia': colmeia})
     
 
 def excluir_colmeia(request, pk):
@@ -53,9 +53,9 @@ def excluir_colmeia(request, pk):
 
     if request.method == "POST":
         colmeia.delete()
-        return redirect("minhas_colmeias")  # redireciona para a lista de colmeias
+        return redirect("minhas_colmeias")
 
-    # Caso seja GET, mostra página de confirmação
+    # Se for GET, mostra a tela de confirmação
     return render(request, "dashboard/confirmar_exclusao.html", {"colmeia": colmeia})
 
 
