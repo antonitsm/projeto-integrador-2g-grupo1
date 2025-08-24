@@ -8,24 +8,36 @@
   <script src="conta.js" defer></script>
 </head>
 <body>
-
-
-
   <main class="page">
     <h1 class="page__title">Meu Perfil:</h1>
 
-    <!-- Dados pessoais -->
+    <!-- ===== Dados pessoais (editável com botão) ===== -->
     <section class="card">
       <h2 class="card__title">Dados Pessoais:</h2>
-      <ul class="list">
-        <li>Nome</li>
-        <li>Email registrado</li>
-      </ul>
+
+      <form id="form-perfil" class="form-inline" onsubmit="return false;">
+        <div class="field">
+          <label class="label" for="perfil-nome">Nome</label>
+          <input class="input" id="perfil-nome" name="nome" type="text" placeholder="Seu nome" disabled />
+        </div>
+
+        <div class="field">
+          <label class="label" for="perfil-email">Email</label>
+          <input class="input" id="perfil-email" name="email" type="email" placeholder="seu@email.com" disabled />
+        </div>
+
+        <div class="actions-inline">
+          <button id="btn-perfil-edit" class="btn btn--sm" type="button">Editar</button>
+          <button id="btn-perfil-save" class="btn btn--sm btn--primary hidden" type="button">Salvar</button>
+        </div>
+
+        <p id="perfil-status" class="muted" aria-live="polite"></p>
+      </form>
     </section>
 
-    <!-- Minhas colmeias -->
+    <!-- ===== Minhas Colmeias (fechado por padrão) ===== -->
     <section class="accordion">
-      <details class="accordion__item" open>
+      <details class="accordion__item">
         <summary class="accordion__summary">
           <span class="accordion__summary-text">
             <strong>Minhas Colmeias:</strong>
@@ -34,7 +46,6 @@
         </summary>
 
         <div class="accordion__content">
-          <!-- Barra de adição -->
           <div class="addbar">
             <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-colmeia">
               Adicionar colmeia
@@ -43,7 +54,7 @@
             <form id="form-add-colmeia" class="form-inline hidden" onsubmit="return false;">
               <div class="field">
                 <label class="label" for="add-id">ID (ex.: C-04)</label>
-                <input class="input" id="add-id" name="id" type="text"  />
+                <input class="input" id="add-id" name="id" type="text" />
               </div>
               <div class="field">
                 <label class="label" for="add-nome">Nome</label>
@@ -51,15 +62,15 @@
               </div>
               <div class="field">
                 <label class="label" for="add-peso">Peso (kg)</label>
-                <input class="input" id="add-peso" name="peso" type="number"  />
+                <input class="input" id="add-peso" name="peso" type="number" />
               </div>
               <div class="field">
                 <label class="label" for="add-temp">Temperatura (°C)</label>
-                <input class="input" id="add-temp" name="temp" type="number"  />
+                <input class="input" id="add-temp" name="temp" type="number" />
               </div>
               <div class="field">
                 <label class="label" for="add-umid">Umidade (%)</label>
-                <input class="input" id="add-umid" name="umid" type="number"  />
+                <input class="input" id="add-umid" name="umid" type="number" />
               </div>
 
               <div class="actions-inline">
@@ -70,38 +81,13 @@
           </div>
 
           <ul id="lista-colmeias" class="rows">
-            <!-- Colmeia 1 -->
-            <li class="row row--grid"
-                data-type="colmeia"
-                data-id="C-01"
-                data-nome="Laranjal"
-                data-peso="34.8"
-                data-temp="35.2"
-                data-umid="68">
-              <div class="row__left">
-                <p class="row__title">C-01</p>
-                <p class="row__subtitle js-colmeia-nome">Nome: Laranjal</p>
-                <ul class="metrics">
-                  <li class="chip"><span class="chip__k">Peso</span><span class="chip__v js-colmeia-peso">34,8 kg</span></li>
-                  <li class="chip"><span class="chip__k">Temp.</span><span class="chip__v js-colmeia-temp">35,2 °C</span></li>
-                  <li class="chip"><span class="chip__k">Umid.</span><span class="chip__v js-colmeia-umid">68%</span></li>
-                </ul>
-              </div>
-              <div class="row__actions">
-                <button class="btn btn--sm js-edit" type="button">Editar</button>
-                <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
-              </div>
-            </li>
-
-           
-
-           
+            <!-- itens são renderizados via JS a partir do localStorage -->
           </ul>
         </div>
       </details>
     </section>
 
-    <!-- Meus registros -->
+    <!-- ===== Meus Registros ===== -->
     <section class="accordion">
       <details class="accordion__item">
         <summary class="accordion__summary">
@@ -112,7 +98,6 @@
         </summary>
 
         <div class="accordion__content">
-          <!-- Barra de adição -->
           <div class="addbar">
             <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-registro">
               Adicionar registro
@@ -136,27 +121,16 @@
           </div>
 
           <ul id="lista-registros" class="rows">
-         
-
-            <li class="row row--grid"
-                data-type="registro"
-                data-id="3"
-                data-date="2025-06-28"
-                data-desc="Colheita 7,4 kg.">
-              <div class="row__left">
-                <p class="row__subtitle js-registro-data">28/06/2025</p>
-                <p class="row__title js-registro-desc">Registro: Colheita 7,4 kg.</p>
-              </div>
-              <div class="row__actions">
-                <button class="btn btn--sm js-edit" type="button">Editar</button>
-                <button class="btn btn--sm btn--danger js-delete" type="button">Excluir</button>
-              </div>
-            </li>
+            <!-- itens são renderizados via JS a partir do localStorage -->
           </ul>
         </div>
       </details>
     </section>
 
+    <!-- ===== Sair da conta ===== -->
+    <div class="logout">
+      <button id="btn-logout" class="btn btn--danger" type="button">Sair da conta</button>
+    </div>
   </main>
 </body>
 </html>
