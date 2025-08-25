@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.body;
 
+  
+
   // 🔹 Inicializa Perfil (carregar valores e setar botões Editar/Salvar)
   initPerfilForm();
 
