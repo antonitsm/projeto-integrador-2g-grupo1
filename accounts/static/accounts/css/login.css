@@ -375,7 +375,7 @@ nav {
   }
 }
 
-/* ================= FORMULÁRIO (mantido do segundo, mas com efeitos premium) ================= */
+/* ================= FORMULÁRIO  ================= */
 .container-autenticacao {
   background: linear-gradient(145deg, #000 0%, #1a1a1a 100%);
   padding: 2rem;
@@ -539,6 +539,45 @@ nav {
 
 .alternar-formulario a:hover::after {
   width: 100%;
+}
+.input-senha-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-senha-wrapper input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.toggle-senha {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-senha svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+}
+
+/* risco visível por padrão */
+.icon-olho .olho-risco {
+  display: block; /* risco aparece quando senha está oculta */
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* quando botão tem classe ativo (senha visível), risco desaparece */
+.toggle-senha.ativo svg .olho-risco {
+  display: none;
 }
 
 /* RESPONSIVO PARA MOBILE */

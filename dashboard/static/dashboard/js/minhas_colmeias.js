@@ -263,3 +263,103 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Página Minhas Colmeias carregada');
+    
+    // Inicializar funcionalidades
+    initCollapseButtons();
+    initModalConfirmacao();
+});
+
+// Função para inicializar os botões de collapse
+function initCollapseButtons() {
+    const collapseButtons = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    
+    collapseButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-bs-target');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Atualizar o atributo aria-expanded
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                // Log para debug
+                console.log(`Collapse ${targetId} ${!isExpanded ? 'expandido' : 'recolhido'}`);
+            }
+        });
+    });
+}
+
+// Função para modal de confirmação de exclusão
+function initModalConfirmacao() {
+    const modal = document.getElementById('modal-confirmacao');
+    
+    if (modal) {
+        // Função para abrir modal
+        window.abrirModal = function() {
+            modal.style.display = 'flex';
+        };
+        
+        // Função para fechar modal
+        window.fecharModal = function() {
+            modal.style.display = 'none';
+        };
+        
+        // Fechar modal ao clicar fora
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                fecharModal();
+            }
+        });
+    }
+}
+
+// Função para confirmar exclusão
+function confirmarExclusao() {
+    return confirm('Tem certeza de que deseja excluir esta colmeia?');
+}
+
+// Função para implementar collapse sem Bootstrap (fallback)
+function toggleCollapse(targetId) {
+    const element = document.querySelector(targetId);
+    const button = document.querySelector(`[data-bs-target="${targetId}"]`);
+    
+    if (element && button) {
+        const isExpanded = element.classList.contains('show');
+        
+        if (isExpanded) {
+            element.classList.remove('show');
+            button.setAttribute('aria-expanded', 'false');
+        } else {
+            element.classList.add('show');
+            button.setAttribute('aria-expanded', 'true');
+        }
+    }
+}
+
+// Verificar se Bootstrap está carregado, senão usar implementação própria
+document.addEventListener('DOMContentLoaded', function() {
+    // Aguardar um pouco para garantir que o Bootstrap carregou
+    setTimeout(function() {
+        if (typeof bootstrap === 'undefined') {
+            console.log('Bootstrap não detectado, usando implementação própria de collapse');
+            
+            // Implementar collapse manualmente
+            const collapseButtons = document.querySelectorAll('[data-bs-toggle="collapse"]');
+            
+            collapseButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-bs-target');
+                    toggleCollapse(targetId);
+                });
+            });
+        } else {
+            console.log('Bootstrap detectado e funcionando');
+        }
+    }, 100);
+});

@@ -38,15 +38,28 @@
 <div class="container-autenticacao">
 
     <form class="formulario-autenticacao ativo" method="post">
-    
         {% csrf_token %}
-        
         <h2>Cadastro</h2>
 
         {% for field in form %}
-            <div class="campo-formulario">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
+            <div class="campo-formulario {% if field.name in 'password1 password2' %}senha-container{% endif %}">
+                {{ field.label_tag }}
+
+                {% if field.name in 'password1 password2' %}
+                    <div class="input-senha-wrapper">
+                        {{ field }}
+                        <button type="button" class="toggle-senha" data-target="{{ field.id_for_label }}">
+                          <svg class="icon-olho" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="olho-contorno" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                            <circle class="olho-pupila" cx="12" cy="12" r="3"/>
+                            <line class="olho-risco" x1="2" y1="22" x2="22" y2="2"/>
+                          </svg>
+                        </button>
+                    </div>
+                {% else %}
+                    {{ field }}
+                {% endif %}
+
                 {% for error in field.errors %}
                     <p style="color: #ff5c5c; font-size: 0.8rem;">{{ error }}</p>
                 {% endfor %}
@@ -54,7 +67,7 @@
         {% endfor %}
 
         <button type="submit" class="botao-enviar">Cadastrar</button>
-        
+
         <div class="alternar-formulario">
             Já tem uma conta? <a href="{% url 'login' %}">Fazer login</a>
         </div>
@@ -62,4 +75,5 @@
 </div>
 
 <script src="{% static 'accounts/js/cadastro.js' %}"></script>
+
 {% endblock %}

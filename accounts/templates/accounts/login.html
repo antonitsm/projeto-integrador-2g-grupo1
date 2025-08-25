@@ -2,78 +2,51 @@
 {% load static %}
 {% block title %}Login{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+{% endblock %}
 
 {% block content %}
- <!--NAVBAR-->
-  <header>
-    <nav>
-      <div class="logo">
-        <a href="#">
-          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
-        </a>
-      </div>
 
-      <ul class="navbar">
-        <li><a href="#">INÍCIO</a></li>
-        <li><a href="#">MINHAS COLMEIAS</a></li>
-        <li><a href="#">DADOS</a></li>
-        <li><a href="#">REGISTRO</a></li>
-        <li><a href="#">PRODUÇÃO</a></li>
-      </ul>
-
-      <div class="user-profile">
-        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
-      </div>
-
-      <div class="mobile-menu-toggle" id="mobile-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-</header>
-
-<!-- DECORAÇÃO -->
-<div class="decoracao esquerda">
-    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Esquerda">
-</div>
-<div class="decoracao direita">
-    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Direita">
-</div>
-
-
-  <!-- CONTEÚDO LOGIN -->
+<!-- CONTEÚDO LOGIN -->
 <div class="container-autenticacao">
-<!-- CÓDIGO PARA O FORMULÁRIO NO login.html -->
+  <form class="formulario-autenticacao ativo" method="post">
+    {% csrf_token %}
+    <h2>Login</h2>
 
-<form class="formulario-autenticacao ativo" method="post">
-  {% csrf_token %}
-  
-  <h2>Login</h2>
+    {% for field in form %}
+      <div class="campo-formulario {% if field.name == 'password' %}senha-container{% endif %}">
+        {{ field.label_tag }}
 
-  {% for field in form %}
-    <div class="campo-formulario">
-      {{ field.label_tag }} <!-- A etiqueta (ex: "Usuário:") -->
-      {{ field }}           <!-- O campo <input> -->
-      
-      {% for error in field.errors %}
-        <p style="color: #ff5c5c; font-size: 0.8rem;">{{ error }}</p>
-      {% endfor %}
+        {% if field.name == 'password' %}
+          <div class="input-senha-wrapper">
+            {{ field }}
+            <button type="button" class="toggle-senha" data-target="{{ field.id_for_label }}">
+              <svg class="icon-olho" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path class="olho-contorno" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                <circle class="olho-pupila" cx="12" cy="12" r="3"/>
+                <line class="olho-risco" x1="2" y1="22" x2="22" y2="2"/>
+              </svg>
+            </button>
+          </div>
+        {% else %}
+          {{ field }}
+        {% endif %}
+
+        {% for error in field.errors %}
+          <p style="color: #ff5c5c; font-size: 0.8rem;">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="botao-enviar">Entrar</button>
+
+    <div class="alternar-formulario">
+      Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se</a>
     </div>
-  {% endfor %}
-
-  {% for error in form.non_field_errors %}
-      <p style="color: #ff5c5c; font-size: 0.9rem; text-align: center;">{{ error }}</p>
-  {% endfor %}
-
-  <button type="submit" class="botao-enviar">Entrar</button>
-  
-  <div class="alternar-formulario">
-    Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se</a>
-  </div>
-</form>
-
+  </form>
 </div>
 
-  <script src="{% static 'accounts/js/login.js' %}"></script>
+<script src="{% static 'accounts/js/login.js' %}"></script> 
+
 {% endblock %}

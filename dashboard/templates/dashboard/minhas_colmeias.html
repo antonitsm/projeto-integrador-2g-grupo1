@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minhas Colmeias - Ecolmeia</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="{% static 'dashboard/css/minhas_colmeias.css' %}">
 </head>
@@ -38,33 +40,39 @@
         <span></span>
         <span></span>
       </div>
-</header>
-<!-- ===== MAIN CONTENT ===== -->
-<main class="main-content">
-  <div class="container">
-    <h1 class="page-title">Minhas Colmeias</h1>
+    </nav>
+  </header>
 
-    <!-- Botão de adicionar colmeia -->
-    <section class="adicionar-section">
-      <a href="{% url 'dados' %}" class="btn btn-warning btn-lg rounded-pill shadow">
-        + Adicionar Colmeia
-      </a>
-    </section>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Título principal mantido centralizado -->
+      <h1 class="page-title">Minhas Colmeias</h1>
 
-    {% if colmeias %}
-    <section class="colmeias-section">
-      <div class="colmeias-lista">
-        {% for colmeia in colmeias %}
-        <div class="colmeia-card card text-white bg-dark shadow" data-colmeia="{{ colmeia.id }}">
-          <div class="card-body">
-            <h2 class="card-title">{{ colmeia.nome }}</h2>
+      <!-- Botão de adicionar colmeia -->
+      <section class="adicionar-section">
+        <a href="{% url 'dados' %}" class="btn-adicionar-colmeia">
+          + Adicionar Colmeia
+        </a>
+      </section>
 
-            <div class="d-flex flex-wrap gap-2 mt-3">
+      {% if colmeias %}
+      <section class="colmeias-section">
+        <div class="colmeias-lista">
+          {% for colmeia in colmeias %}
+          <div class="colmeia-card" data-colmeia="{{ colmeia.id }}">
+            <!-- Header da colmeia com nome no canto superior esquerdo -->
+            <div class="colmeia-header">
+              <h2 class="colmeia-nome">{{ colmeia.nome }}</h2>
+            </div>
+
+            <!-- Botões de ação reorganizados em grid de 3 colunas -->
+            <div class="colmeia-actions">
               <!-- Editar -->
-              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn btn-warning flex-fill">Editar</a>
+              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
 
-              <!-- Ver Dados (collapse Bootstrap) -->
-              <button class="btn btn-primary flex-fill" 
+              <!-- Ver Dados (collapse) -->
+              <button class="btn-action btn-registro" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target="#dados-{{ colmeia.id }}" 
@@ -74,92 +82,105 @@
               </button>
 
               <!-- Excluir -->
-              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" class="flex-fill" onsubmit="return confirmarExclusao();">
+              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" onsubmit="return confirmarExclusao();">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger w-100">Excluir</button>
+                <button type="submit" class="btn-action btn-producao">Excluir</button>
               </form>
             </div>
 
             <!-- Collapse dos Dados -->
-            <div class="collapse mt-3" id="dados-{{ colmeia.id }}">
-              <div class="card card-body bg-secondary text-white">
+            <div class="colmeia-detalhes collapse" id="dados-{{ colmeia.id }}">
+              <div class="collapse-content">
                 <p><strong>Temperatura:</strong> {{ colmeia.temperatura }} °C</p>
                 <p><strong>Peso:</strong> {{ colmeia.peso }} kg</p>
                 <p><strong>Umidade:</strong> {{ colmeia.umidade }} %</p>
               </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
-    </section>
-    {% else %}
-    <section class="sem-colmeias text-center">
-      <p>Você ainda não possui nenhuma colmeia cadastrada.</p>
-      <a href="{% url 'dados' %}" class="btn btn-warning btn-lg rounded-pill shadow">
-        Cadastrar Primeira Colmeia
-      </a>
-    </section>
-    {% endif %}
-  </div>
-</main>
+      </section>
+      {% else %}
+      <section class="sem-colmeias">
+        <p>Você ainda não possui nenhuma colmeia cadastrada.</p>
+        <a href="{% url 'dados' %}" class="btn-primeira-colmeia">
+          Cadastrar Primeira Colmeia
+        </a>
+      </section>
+      {% endif %}
+    </div>
+  </main>
   
   <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
 
-<footer>
-  <div class="footer-container">
-
-    <div class="footer-section footer-brand">
-      <div class="footer-logo">
-        <img src="{% static 'landing/img/logo.png' %}" alt="Logo Ecolmeia">
-        <span class="footer-logo-text">ECOLMEIA</span>
+      <div class="footer-section footer-brand">
+        <div class="footer-logo">
+          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Ecolmeia">
+          <span class="footer-logo-text">ECOLMEIA</span>
+        </div>
+        <p class="footer-description">
+          Cuidando do futuro através da apicultura sustentável. 
+          Monitoramento inteligente para colmeias mais saudáveis e produtivas.
+        </p>
       </div>
-      <p class="footer-description">
-        Cuidando do futuro através da apicultura sustentável. 
-        Monitoramento inteligente para colmeias mais saudáveis e produtivas.
-      </p>
+
+      <div class="footer-section footer-nav">
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Minhas Colmeias</a></li>
+          <li><a href="#">Dados</a></li>
+          <li><a href="#">Registro</a></li>
+          <li><a href="#">Produção</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-contact">
+        <h3>Contato</h3>
+        <ul>
+          <li><a href="mailto:contato@ecolmeia.com">contato@ecolmeia.com</a></li>
+          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li>São Paulo, SP - Brasil</li>
+        </ul>
+      </div>
+
+      <!-- Logo da Escola -->
+      <div class="footer-section footer-school">
+        <h3>Instituto</h3>
+        <div class="school-logo">
+          <img src="{% static 'landing/img/logo_ifc.png' %}" alt="logo">
+        </div>
+      </div>
     </div>
 
-    <div class="footer-section footer-nav">
-      <h3>Navegação</h3>
-      <ul>
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Minhas Colmeias</a></li>
-        <li><a href="#">Dados</a></li>
-        <li><a href="#">Registro</a></li>
-        <li><a href="#">Produção</a></li>
-      </ul>
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&copy; 2025 Ecolmeia. Todos os direitos reservados.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <div class="footer-section footer-contact">
-      <h3>Contato</h3>
-      <ul>
-        <li><a href="mailto:contato@ecolmeia.com">contato@ecolmeia.com</a></li>
-        <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
-        <li>São Paulo, SP - Brasil</li>
-      </ul>
-    </div>
-
-    <!-- Logo da Escola -->
-    <div class="footer-section footer-school">
-      <h3>Instituto</h3>
-      <div class="school-logo">
-        <img src="{% static 'landing/img/logo_ifc.png' %}" alt="logo">
+  <!-- Modal de Confirmação -->
+  <div id="modal-confirmacao" class="modal">
+    <div class="modal-conteudo">
+      <h3>Confirmar Exclusão</h3>
+      <p>Tem certeza de que deseja excluir esta colmeia?</p>
+      <div class="botoes-modal">
+        <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+        <button class="btn-confirmar" onclick="confirmarExclusao()">Excluir</button>
       </div>
     </div>
   </div>
 
-  <!-- Copyright -->
-  <div class="footer-bottom">
-    <div class="footer-bottom-container">
-      <p>&copy; 2025 Ecolmeia. Todos os direitos reservados.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Política de Privacidade</a>
-        <a href="#">Termos de Uso</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- JS -->
   <script src="{% static 'dashboard/js/minhas_colmeias.js' %}"></script>
 </body>

@@ -89,18 +89,8 @@
           {% empty %}
           <section class="form-registro">
   <div class="container">
-    <h1>{% if form.instance.id %}Editar Registro{% else %}Novo Registro{% endif %}</h1>
-
-    <form id="form-registro" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-
-      <button type="submit" class="botao-enviar">
-        {% if form.instance.id %}Salvar alterações{% else %}Salvar{% endif %}
-      </button>
-
-      <button type="reset" class="btn btn-outline-secondary">Limpar</button>
-    </form>
+    
+    
   </div>
 </section>
           <div class="sem-registros">

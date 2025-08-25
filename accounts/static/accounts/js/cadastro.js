@@ -72,3 +72,18 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.querySelectorAll(".toggle-senha").forEach(botao => {
+  botao.addEventListener("click", function () {
+    const input = document.getElementById(this.dataset.target);
+    if (input) {
+      if (input.type === "password") {
+        input.type = "text";             // senha visível
+        this.classList.add("ativo");     // risco some
+      } else {
+        input.type = "password";         // senha oculta
+        this.classList.remove("ativo");  // risco aparece
+      }
+    }
+  });
+});

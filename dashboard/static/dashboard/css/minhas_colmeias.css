@@ -314,7 +314,6 @@ nav {
 .navbar li:nth-child(3) { animation-delay: 0.3s; }
 .navbar li:nth-child(4) { animation-delay: 0.4s; }
 .navbar li:nth-child(5) { animation-delay: 0.5s; }
-
 /* ===== CONTEÚDO PRINCIPAL ===== */
 .main-content {
   margin-top: 8vh;
@@ -328,6 +327,7 @@ nav {
   margin: 0 auto;
 }
 
+/* Título principal mantido centralizado */
 .page-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -354,12 +354,16 @@ nav {
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-adicionar-colmeia:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(248, 191, 77, 0.4);
+  text-decoration: none;
+  color: #000;
 }
 
 /* ===== SEÇÃO DE COLMEIAS ===== */
@@ -385,31 +389,41 @@ nav {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
-
-.card-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-
-/* Collapse fechado */
 .colmeia-detalhes {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.4s ease;
-  background: #2b2b2b;
+  margin-top: 0; /* sem espaço acima */
   border: 2px solid #f8bf4d;
   border-radius: 12px;
-  padding: 0 15px;
+  overflow: hidden;
+  background: #2b2b2b; /* mesmo fundo do card */
 }
 
-
-/* Quando aberto */
-.colmeia-detalhes.show {
-  max-height: 500px;
-  opacity: 1;
+.colmeia-detalhes .collapse {
+  margin: 0;
   padding: 15px;
+  background: inherit; /* herda o fundo escuro do pai */
+  color: #fff; /* texto visível no fundo escuro */
 }
+
+.collapse.show {
+  display: block;
+}
+
+.colmeia-detalhes .collapse-content {
+  padding: 15px;
+  color: #ffffff;
+  background: #2b2b2b;
+}
+
+.colmeia-detalhes p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  background: #2b2b2b;
+}
+
+.colmeia-detalhes p:last-child {
+  margin-bottom: 0;
+}
+
 
 .colmeia-card::before {
   content: '';
@@ -432,27 +446,36 @@ nav {
   transform: scaleY(1);
 }
 
+/* Header da colmeia com nome no canto superior esquerdo */
 .colmeia-header {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .colmeia-nome {
   font-size: 2rem;
   color: #ffffff;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin: 0;
+  text-align: left;
 }
 
+/* Ações da colmeia com CSS Grid para 3 colunas uniformes */
 .colmeia-actions {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Estilo especial para o form do botão Excluir */
+.colmeia-actions form {
+  display: contents; /* Permite que o form não interfira no grid */
 }
 
 .btn-action {
-  flex: 1;
-  min-width: 150px;
   padding: 12px 20px;
   border-radius: 8px;
   font-weight: 500;
@@ -460,30 +483,14 @@ nav {
   transition: all 0.3s ease;
   cursor: pointer;
   font-size: 0.9rem;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.btn-producao {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.btn-producao:hover {
-  background-color: #45a049;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-}
-
-.btn-registro {
-  background-color: #2196F3;
-  color: white;
-}
-
-.btn-registro:hover {
-  background-color: #1976D2;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
-}
-
+/* Botão Editar (laranja) */
 .btn-editar {
   background-color: #FF9800;
   color: white;
@@ -493,6 +500,49 @@ nav {
   background-color: #F57C00;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+/* Botão Ver Dados (azul) */
+.btn-registro {
+  background-color: #2196F3;
+  color: white;
+  position: relative;
+}
+
+.btn-registro:hover {
+  background-color: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+/* Indicador visual para o botão de collapse */
+.btn-registro::after {
+  content: '▼';
+  margin-left: 8px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-registro[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+/* Botão Excluir (vermelho) */
+.btn-producao {
+  background-color: #e63946;
+  color: white;
+}
+
+.btn-producao:hover {
+  background-color: #d62828;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+  color: white;
+  text-decoration: none;
 }
 
 /* ===== SEM COLMEIAS ===== */
@@ -522,13 +572,17 @@ nav {
   transition: all 0.3s ease;
   display: inline-block;
   box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
+  text-decoration: none;
 }
 
 .btn-primeira-colmeia:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(248, 191, 77, 0.4);
+  text-decoration: none;
+  color: #000;
 }
+
 /* Estilo do Modal de Confirmação */
 .modal {
   display: none; /* oculto por padrão */
@@ -576,6 +630,21 @@ nav {
   border-radius: 8px;
   cursor: pointer;
 }
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .colmeia-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .colmeia-nome {
+    font-size: 1.5rem;
+  }
+}
+
+
+
 
 /* ===== FOOTER ===== */
 footer {
