@@ -1,12 +1,10 @@
 from django.urls import path
-
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path("", views.login_view, name="login"),
-    path("cadastro/", views.cadastro_view, name="accounts:cadastro"),
-    path("minha-conta/", views.conta_view, name="conta"),
-    path('', views.paginainicialdashboard_view, name='paginainicialdashboard'),
-    path('cadastro/', views.cadastro_view, name='cadastro'),
-    path('login/', views.login_view, name='accounts:login'),
+    path("login/", views.login_view, name="login"),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('register/', views.register_view, name='register'),
+    path("", views.accounts_view, name="accounts"),
 ]

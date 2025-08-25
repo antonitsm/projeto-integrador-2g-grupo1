@@ -1,37 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ColmeiaForm
 from .models import Colmeia, Registro
-
-
+from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm
 
-# Página inicial do dashboard
 def paginainicialdashboard_view(request):
     return render(request, 'dashboard/paginainicialdashboard.html')
 
 
-# ---- COLMEIAS ----
+@login_required
 def dados_view(request): 
     return render(request, 'dashboard/dados.html')
 
+@login_required
 def producao_view(request): 
     return render(request, 'dashboard/producao.html')
 
-# Listar colmeias cadastradas
+@login_required
 def minhas_colmeias_view(request):
-    colmeias = Colmeia.objects.all()
+    colmeias = Colmeia.objects.filter(owner=request.user)
     return render(request, 'dashboard/minhas_colmeias.html', {"colmeias": colmeias})
 
 
-
+@login_required
 def detalhes_colmeia(request, pk):
     pass
 
+@login_required
 def adicionar_colmeia(request):
     pass
 
+@login_required
 def editar_colmeia(request, pk):
-    colmeia = get_object_or_404(Colmeia, pk=pk)
+    colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
     
     if request.method == 'POST':
         form = ColmeiaForm(request.POST, instance=colmeia)
@@ -43,9 +44,9 @@ def editar_colmeia(request, pk):
 
     return render(request, 'dashboard/dados.html', {'form': form, 'colmeia': colmeia})
     
-
+@login_required
 def excluir_colmeia(request, pk):
-    colmeia = get_object_or_404(Colmeia, pk=pk)
+    colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
 
     if request.method == "POST":
         colmeia.delete()
@@ -54,8 +55,7 @@ def excluir_colmeia(request, pk):
     # Se for GET, mostra a tela de confirmação
     return render(request, "dashboard/confirmar_exclusao.html", {"colmeia": colmeia})
 
-
-# Criar nova colmeia
+@login_required
 def nova_colmeia_view(request):
     erros = {}
     dados = {}
@@ -75,6 +75,7 @@ def nova_colmeia_view(request):
             temperatura=dados["temperatura"],
             peso=dados["peso"],
             umidade=dados["umidade"],
+            owner=request.user,
         )
 
         try:
@@ -87,9 +88,9 @@ def nova_colmeia_view(request):
 
     return render(request, "dashboard/minhas_colmeias.html", {"erros": erros, "dados": dados})
 
-# Editar colmeia
+@login_required
 def editar_colmeia_view(request, colmeia_id):
-    colmeia = get_object_or_404(Colmeia, id=colmeia_id)
+    colmeia = get_object_or_404(Colmeia, id=colmeia_id, owner=request.user)
     if request.method == "POST":
         form = ColmeiaForm(request.POST, instance=colmeia)
         if form.is_valid():
@@ -104,20 +105,20 @@ def editar_colmeia_view(request, colmeia_id):
 
   # vamos criar um form para facilitar
 
-# --- LISTAR REGISTROS ---
+@login_required
 def tudo_registros_view(request):
-    registros = Registro.objects.all().order_by("-data_observacao")
+    registros = Registro.objects.filter(owner=request.user).order_by("-data_observacao")
     return render(request, "dashboard/tudo_registros.html", {"registros": registros})
 
-# --- DETALHE ---
+@login_required
 def detalhe_registro(request, pk):
     registro = get_object_or_404(Registro, pk=pk)
     return render(request, "registros/detalhe.html", {"registro": registro})
 
-# --- CRIAR ---
+@login_required
 def observacao_view(request, pk=None):
     if pk:
-        registro = get_object_or_404(Registro, pk=pk)  # Registro existente
+        registro = get_object_or_404(Registro, pk=pk, owner=request.user)  # Registro existente
     else:
         registro = None  # Novo registro
 
@@ -131,15 +132,11 @@ def observacao_view(request, pk=None):
 
     return render(request, "dashboard/observacao.html", {"form": form})
 
-# --- EDITAR ---
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import RegistroForm
-from .models import Registro
-
+@login_required
 def observacao_view(request, pk=None):
     if pk:
         # Registro existente (edição)
-        registro = get_object_or_404(Registro, pk=pk)
+        registro = get_object_or_404(Registro, pk=pk, owner=request.user)
         if request.method == "POST":
             form = RegistroForm(request.POST, instance=registro)
             if form.is_valid():
@@ -159,9 +156,9 @@ def observacao_view(request, pk=None):
 
     return render(request, "dashboard/observacao.html", {"form": form, "registro": registro if pk else None})
 
-# --- EXCLUIR ---
+@login_required
 def excluir_registro(request, pk):
-    registro = get_object_or_404(Registro, pk=pk)
+    registro = get_object_or_404(Registro, pk=pk, owner=request.user)
     if request.method == "POST":
         registro.delete()
         return redirect("tudo_registros")
