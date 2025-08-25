@@ -44,6 +44,26 @@
           <h2>Lista de Registros</h2>
           <a href="{% url 'observacao' %}" class="btn-novo-registro">+ Novo Registro</a>
         </div>
+        <div class="filtros">
+          <form method="get" id="form-filtros">
+            <label for="colmeia">Filtrar por Colmeia:</label>
+            <select name="colmeia" id="colmeia">
+              <option value="">Todas</option>
+              {% for colmeia in colmeias %}
+                <option value="{{ colmeia.id }}" {% if request.GET.colmeia == colmeia.id|stringformat:"s" %}selected{% endif %}>{{ colmeia.nome }}</option>
+              {% endfor %}
+            </select>
+
+            <label for="ordem">Ordenar por Data:</label>
+            <select name="ordem" id="ordem">
+              <option value="desc" {% if request.GET.ordem == "desc" %}selected{% endif %}>Mais recente</option>
+              <option value="asc" {% if request.GET.ordem == "asc" %}selected{% endif %}>Mais antigo</option>
+            </select>
+
+            <button type="submit" class="btn-filtro">Filtrar</button>
+          </form>
+        </div>
+
   
         <div class="registros-lista">
           {% for registro in registros %}
@@ -68,18 +88,21 @@
           </div>
           {% empty %}
           <section class="form-registro">
-            <div class="container">
-              <h1>{% if form.instance.id %}Editar Registro{% else %}Novo Registro{% endif %}</h1>
-  
-              <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="botao-enviar">
-                  {% if form.instance.id %}Salvar alterações{% else %}Salvar{% endif %}
-                </button>
-              </form>
-      </div>
-    </section>
+  <div class="container">
+    <h1>{% if form.instance.id %}Editar Registro{% else %}Novo Registro{% endif %}</h1>
+
+    <form id="form-registro" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="botao-enviar">
+        {% if form.instance.id %}Salvar alterações{% else %}Salvar{% endif %}
+      </button>
+
+      <button type="reset" class="btn btn-outline-secondary">Limpar</button>
+    </form>
+  </div>
+</section>
           <div class="sem-registros">
             <p>Nenhum registro encontrado.</p>
             <a href="{% url 'observacao' %}" class="btn-primeiro-registro">Criar Primeiro Registro</a>

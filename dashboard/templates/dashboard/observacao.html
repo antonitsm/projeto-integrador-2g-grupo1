@@ -43,39 +43,38 @@
 
       <!-- Formulário de Registro -->
       <form method="POST" class="formulario-registro">
-          {% csrf_token %}
+    {% csrf_token %}
 
-          <!-- Campo Título -->
-          <div class="campo-formulario">
-              <label for="{{ form.titulo.id_for_label }}">Título do Registro</label>
-              {{ form.titulo }}
-          </div>
+    <!-- Campo Título -->
+    <div class="campo-formulario">
+        <label for="{{ form.titulo.id_for_label }}">Título do Registro</label>
+        {{ form.titulo }}
+    </div>
 
-          <!-- Campo Data -->
-          <div class="campo-formulario">
-              <label for="{{ form.data_observacao.id_for_label }}">Data da Observação</label>
-              {{ form.data_observacao }}
-          </div>
+    <!-- Campo Data -->
+    <div class="campo-formulario">
+        <label for="{{ form.data_observacao.id_for_label }}">Data da Observação</label>
+        {{ form.data_observacao }}
+    </div>
 
-          <!-- Campo Colmeia -->
-          <div class="campo-formulario">
-              <label for="{{ form.colmeia.id_for_label }}">Colmeia Observada</label>
-              {{ form.colmeia }}
-          </div>
+    <!-- Campo Colmeia -->
+    <div class="campo-formulario">
+        <label for="{{ form.colmeia.id_for_label }}">Colmeia Observada</label>
+        {{ form.colmeia }}
+    </div>
 
-          <!-- Área de Observações -->
-          <div class="campo-formulario">
-              <label for="{{ form.observacoes.id_for_label }}">Observações Detalhadas</label>
-              {{ form.observacoes }}
-          </div>
+    <!-- Área de Observações -->
+    <div class="campo-formulario">
+        <label for="{{ form.observacoes.id_for_label }}">Observações Detalhadas</label>
+        {{ form.observacoes }}
+    </div>
 
-          <!-- Botões de Ação -->
-          <div class="botoes">
-              <button type="submit" class="salvar">SALVAR REGISTRO</button>
-              <a href="{% url 'tudo_registros' %}" class="ultimoRegistro">ABRIR ÚLTIMOS REGISTROS &gt;</a>
-              <button type="reset" class="limpar">LIMPAR CAMPOS</button>
-          </div>
-      </form>
+    <!-- Botões de Ação -->
+    <div class="botoes">
+        <button type="submit" class="salvar">SALVAR REGISTRO</button>
+        <a href="{% url 'tudo_registros' %}" class="ultimoRegistro">ABRIR ÚLTIMOS REGISTROS &gt;</a>
+    </div>
+</form>
 
     <!-- Mensagem de Status -->
     {% if messages %}

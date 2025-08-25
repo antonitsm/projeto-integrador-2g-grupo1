@@ -490,6 +490,48 @@ nav {
   transform: rotate(90deg);
 }
 
+/* ===== Bloco de Filtros ===== */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  padding: 0px 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2vh;
+}
+
+.filtros label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.filtros select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  min-width: 150px;
+}
+
+.filtros button.btn-filtro {
+ background-color: #f8bf4d;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.filtros button.btn-filtro:hover {
+  background-color: #d4a017;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
+}
+
 /* ===== DETALHES DO REGISTRO ===== */
 .registro-detalhes {
   background-color: #2a2a2a;

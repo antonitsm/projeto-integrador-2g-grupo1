@@ -107,8 +107,27 @@ def editar_colmeia_view(request, colmeia_id):
 
 @login_required
 def tudo_registros_view(request):
-    registros = Registro.objects.filter(owner=request.user).order_by("-data_observacao")
-    return render(request, "dashboard/tudo_registros.html", {"registros": registros})
+    registros = Registro.objects.filter(owner=request.user)
+
+    # Filtrar por colmeia se enviado
+    colmeia_id = request.GET.get("colmeia")
+    if colmeia_id:
+        registros = registros.filter(colmeia_id=colmeia_id)
+
+    # Ordenar por data
+    ordem = request.GET.get("ordem", "desc")
+    if ordem == "asc":
+        registros = registros.order_by("data_observacao")
+    else:
+        registros = registros.order_by("-data_observacao")
+
+    # Para popular o select de colmeias
+    colmeias = Colmeia.objects.filter(owner=request.user)
+
+    return render(request, "dashboard/tudo_registros.html", {
+        "registros": registros,
+        "colmeias": colmeias
+    })
 
 @login_required
 def detalhe_registro(request, pk):
@@ -140,7 +159,9 @@ def observacao_view(request, pk=None):
         if request.method == "POST":
             form = RegistroForm(request.POST, instance=registro)
             if form.is_valid():
-                form.save()
+                registro = form.save(commit=False)
+                registro.owner = request.user
+                registro.save()
                 return redirect("tudo_registros")
         else:
             form = RegistroForm(instance=registro)
@@ -149,7 +170,9 @@ def observacao_view(request, pk=None):
         if request.method == "POST":
             form = RegistroForm(request.POST)
             if form.is_valid():
-                form.save()
+                registro = form.save(commit=False)
+                registro.owner = request.user
+                registro.save()
                 return redirect("tudo_registros")
         else:
             form = RegistroForm()
