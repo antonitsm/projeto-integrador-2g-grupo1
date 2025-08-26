@@ -88,3 +88,80 @@ ul { padding-left: 20px; line-height: 1.6; }
   width: 100%;
   height: auto;
 }
+
+/* === Responsividade adicionada no final === */
+
+/* Tablets e celulares médios */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero img {
+    max-width: 120px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  section {
+    padding: 30px 20px;
+  }
+
+  .decoracao.esquerda,
+  .decoracao.direita {
+    display: none; /* esconde enfeites em telas pequenas */
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .logo img {
+    width: 24px;
+    height: 24px;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  .hero img {
+    max-width: 100px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+}
