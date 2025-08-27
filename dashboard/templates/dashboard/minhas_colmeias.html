@@ -15,34 +15,6 @@
 <body>
   
   <!--NAVBAR-->
-  <header>
-    <nav>
-      <div class="logo">
-        <a href="#">
-          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura">
-        </a>
-      </div>
-
-      <ul class="navbar">
-        <li><a href="#">INÍCIO</a></li>
-        <li><a href="#">MINHAS COLMEIAS</a></li>
-        <li><a href="#">DADOS</a></li>
-        <li><a href="{% url 'observacao' %}">REGISTRO</a></li>
-        <li><a href="#">PRODUÇÃO</a></li>
-      </ul>
-
-      <div class="user-profile">
-        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
-      </div>
-
-      <div class="mobile-menu-toggle" id="mobile-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </nav>
-  </header>
-
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main-content">
     <div class="container">
@@ -130,10 +102,10 @@
         <h3>Navegação</h3>
         <ul>
           <li><a href="#">Início</a></li>
-          <li><a href="#">Minhas Colmeias</a></li>
-          <li><a href="#">Dados</a></li>
+          <li><a href="{% url 'nova_colmeia' %}">Minhas Colmeias</a></li>
+          <li><a href="{% url 'dados' %}">Dados</a></li>
           <li><a href="{% url 'tudo_registros' %}">Registro</a></li>
-          <li><a href="#">Produção</a></li>
+          <li><a href="{% url 'producao' %}">Produção</a></li>
         </ul>
       </div>
 
