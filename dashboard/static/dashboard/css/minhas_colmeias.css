@@ -16,6 +16,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+
 /* ===== HEADER E NAVBAR MELHORADA ===== */
 * {
   margin: 0;
@@ -35,7 +37,8 @@ header {
   border-bottom: 1px solid rgba(248, 191, 77, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Mantém o espaço entre logo, navbar e user-profile */
+  justify-content: space-between;
+  /* Mantém o espaço entre logo, navbar e user-profile */
   padding: 0 40px;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -51,7 +54,8 @@ header.scrolled {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Distribui os elementos: logo, navbar, user-profile */
+  justify-content: space-between;
+  /* Distribui os elementos: logo, navbar, user-profile */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -92,8 +96,10 @@ nav {
   list-style: none;
   gap: 8px;
   align-items: center;
-  flex-grow: 1; /* Permite que a navbar ocupe o espaço disponível */
-  justify-content: center; /* Centraliza os links dentro da navbar */
+  flex-grow: 1;
+  /* Permite que a navbar ocupe o espaço disponível */
+  justify-content: center;
+  /* Centraliza os links dentro da navbar */
 }
 
 .navbar li {
@@ -215,6 +221,7 @@ nav {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
+
 /* Responsividade */
 @media (max-width: 768px) {
   header {
@@ -277,7 +284,8 @@ nav {
   }
 
   .user-profile {
-    display: none; /* Esconde o perfil do usuário no mobile, se desejar */
+    display: none;
+    /* Esconde o perfil do usuário no mobile, se desejar */
   }
 }
 
@@ -299,6 +307,7 @@ nav {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -309,14 +318,17 @@ nav {
   animation: fadeInUp 0.6s ease forwards;
 }
 
+
 .navbar li:nth-child(1) { animation-delay: 0.1s; }
 .navbar li:nth-child(2) { animation-delay: 0.2s; }
 .navbar li:nth-child(3) { animation-delay: 0.3s; }
 .navbar li:nth-child(4) { animation-delay: 0.4s; }
 .navbar li:nth-child(5) { animation-delay: 0.5s; }
+
+
 /* ===== CONTEÚDO PRINCIPAL ===== */
 .main-content {
-  margin-top: 8vh;
+  margin-top: 12vh;
   min-height: calc(100vh - 8vh);
   padding: 40px 20px;
   background-color: #f5f5f5;
@@ -534,7 +546,7 @@ nav {
 /* Botão Excluir (vermelho) */
 .btn-producao {
   background-color: #e63946;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .btn-producao:hover {

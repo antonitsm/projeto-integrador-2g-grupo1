@@ -9,8 +9,8 @@ def register_view(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user) 
-            return redirect('minhas_colmeias') 
+            login(request, user)
+            return redirect('minhas_colmeias')
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -26,8 +26,8 @@ def login_view(request):
     else:
         form = CustomLoginForm()
     return render(request, 'accounts/login.html', {'form': form})
-    
+
+
 @login_required
 def accounts_view(request):
     return render(request, 'accounts/accounts.html')
-

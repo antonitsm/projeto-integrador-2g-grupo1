@@ -1,6 +1,5 @@
 from django import forms
-from .models import Colmeia
-from .models import Registro
+from .models import Colmeia, Registro
 
 class RegistroForm(forms.ModelForm):
     class Meta:
@@ -23,6 +22,21 @@ class RegistroForm(forms.ModelForm):
                 "placeholder": "Digite suas observações detalhadas aqui..."
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        # Recebe o usuário da view
+        user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+
+        # Mostra apenas colmeias ativas
+        qs = Colmeia.objects.filter(ativo=True)
+
+        # Se o usuário foi passado, mostra só as colmeias dele
+        if user:
+            qs = qs.filter(owner=user)
+
+        self.fields["colmeia"].queryset = qs
+
 
 class ColmeiaForm(forms.ModelForm):
     class Meta:

@@ -35,130 +35,160 @@
   </nav>
 </header>
 
-  <main class="page">
-    <h1 class="page__title">Meu Perfil:</h1>
+<main class="page">
+  <h1 class="page__title">Meu Perfil:</h1>
 
-    <!-- ===== Dados pessoais (editável com botão) ===== -->
-    <section class="card">
-      <h2 class="card__title">Dados Pessoais:</h2>
+  <!-- ===== Dados pessoais (editável com botão) ===== -->
+  <section class="card">
+    <h2 class="card__title">Dados Pessoais:</h2>
 
-      <form id="form-perfil" class="form-inline" onsubmit="return false;">
-        <div class="field">
-          <label class="label" for="perfil-nome">Nome</label>
-          <input class="input" id="perfil-nome" name="nome" type="text" placeholder="Seu nome" disabled />
+    {% if request.user.is_authenticated %}
+    <form id="form-perfil" class="form-inline" onsubmit="return false;">
+      <div class="field">
+        <label class="label" for="perfil-nome">Nome</label>
+        <input class="input" id="perfil-nome" name="nome" type="text"
+          value="{{ request.user.get_full_name|default:request.user.username }}" disabled />
+      </div>
+
+      <div class="field">
+        <label class="label" for="perfil-email">Email</label>
+        <input class="input" id="perfil-email" name="email" type="email" value="{{ request.user.email }}" disabled />
+      </div>
+
+      <div class="actions-inline">
+        <button id="btn-perfil-edit" class="btn btn--sm" type="button">Editar</button>
+        <button id="btn-perfil-save" class="btn btn--sm btn--primary hidden" type="button">Salvar</button>
+      </div>
+
+      <p id="perfil-status" class="muted" aria-live="polite"></p>
+    </form>
+    {% else %}
+    <p>Você precisa estar logado para ver seus dados.</p>
+    {% endif %}
+  </section>
+
+  <!-- ===== Minhas Colmeias (fechado por padrão) ===== -->
+  <section class="accordion">
+    <details class="accordion__item">
+      <summary class="accordion__summary">
+        <span class="accordion__summary-text">
+          <strong>Minhas Colmeias:</strong>
+          <span class="muted">Acessar colmeias cadastradas</span>
+        </span>
+      </summary>
+
+      <div class="accordion__content">
+        <div class="addbar">
+          <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-colmeia">
+            Adicionar colmeia
+          </button>
+
+          <form id="form-add-colmeia" class="form-inline hidden" onsubmit="return false;">
+            <div class="field">
+              <label class="label" for="add-id">ID (ex.: C-04)</label>
+              <input class="input" id="add-id" name="id" type="text" />
+            </div>
+            <div class="field">
+              <label class="label" for="add-nome">Nome</label>
+              <input class="input" id="add-nome" name="nome" type="text" required />
+            </div>
+            <div class="field">
+              <label class="label" for="add-peso">Peso (kg)</label>
+              <input class="input" id="add-peso" name="peso" type="number" />
+            </div>
+            <div class="field">
+              <label class="label" for="add-temp">Temperatura (°C)</label>
+              <input class="input" id="add-temp" name="temp" type="number" />
+            </div>
+            <div class="field">
+              <label class="label" for="add-umid">Umidade (%)</label>
+              <input class="input" id="add-umid" name="umid" type="number" />
+            </div>
+
+            <div class="actions-inline">
+              <button class="btn btn--sm js-add-colmeia" type="submit">Adicionar</button>
+              <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-colmeia"
+                type="button">Cancelar</button>
+            </div>
+          </form>
         </div>
 
-        <div class="field">
-          <label class="label" for="perfil-email">Email</label>
-          <input class="input" id="perfil-email" name="email" type="email" placeholder="seu@email.com" disabled />
+        <ul id="lista-colmeias" class="rows">
+          {% if colmeias %}
+          {% for colmeia in colmeias %}
+          <li class="row">
+            <span>Nome: {{ colmeia.nome }}</span>
+            <span>Peso: {{ colmeia.peso }} kg</span>
+            <span>Temperatura: {{ colmeia.temperatura }} °C</span>
+            <span>Umidade: {{ colmeia.umidade }}%</span>
+          </li>
+          {% endfor %}
+          {% else %}
+          <li>Nenhuma colmeia cadastrada.</li>
+          {% endif %}
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== Meus Registros ===== -->
+  <section class="accordion">
+    <details class="accordion__item">
+      <summary class="accordion__summary">
+        <span class="accordion__summary-text">
+          <strong>Meus Registros:</strong>
+          <span class="muted">Ver registros anteriores</span>
+        </span>
+      </summary>
+
+      <div class="accordion__content">
+        <div class="addbar">
+          <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-registro">
+            Adicionar registro
+          </button>
+
+          <form id="form-add-registro" class="form-inline hidden" onsubmit="return false;">
+            <div class="field">
+              <label class="label" for="add-data">Data</label>
+              <input class="input" id="add-data" name="data" type="date" required />
+            </div>
+            <div class="field" style="grid-column: span 3;">
+              <label class="label" for="add-desc">Descrição</label>
+              <input class="input" id="add-desc" name="desc" type="text" placeholder="Ex.: Inspeção, tratamento..."
+                required />
+            </div>
+
+            <div class="actions-inline">
+              <button class="btn btn--sm js-add-registro" type="submit">Adicionar</button>
+              <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-registro"
+                type="button">Cancelar</button>
+            </div>
+          </form>
         </div>
 
-        <div class="actions-inline">
-          <button id="btn-perfil-edit" class="btn btn--sm" type="button">Editar</button>
-          <button id="btn-perfil-save" class="btn btn--sm btn--primary hidden" type="button">Salvar</button>
-        </div>
+        <ul id="lista-registros" class="rows">
+          {% if registros %}
+          {% for registro in registros %}
+          <li class="row">
+            <span>Data: {{ registro.data_observacao }}</span>
+            <span>Colmeia: {{ registro.colmeia.nome }}</span>
+            <span>Título: {{ registro.titulo }}</span>
+            <span>Observações: {{ registro.observacoes|default:"-" }}</span>
+          </li>
+          {% endfor %}
+          {% else %}
+          <li>Nenhum registro cadastrado.</li>
+          {% endif %}
+        </ul>
+      </div>
+    </details>
+  </section>
 
-        <p id="perfil-status" class="muted" aria-live="polite"></p>
-      </form>
-    </section>
-
-    <!-- ===== Minhas Colmeias (fechado por padrão) ===== -->
-    <section class="accordion">
-      <details class="accordion__item">
-        <summary class="accordion__summary">
-          <span class="accordion__summary-text">
-            <strong>Minhas Colmeias:</strong>
-            <span class="muted">Acessar colmeias cadastradas</span>
-          </span>
-        </summary>
-
-        <div class="accordion__content">
-          <div class="addbar">
-            <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-colmeia">
-              Adicionar colmeia
-            </button>
-
-            <form id="form-add-colmeia" class="form-inline hidden" onsubmit="return false;">
-              <div class="field">
-                <label class="label" for="add-id">ID (ex.: C-04)</label>
-                <input class="input" id="add-id" name="id" type="text" />
-              </div>
-              <div class="field">
-                <label class="label" for="add-nome">Nome</label>
-                <input class="input" id="add-nome" name="nome" type="text" required />
-              </div>
-              <div class="field">
-                <label class="label" for="add-peso">Peso (kg)</label>
-                <input class="input" id="add-peso" name="peso" type="number" />
-              </div>
-              <div class="field">
-                <label class="label" for="add-temp">Temperatura (°C)</label>
-                <input class="input" id="add-temp" name="temp" type="number" />
-              </div>
-              <div class="field">
-                <label class="label" for="add-umid">Umidade (%)</label>
-                <input class="input" id="add-umid" name="umid" type="number" />
-              </div>
-
-              <div class="actions-inline">
-                <button class="btn btn--sm js-add-colmeia" type="submit">Adicionar</button>
-                <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-colmeia" type="button">Cancelar</button>
-              </div>
-            </form>
-          </div>
-
-          <ul id="lista-colmeias" class="rows">
-            <!-- itens são renderizados via JS a partir do localStorage -->
-          </ul>
-        </div>
-      </details>
-    </section>
-
-    <!-- ===== Meus Registros ===== -->
-    <section class="accordion">
-      <details class="accordion__item">
-        <summary class="accordion__summary">
-          <span class="accordion__summary-text">
-            <strong>Meus Registros:</strong>
-            <span class="muted">Ver registros anteriores</span>
-          </span>
-        </summary>
-
-        <div class="accordion__content">
-          <div class="addbar">
-            <button class="btn btn--sm btn--primary" type="button" data-toggle="#form-add-registro">
-              Adicionar registro
-            </button>
-
-            <form id="form-add-registro" class="form-inline hidden" onsubmit="return false;">
-              <div class="field">
-                <label class="label" for="add-data">Data</label>
-                <input class="input" id="add-data" name="data" type="date" required />
-              </div>
-              <div class="field" style="grid-column: span 3;">
-                <label class="label" for="add-desc">Descrição</label>
-                <input class="input" id="add-desc" name="desc" type="text" placeholder="Ex.: Inspeção, tratamento..." required />
-              </div>
-
-              <div class="actions-inline">
-                <button class="btn btn--sm js-add-registro" type="submit">Adicionar</button>
-                <button class="btn btn--sm btn--ghost js-cancel-add" data-target="#form-add-registro" type="button">Cancelar</button>
-              </div>
-            </form>
-          </div>
-
-          <ul id="lista-registros" class="rows">
-            <!-- itens são renderizados via JS a partir do localStorage -->
-          </ul>
-        </div>
-      </details>
-    </section>
-
-    <!-- ===== Sair da conta ===== -->
-    <div class="logout">
-      <button id="btn-logout" class="btn btn--danger" type="button">Sair da conta</button>
-    </div>
-  </main>
+  <!-- ===== Sair da conta ===== -->
+  <div class="logout">
+    <button id="btn-logout" class="btn btn--danger" type="button">Sair da conta</button>
+  </div>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -169,7 +199,7 @@
         <span class="footer-logo-text">ECOLMEIA</span>
       </div>
       <p class="footer-description">
-        Cuidando do futuro através da apicultura sustentável. 
+        Cuidando do futuro através da apicultura sustentável.
         Monitoramento inteligente para colmeias mais saudáveis e produtivas.
       </p>
     </div>

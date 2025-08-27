@@ -157,28 +157,27 @@ def observacao_view(request, pk=None):
         # Registro existente (edição)
         registro = get_object_or_404(Registro, pk=pk, owner=request.user)
         if request.method == "POST":
-            form = RegistroForm(request.POST, instance=registro)
+            form = RegistroForm(request.POST, instance=registro, user=request.user)  # 🔹 passa o user
             if form.is_valid():
                 registro = form.save(commit=False)
                 registro.owner = request.user
                 registro.save()
                 return redirect("tudo_registros")
         else:
-            form = RegistroForm(instance=registro)
+            form = RegistroForm(instance=registro, user=request.user)  # 🔹 passa o user
     else:
         # Novo registro (criação)
         if request.method == "POST":
-            form = RegistroForm(request.POST)
+            form = RegistroForm(request.POST, user=request.user)  # 🔹 passa o user
             if form.is_valid():
                 registro = form.save(commit=False)
                 registro.owner = request.user
                 registro.save()
                 return redirect("tudo_registros")
         else:
-            form = RegistroForm()
+            form = RegistroForm(user=request.user)  # 🔹 passa o user
 
     return render(request, "dashboard/observacao.html", {"form": form, "registro": registro if pk else None})
-
 @login_required
 def excluir_registro(request, pk):
     registro = get_object_or_404(Registro, pk=pk, owner=request.user)

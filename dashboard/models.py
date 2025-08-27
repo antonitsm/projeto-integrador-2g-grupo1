@@ -7,6 +7,7 @@ class Colmeia(models.Model):
     peso = models.DecimalField(max_digits=6, decimal_places=2, help_text="Peso em kg")
     umidade = models.DecimalField(max_digits=5, decimal_places=2, help_text="Umidade em %")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    ativo = models.BooleanField(default=True)  # 🔹 novo campo
 
     def __str__(self):
         return self.nome
