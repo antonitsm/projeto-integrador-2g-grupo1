@@ -1,86 +1,440 @@
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+/* Reset e configurações base */
+* {
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    color: #f5f5f5;
+    font-size: 16px;
+}
+
+/* Header - mantendo conforme solicitado com nova paleta */
 header {
-    background-color: #333;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
     color: #fff;
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(244,182,63,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+    color: #f4b63f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header p {
-    margin: 5px 0 0;
-    font-size: 1.1em;
+    margin: 15px 0 0;
+    font-size: 1.2em;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    font-weight: 300;
+    color: #f5f5f5;
 }
 
+/* Container principal */
 main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
 }
 
+/* Seções com cards - TODOS COM FUNDO PRETO */
 section {
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    margin-bottom: 30px;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(244, 182, 63, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #f4b63f, #f1c40f);
+    transition: width 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    border-color: rgba(244, 182, 63, 0.5);
+}
+
+section:hover::before {
+    width: 8px;
+}
+
+/* Títulos */
 h2 {
-    color: #333;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+    color: #f4b63f;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid rgba(245, 245, 245, 0.2);
+    padding-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #f4b63f, #f1c40f);
+    border-radius: 2px;
 }
 
 h3 {
-    color: #555; 
-    font-size: 1.3em;
-    margin-top: 15px;
-    margin-bottom: 8px;
+    color: #f1c40f;
+    font-size: 1.5em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 20px;
 }
 
+h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(45deg, #f4b63f, #f1c40f);
+    border-radius: 50%;
+}
+
+/* Parágrafos */
 p {
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    text-align: justify;
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #f5f5f5;
 }
 
+/* Listas */
 ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    margin-bottom: 10px;
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding-left: 0;
 }
 
 li {
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.05em;
+    line-height: 1.7;
+    transition: all 0.2s ease;
+    color: #f5f5f5;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b63f;
+    font-size: 0.8em;
+    transition: all 0.2s ease;
 }
 
-footer {
-    background-color: #333;
+li:hover {
+    padding-left: 35px;
     color: #fff;
+}
+
+li:hover::before {
+    transform: scale(1.2);
+    color: #f1c40f;
+}
+
+/* Links */
+a {
+    color: #f4b63f;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f4b63f, #f1c40f);
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    color: #fcb72e;
+    background: rgba(244, 182, 63, 0.2);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* Seção de contatos especial (se existir) */
+#contatos {
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    border: 2px solid rgba(244, 182, 63, 0.5);
+    box-shadow: 0 8px 32px rgba(244, 182, 63, 0.1);
+}
+
+#contatos::before {
+    background: linear-gradient(180deg, #f4b63f, #f1c40f);
+    width: 6px;
+}
+
+#contatos h2 {
+    color: #f4b63f;
+    text-shadow: 0 0 10px rgba(244, 182, 63, 0.3);
+}
+
+/* Footer - mantendo conforme solicitado com nova paleta */
+footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    color: #f5f5f5;
     text-align: center;
-    padding: 15px;
+    padding: 30px 20px;
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 60px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
 footer p {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 1em;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Botões no estilo da paleta */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #f4b63f, #f1c40f);
+    color: #000;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(244, 182, 63, 0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #fcb72e, #f4b63f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 182, 63, 0.4);
+    color: #000;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em;
+    }
+    
+    header p {
+        font-size: 1em;
+    }
+    
+    main {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    
+    section {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 30px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    section {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+    
+    h2 {
+        font-size: 1.6em;
+    }
+}
+
+/* Animações suaves */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Melhorias de acessibilidade */
+a:focus,
+section:focus {
+    outline: 3px solid #f4b63f;
+    outline-offset: 2px;
+}
+
+/* Efeito de loading para melhor UX */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #f4b63f, #f1c40f, #f4b63f);
+    background-size: 200% 100%;
+    animation: loading 2s linear infinite;
+    z-index: 9999;
+    opacity: 0;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Destaque especial para elementos importantes */
+strong {
+    color: #f4b63f;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(244, 182, 63, 0.3);
+}
+
+/* Efeitos especiais para melhor contraste no fundo preto */
+section {
+    border: 1px solid rgba(244, 182, 63, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(244, 182, 63, 0.1);
+}
+
+/* Melhor definição dos elementos no fundo escuro */
+h2, h3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Separadores visuais */
+section + section {
+    border-top: 1px solid rgba(244, 182, 63, 0.1);
+}
+
+/* Estilos específicos para termos de uso */
+.termo-item {
+    background: rgba(244, 182, 63, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #f4b63f;
+}
+
+.termo-destaque {
+    background: linear-gradient(135deg, rgba(244, 182, 63, 0.1), rgba(241, 196, 15, 0.1));
+    border: 1px solid rgba(244, 182, 63, 0.3);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+/* Numeração de seções */
+.secao-numerada {
+    counter-increment: secao;
+}
+
+.secao-numerada h2::before {
+    content: counter(secao) ". ";
+    color: #f4b63f;
+}
+
+main {
+    counter-reset: secao;
 }
 
