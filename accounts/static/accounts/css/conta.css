@@ -315,8 +315,14 @@ body {
 .hidden { display: none !important; }
 
 /* ===== PAGE ===== */
-.page { width: 100%; max-width: 1000px; }
-
+.page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;         /* centraliza horizontalmente */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
 /* ===== TITULOS ===== */
 .page__title {
   font-size: 2rem;

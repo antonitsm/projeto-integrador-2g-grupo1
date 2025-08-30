@@ -733,6 +733,7 @@ footer::before {
   overflow: hidden;
   font-family: "Montserrat", sans-serif;
   min-width: 180px;
+  text-decoration: none;
 }
 
 /* Botão Salvar */
