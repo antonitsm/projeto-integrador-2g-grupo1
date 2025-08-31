@@ -160,3 +160,76 @@ nav {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(248, 191, 77, 0.5);
 }
+
+
+/* BOTÃO MOBILE (hamburger) 
+.mobile-menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8bf4d, #d4a017);
+  color: #111;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(248, 191, 77, 0.3);
+}
+
+.mobile-menu-toggle:hover {
+  background: linear-gradient(135deg, #ffd95a, #f8bf4d);
+  transform: scale(1.05);
+}
+
+/* RESPONSIVIDADE
+
+
+@media (max-width: 768px) {
+  .navbar,
+  .user-profile {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+}
+
+.mobile-menu-toggle {
+  display: block !important;
+}
+
+.navbar.active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    width: 220px;
+    background: rgba(20, 20, 20, 0.98);
+    border: 1px solid rgba(248, 191, 77, 0.2);
+    padding: 20px;
+    gap: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  .navbar.active a {
+    text-align: left;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+/* Animação para o menu abrir
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+*/
