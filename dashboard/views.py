@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ColmeiaForm
-from .models import Colmeia, Registro
+from .models import Colmeia, Registro, Producao
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm
 
@@ -178,6 +178,7 @@ def observacao_view(request, pk=None):
             form = RegistroForm(user=request.user)  # 🔹 passa o user
 
     return render(request, "dashboard/observacao.html", {"form": form, "registro": registro if pk else None})
+
 @login_required
 def excluir_registro(request, pk):
     registro = get_object_or_404(Registro, pk=pk, owner=request.user)
@@ -185,3 +186,22 @@ def excluir_registro(request, pk):
         registro.delete()
         return redirect("tudo_registros")
     return render(request, "registros/confirmar_exclusao.html", {"registro": registro})
+
+@login_required
+def producao_view(request):
+    if request.method == "POST":
+        numero_abelhas = request.POST.get("numero_abelhas")
+        quantidade_mel = request.POST.get("quantidade_mel")
+        mes = request.POST.get("mes")
+
+        Producao.objects.create(
+            usuario=request.user,
+            numero_abelhas=numero_abelhas,
+            quantidade_mel=quantidade_mel,
+            mes=mes
+        )
+        return redirect('producao')
+
+    # Pega todas as produções do usuário
+    producoes = request.user.producoes.all()
+    return render(request, "dashboard/producao.html", {"producoes": producoes})

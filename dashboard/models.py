@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Colmeia(models.Model):
     nome = models.CharField(max_length=100)
@@ -36,3 +37,13 @@ class Registro(models.Model):
     
     def __str__(self):
         return f"{self.titulo} - {self.colmeia.nome}"
+    
+class Producao(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="producoes")
+    numero_abelhas = models.IntegerField(default=0)
+    quantidade_mel = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    mes = models.CharField(max_length=20)
+    criado_em = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.mes} ({self.quantidade_mel}L)"
