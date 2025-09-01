@@ -8,23 +8,7 @@
 
 {% block content %}
 
-<header>
-  <nav>
-    <div class="logo">
-      <a href="#"><img src="{% static 'landing/img/logo.png' %}" alt="Logo"></a>
-    </div>
-    <ul class="navbar">
-      <li><a href="#">INÍCIO</a></li>
-      <li><a href="{% url 'nova_colmeia' %}">MINHAS COLMEIAS</a></li>
-      <li><a href="{% url 'dados' %}">DADOS</a></li>
-      <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
-      <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
-    </ul>
-    <div class="user-profile">
-      <img src="{% static 'accounts/img/imagem_usuario.png' %}" alt="Usuário">
-    </div>
-  </nav>
-</header>
+{% include './header.html' %}
 
 <!-- DECORAÇÃO -->
 <div class="decoracao esquerda">
