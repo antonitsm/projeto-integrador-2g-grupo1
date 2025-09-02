@@ -15,7 +15,6 @@
   <main>
     <section class="registros-section">
       <div class="container">
-        <h1 class="page-title">Meus Registros</h1>
   
         <div class="section-header">
           <h2>Lista de Registros</h2>
@@ -55,7 +54,11 @@
                  <div class="registro-arrow"><span>▶</span></div>
   
               <!-- Botão visível sempre -->
-              <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar Registro</a>
+               <button>
+                <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar Registro</a>
+               </button>
+              
+
             </div>
   
             <div class="registro-detalhes">

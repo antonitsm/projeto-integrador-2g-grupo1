@@ -2,24 +2,22 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('colmeia/cadastrar/', views.new_hive_view, name='nova_colmeia'), 
-    path("paginainicialdashboard/", views.home_page_dashboard_view, name="paginainicialdashboard"),
-    path("dados/", views.data_view, name="dados"),
-    path("observacao/", views.observation_view, name="observacao"),
-    path("producao/", views.production_view, name="producao"),
-    path("registros/", views.all_registration_view, name="tudo_registros"),
+    # Dashboard / Página principal
+    path("dados/", views.dados_view, name="dados"),
+    path("producao/", views.producao_view, name="producao"),
 
-    # URLs para Colmeias
+    # Colmeias
+    path("minhas_colmeias/", views.minhas_colmeias_view, name="minhas_colmeias"),
+    path("colmeia/cadastrar/", views.nova_colmeia_view, name="nova_colmeia"),
+    path("colmeias/adicionar/", views.adicionar_colmeia, name="adicionar_colmeia"),
+    path("colmeias/dados/<int:pk>/", views.editar_colmeia, name="editar_colmeia"), 
+    path("colmeias/<int:pk>/", views.detalhes_colmeia, name="detalhes_colmeia"),
+    path("colmeias/<int:pk>/excluir/", views.excluir_colmeia, name="excluir_colmeia"),
 
-    path("minhas_colmeias/", views.my_hives_view, name="minhas_colmeias"),
-    path("colmeias/adicionar/", views.add_hive, name="adicionar_colmeia"),
-    path("colmeias/dados/<int:pk>/", views.edit_hive, name="editar_colmeia"), 
-    path("colmeias/<int:pk>/", views.hive_details, name="detalhes_colmeia"),
-    path("colmeias/<int:pk>/excluir/", views.delete_hive, name="excluir_colmeia"), 
-
-
-    # Registros
-    path("registros/<int:pk>/", views.registration_detail, name="detalhe_registro"),
-    path('observacao/<int:pk>/', views.observation_view, name='editar_registro'),
-    path("observacao/<int:pk>/excluir/", views.delete_registration, name="excluir_registr"),
+    # Registros / Observações
+    path("registros/", views.tudo_registros_view, name="tudo_registros"),
+    path("registros/<int:pk>/", views.detalhe_registro, name="detalhe_registro"),
+    path("observacao/", views.observacao_view, name="observacao"),
+    path("observacao/<int:pk>/", views.observacao_view, name="editar_registro"),
+    path("observacao/<int:pk>/excluir/", views.excluir_registro, name="excluir_registro"),
 ]

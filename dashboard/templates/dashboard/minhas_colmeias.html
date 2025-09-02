@@ -14,7 +14,9 @@
 
 <body>
   
-  {% include './header.html' %}
+  <header>
+    {% include './header.html' %}
+  </header>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main-content">
@@ -42,7 +44,7 @@
             <!-- Botões de ação reorganizados em grid de 3 colunas -->
             <div class="colmeia-actions">
               <!-- Editar -->
-              <a href="{% url 'edit_hive' colmeia.id %}" class="btn-action btn-editar">Editar</a>
+              <a href="{% url 'editar_colmeia' colmeia.id %}" class="btn-action btn-editar">Editar</a>
 
               <!-- Ver Dados (collapse) -->
               <button class="btn-action btn-registro" 
@@ -55,7 +57,7 @@
               </button>
 
               <!-- Excluir -->
-              <form action="{% url 'delete_hive' colmeia.pk %}" method="POST" onsubmit="return confirmarExclusao();">
+              <form action="{% url 'excluir_colmeia' colmeia.pk %}" method="POST" onsubmit="return confirmarExclusao();">
                 {% csrf_token %}
                 <button type="submit" class="btn-action btn-producao">Excluir</button>
               </form>
@@ -86,7 +88,7 @@
   
   <!-- FOOTER -->
   <footer>
-    {% include './footer.html' %}
+    {% include './footer.html ' %}
   </footer>
 
   <!-- Modal de Confirmação -->

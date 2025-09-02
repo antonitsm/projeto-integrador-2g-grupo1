@@ -1,15 +1,12 @@
-<!--{% extends 'dashboard/base.html' %} -->
 {% load static %}
-{% block title %}inicio{% endblock %}
 
 {% block style %}
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'dashboard/css/dados.css' %}">
 {% endblock %}
 
 {% block content %}
 
-{% include './header.html' %}
+  {% include 'dashboard/header.html' %}
 
 <!-- DECORAÇÃO -->
 <div class="decoracao esquerda">
@@ -20,39 +17,53 @@
 </div>
 
 <div class="container-autenticacao">
-  <form class="formulario-autenticacao ativo" method="post" 
-        action="{% if colmeia.id %}{% url 'edit_hive' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
+  <form class="formulario-autenticacao ativo" method="post"
+    action="{% if colmeia and colmeia.id %}{% url 'editar_colmeia' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
     {% csrf_token %}
     <h2>Dados da Colmeia</h2>
 
+    {# 🔹 Bloco de erros no topo #}
+   {% if form.errors %}
+      <div class="alert-danger">
+          <strong>Atenção! Verifique os seguintes erros:</strong>
+          <ul>
+              {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                      <li>{{ field|capfirst }}: {{ error }}</li>
+                  {% endfor %}
+              {% endfor %}
+          </ul>
+      </div>
+    {% endif %}
+
     <div class="campo-formulario">
       <label for="nome">Nome da Colmeia</label>
-      <input type="text" id="nome" name="nome" value="{{ colmeia.nome }}" required />
+      <input type="text" id="nome" name="nome" value="{{ colmeia.nome|default_if_none:'' }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="temperatura">Temperatura (°C)</label>
-      <input type="number" id="temperatura" name="temperatura" step="0.01" 
-             value="{{ colmeia.temperatura }}" required />
+      <input type="number" id="temperatura" name="temperatura" step="0.01" value="{{ colmeia.temperatura|default_if_none:'' }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="peso">Peso (kg)</label>
-      <input type="number" id="peso" name="peso" step="0.01" 
-             value="{{ colmeia.peso }}" required />
+      <input type="number" id="peso" name="peso" step="0.01" value="{{ colmeia.peso|default_if_none:'' }}" required />
     </div>
 
     <div class="campo-formulario">
       <label for="umidade">Umidade (%)</label>
-      <input type="number" id="umidade" name="umidade" step="0.01" 
-             value="{{ colmeia.umidade }}" required />
+      <input type="number" id="umidade" name="umidade" step="0.01" value="{{ colmeia.umidade|default_if_none:'' }}" required />
     </div>
 
     <button type="submit" class="botao-enviar">
-        {% if colmeia.id %}Salvar alterações{% else %}Salvar{% endif %}
+      {% if colmeia and colmeia.id %}Salvar alterações{% else %}Salvar{% endif %}
     </button>
   </form>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
 <script src="{% static 'dashboard/js/dados.js' %}"></script>
 {% endblock %}

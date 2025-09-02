@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 class Colmeia(models.Model):
     nome = models.CharField(max_length=100)
@@ -14,18 +15,18 @@ class Colmeia(models.Model):
         return self.nome
 
     def clean(self):
-        # Validação da temperatura
-        if self.temperatura < 0 or self.temperatura > 50:
+        # Temperatura
+        if self.temperatura is None or self.temperatura < 0 or self.temperatura > 50:
             raise ValidationError({'temperatura': "A temperatura deve estar entre 0°C e 50°C."})
         
-        # Validação do peso
-        if self.peso <= 0:
+        # Peso
+        if self.peso is None or self.peso <= 0:
             raise ValidationError({'peso': "O peso deve ser maior que 0 kg."})
         
-        # Validação da umidade
-        if self.umidade < 0 or self.umidade > 100:
+         # Umidade
+        if self.umidade is None or self.umidade < 0 or self.umidade > 100:
             raise ValidationError({'umidade': "A umidade deve estar entre 0% e 100%."})
-        
+                
         
 
 class Registro(models.Model):
