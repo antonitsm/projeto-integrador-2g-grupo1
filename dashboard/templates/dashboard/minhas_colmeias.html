@@ -86,58 +86,7 @@
   
   <!-- FOOTER -->
   <footer>
-    <div class="footer-container">
-
-      <div class="footer-section footer-brand">
-        <div class="footer-logo">
-          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Ecolmeia">
-          <span class="footer-logo-text">ECOLMEIA</span>
-        </div>
-        <p class="footer-description">
-          Cuidando do futuro através da apicultura sustentável. 
-          Monitoramento inteligente para colmeias mais saudáveis e produtivas.
-        </p>
-      </div>
-
-      <div class="footer-section footer-nav">
-        <h3>Navegação</h3>
-        <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#">Minhas Colmeias</a></li>
-          <li><a href="#">Dados</a></li>
-          <li><a href="#">Registro</a></li>
-          <li><a href="#">Produção</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section footer-contact">
-        <h3>Contato</h3>
-        <ul>
-          <li><a href="mailto:contato@ecolmeia.com">contato@ecolmeia.com</a></li>
-          <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
-          <li>São Paulo, SP - Brasil</li>
-        </ul>
-      </div>
-
-      <!-- Logo da Escola -->
-      <div class="footer-section footer-school">
-        <h3>Instituto</h3>
-        <div class="school-logo">
-          <img src="{% static 'landing/img/logo_ifc.png' %}" alt="logo">
-        </div>
-      </div>
-    </div>
-
-    <!-- Copyright -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-container">
-        <p>&copy; 2025 Ecolmeia. Todos os direitos reservados.</p>
-        <div class="footer-bottom-links">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Termos de Uso</a>
-        </div>
-      </div>
-    </div>
+    {% include './footer.html' %}
   </footer>
 
   <!-- Modal de Confirmação -->
