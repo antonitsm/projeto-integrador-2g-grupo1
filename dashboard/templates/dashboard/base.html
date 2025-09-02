@@ -1,22 +1,24 @@
 <!-- blog/templates/blog/base.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {% block style %}{% endblock %}
-
 </head>
 <body>
     {% include './header.html' %}
 
-    <!-- <div class="testeguilherme"> -->
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
-    <!-- </div> -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
     {% include './footer.html' %}
+    
+    {% block scripts %}
     <script src="{% static 'dashboard/js/header.js' %}"></script>
+    {% endblock %}
 </body>
 </html>

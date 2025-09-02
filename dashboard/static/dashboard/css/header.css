@@ -5,7 +5,7 @@
 }
 
 header {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,12 +16,11 @@ header {
   border-bottom: 1px solid rgba(248, 191, 77, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Mantém o espaço entre logo, navbar e user-profile */
+  justify-content: space-between;
   padding: 0 40px;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  z-index: 1000;
 }
 
 header.scrolled {
@@ -33,7 +32,7 @@ header.scrolled {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Distribui os elementos: logo, navbar, user-profile */
+  justify-content: space-between;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -74,8 +73,8 @@ nav {
   list-style: none;
   gap: 8px;
   align-items: center;
-  flex-grow: 1; /* Permite que a navbar ocupe o espaço disponível */
-  justify-content: center; /* Centraliza os links dentro da navbar */
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .navbar li {
@@ -95,16 +94,6 @@ nav {
   text-transform: uppercase;
   font-size: 14px;
   overflow: hidden;
-}
-
-.navbar a::before {
-  /* Removido o efeito de luz */
-  content: none;
-}
-
-.navbar a:hover::before {
-  /* Removido o efeito de luz */
-  content: none;
 }
 
 .navbar a::after {
@@ -161,7 +150,8 @@ nav {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(248, 191, 77, 0.5);
 }
-/* Botão hamburguer */
+
+/* Corrigindo o botão hambúrguer para usar o símbolo original */
 .mobile-menu-toggle {
   display: none;
   font-size: 28px;
@@ -172,6 +162,7 @@ nav {
   color: #111;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(248, 191, 77, 0.3);
+  border: none;
 }
 
 .mobile-menu-toggle:hover {
@@ -179,102 +170,26 @@ nav {
   transform: scale(1.05);
 }
 
-/* Responsividade */
+/* Corrigindo as media queries para funcionar corretamente */
 @media (max-width: 768px) {
-  .navbar,
-  .user-profile {
-    display: none;
-  }
-mobile-user {
-    display: block; /* mostra o ícone dentro do menu */
-    text-align: center;
+  header {
+    padding: 0 20px;
   }
 
-  .mobile-user img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #f8bf4d;
+  .navbar {
+    display: none;
+  }
+
+  .user-profile {
+    display: none;
   }
 
   .mobile-menu-toggle {
     display: block;
   }
 
+  /* Corrigindo o menu mobile para aparecer quando ativo */
   .navbar.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    width: 220px;
-    background: rgba(20, 20, 20, 0.98);
-    border: 1px solid rgba(248, 191, 77, 0.2);
-    padding: 20px;
-    gap: 15px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    animation: slideDown 0.3s ease forwards;
-  }
-
-  .navbar.active a {
-    text-align: left;
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 8px;
-  }
-}
-
-/* Animação */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* BOTÃO MOBILE (hamburger) 
-.mobile-menu-toggle {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f8bf4d, #d4a017);
-  color: #111;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(248, 191, 77, 0.3);
-}
-
-.mobile-menu-toggle:hover {
-  background: linear-gradient(135deg, #ffd95a, #f8bf4d);
-  transform: scale(1.05);
-}
-
-/* RESPONSIVIDADE
-
-
-@media (max-width: 768px) {
-  .navbar,
-  .user-profile {
-    display: none !important;
-  }
-
-  .mobile-menu-toggle {
-    display: block !important;
-  }
-}
-
-.mobile-menu-toggle {
-  display: block !important;
-}
-
-.navbar.active {
     display: flex !important;
     flex-direction: column;
     position: absolute;
@@ -296,8 +211,9 @@ mobile-user {
     padding: 10px;
     border-radius: 8px;
   }
+}
 
-/* Animação para o menu abrir
+/* Adicionando animação para o menu mobile */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -306,6 +222,5 @@ mobile-user {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
+  }
 }
-*/
