@@ -37,6 +37,7 @@ body {
 
 /* ===== TITULOS ===== */
 .page__title {
+  margin-top: 7%;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 20px;
