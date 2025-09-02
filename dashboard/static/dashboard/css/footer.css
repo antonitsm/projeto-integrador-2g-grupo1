@@ -53,8 +53,10 @@
 }
 
 .footer-main {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
+  display: flex;
+  flex-wrap: wrap;
+  /* display: grid; */
+  /* grid-template-columns: 2fr 1fr 1.5fr; */
   gap: 60px;
   margin-bottom: 60px;
 }
@@ -94,6 +96,14 @@
   margin-bottom: 30px;
   font-size: 16px;
 }
+
+@media (max-width: 480px) {
+  .brand-description {
+    font-size: 22px;
+  }
+}
+
+
 
 .social-links {
   display: flex;
@@ -192,6 +202,17 @@
 
 .nav-column a:hover { color: #f8bf4d; padding-left: 20px; }
 .nav-column a:hover::before { width: 10px; }
+
+@media (max-width: 480px) {
+  .nav-column h3 {
+    font-size:30px;
+  }
+
+  .nav-column a {
+    font-size: 26px
+  }
+}
+
 
 .footer-contact h3 {
   color: #fff;
