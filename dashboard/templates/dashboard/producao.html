@@ -3,11 +3,13 @@
 {% block title %}Produção{% endblock %}
 
 {% block style %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% include './header.html' %}
 <link rel="stylesheet" href="{% static 'dashboard/css/producao.css' %}">
 {% endblock %}
 
 {% block content %}
-{% include './header.html' %}
+
 
 <div class="container">
     <div class="chart-container">

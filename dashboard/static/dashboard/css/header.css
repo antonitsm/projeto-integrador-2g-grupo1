@@ -184,6 +184,17 @@ nav {
   .user-profile {
     display: none;
   }
+mobile-user {
+    display: block; /* mostra o ícone dentro do menu */
+    text-align: center;
+  }
+
+  .mobile-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #f8bf4d;
+  }
 
   .mobile-menu-toggle {
     display: block;
