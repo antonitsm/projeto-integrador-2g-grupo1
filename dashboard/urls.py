@@ -13,9 +13,9 @@ urlpatterns = [
 
     path("minhas_colmeias/", views.my_hives_view, name="minhas_colmeias"),
     path("colmeias/adicionar/", views.add_hive, name="adicionar_colmeia"),
-    path("colmeias/dados/<int:pk>/", views.edit_hive, name="editar_colmeia"), 
+    path("colmeias/dados/<int:pk>/", views.editar_colmeia, name="editar_colmeia"), 
     path("colmeias/<int:pk>/", views.hive_details, name="detalhes_colmeia"),
-    path("colmeias/<int:pk>/excluir/", views.delete_hive, name="excluir_colmeia"), 
+    path("colmeias/<int:pk>/excluir/", views.excluir_colmeia, name="excluir_colmeia"), 
 
 
     # Registros

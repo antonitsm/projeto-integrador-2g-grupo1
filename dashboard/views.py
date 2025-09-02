@@ -31,7 +31,7 @@ def add_hive(request):
     pass
 
 @login_required
-def edit_hive(request, pk):
+def editar_colmeia(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
     
     if request.method == 'POST':
@@ -45,7 +45,7 @@ def edit_hive(request, pk):
     return render(request, 'dashboard/dados.html', {'form': form, 'colmeia': colmeia})
     
 @login_required
-def delete_hive(request, pk):
+def excluir_colmeia(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
 
     if request.method == "POST":
@@ -89,7 +89,7 @@ def new_hive_view(request):
     return render(request, "dashboard/minhas_colmeias.html", {"erros": erros, "dados": dados})
 
 @login_required
-def edit_hive_view(request, colmeia_id):
+def editar_colmeia_view(request, colmeia_id):
     colmeia = get_object_or_404(Colmeia, id=colmeia_id, owner=request.user)
     if request.method == "POST":
         form = ColmeiaForm(request.POST, instance=colmeia)

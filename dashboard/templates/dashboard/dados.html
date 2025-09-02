@@ -21,7 +21,7 @@
 
 <div class="container-autenticacao">
   <form class="formulario-autenticacao ativo" method="post" 
-        action="{% if colmeia.id %}{% url 'edit_hive' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
+        action="{% if colmeia.id %}{% url 'editar_colmeia' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
     {% csrf_token %}
     <h2>Dados da Colmeia</h2>
 

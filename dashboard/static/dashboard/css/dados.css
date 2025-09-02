@@ -1,13 +1,15 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  /* background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  background-color: #1a1a1a;
 }
 
 /* ===== HEADER E NAVBAR MELHORADA ===== */
@@ -332,15 +334,15 @@ nav {
   background: linear-gradient(145deg, #000 0%, #1a1a1a 100%);
   padding: 1.8rem;
   border-radius: 15px;
-  width: 550px;
-  max-width: 90%;
+  width: 100%;
+  /* max-width: 90%; */
   margin-top: 15%;
-  position: relative;
+  /* position: relative; */
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(248, 191, 77, 0.1);
-  position: relative;
-  overflow: hidden;
+  /* position: relative; */
+  /* overflow: hidden; */
 }
 
 .container-autenticacao::before {
@@ -500,3 +502,6 @@ nav {
   }
 }
 
+.testeguilherme {
+  display: flex;
+}
