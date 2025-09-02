@@ -4,34 +4,34 @@ from .models import Colmeia, Registro, Producao
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm
 
-def paginainicialdashboard_view(request):
+def home_page_dashboard_view(request):
     return render(request, 'dashboard/paginainicialdashboard.html')
 
 
 @login_required
-def dados_view(request): 
+def data_view(request): 
     return render(request, 'dashboard/dados.html')
 
 @login_required
-def producao_view(request): 
+def production_view(request): 
     return render(request, 'dashboard/producao.html')
 
 @login_required
-def minhas_colmeias_view(request):
+def my_hives_view(request):
     colmeias = Colmeia.objects.filter(owner=request.user)
     return render(request, 'dashboard/minhas_colmeias.html', {"colmeias": colmeias})
 
 
 @login_required
-def detalhes_colmeia(request, pk):
+def hive_details(request, pk):
     pass
 
 @login_required
-def adicionar_colmeia(request):
+def add_hive(request):
     pass
 
 @login_required
-def editar_colmeia(request, pk):
+def edit_hive(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
     
     if request.method == 'POST':
@@ -45,7 +45,7 @@ def editar_colmeia(request, pk):
     return render(request, 'dashboard/dados.html', {'form': form, 'colmeia': colmeia})
     
 @login_required
-def excluir_colmeia(request, pk):
+def delete_hive(request, pk):
     colmeia = get_object_or_404(Colmeia, pk=pk, owner=request.user)
 
     if request.method == "POST":
@@ -56,7 +56,7 @@ def excluir_colmeia(request, pk):
     return render(request, "dashboard/confirmar_exclusao.html", {"colmeia": colmeia})
 
 @login_required
-def nova_colmeia_view(request):
+def new_hive_view(request):
     erros = {}
     dados = {}
 
@@ -89,7 +89,7 @@ def nova_colmeia_view(request):
     return render(request, "dashboard/minhas_colmeias.html", {"erros": erros, "dados": dados})
 
 @login_required
-def editar_colmeia_view(request, colmeia_id):
+def edit_hive_view(request, colmeia_id):
     colmeia = get_object_or_404(Colmeia, id=colmeia_id, owner=request.user)
     if request.method == "POST":
         form = ColmeiaForm(request.POST, instance=colmeia)
@@ -106,7 +106,7 @@ def editar_colmeia_view(request, colmeia_id):
   # vamos criar um form para facilitar
 
 @login_required
-def tudo_registros_view(request):
+def all_registration_view(request):
     registros = Registro.objects.filter(owner=request.user)
 
     # Filtrar por colmeia se enviado
@@ -130,12 +130,12 @@ def tudo_registros_view(request):
     })
 
 @login_required
-def detalhe_registro(request, pk):
+def registration_detail(request, pk):
     registro = get_object_or_404(Registro, pk=pk)
     return render(request, "registros/detalhe.html", {"registro": registro})
 
 @login_required
-def observacao_view(request, pk=None):
+def observation_view(request, pk=None):
     if pk:
         registro = get_object_or_404(Registro, pk=pk, owner=request.user)  # Registro existente
     else:
@@ -152,7 +152,7 @@ def observacao_view(request, pk=None):
     return render(request, "dashboard/observacao.html", {"form": form})
 
 @login_required
-def observacao_view(request, pk=None):
+def observation_view(request, pk=None):
     if pk:
         # Registro existente (edição)
         registro = get_object_or_404(Registro, pk=pk, owner=request.user)
@@ -180,7 +180,7 @@ def observacao_view(request, pk=None):
     return render(request, "dashboard/observacao.html", {"form": form, "registro": registro if pk else None})
 
 @login_required
-def excluir_registro(request, pk):
+def delete_registration(request, pk):
     registro = get_object_or_404(Registro, pk=pk, owner=request.user)
     if request.method == "POST":
         registro.delete()
@@ -188,7 +188,7 @@ def excluir_registro(request, pk):
     return render(request, "registros/confirmar_exclusao.html", {"registro": registro})
 
 @login_required
-def producao_view(request):
+def production_view(request):
     if request.method == "POST":
         numero_abelhas = request.POST.get("numero_abelhas")
         quantidade_mel = request.POST.get("quantidade_mel")
