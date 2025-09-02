@@ -1,25 +1,31 @@
 {% load static %}
 
 <header>
-    <nav>
-      <div class="logo">
-        <a href="#"></a>
-          <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura" class="btn-img">
-        </a>
-      </div>
-      <ul class="navbar">
-        <li><a href="#">INÍCIO</a></li>
-        <li><a href="{% url 'nova_colmeia' %}">MINHAS COLMEIAS</a></li>
-        <li><a href="{% url 'dados' %}">DADOS</a></li>
-        <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
-        <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
-         <li><a href="{% url 'accounts' %}">USUÁRIO</a></li>
-      </ul>
-      <div class="user-profile">
-        <a href="{% url 'accounts' %}">
-          <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
-        </a>
-      </div>
+  <nav>
+    <!-- Logo -->
+    <div class="logo">
+      <a href="#">
+        <img src="{% static 'landing/img/logo.png' %}" alt="Logo Apicultura" class="btn-img">
+      </a>
+    </div>
+
+    <!-- Navbar -->
+    <ul class="navbar" id="navbar">
+      <li><a href="{% url 'home' %}">INÍCIO</a></li>
+      <li><a href="{% url 'minhas_colmeias' %}">MINHAS COLMEIAS</a></li>
+      <li><a href="{% url 'dados' %}">DADOS</a></li>
+      <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
+      <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
+    </ul>
+
+    <!-- User -->
+    <div class="user-profile">
+      <a href="{% url 'accounts' %}">
+        <img src="{% static 'landing/img/imagem_usuario2.png'%}" alt="User Profile" id="user-profile-img">
+      </a>
+    </div>
+
+    <!-- Botão hamburguer (só aparece no mobile) -->
     <div class="mobile-menu-toggle" id="mobile-toggle">
       ☰
     </div>
