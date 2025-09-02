@@ -1,0 +1,16 @@
+.mobile-menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8bf4d, #d4a017);
+  color: #111;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(248, 191, 77, 0.3);
+}
+
+.mobile-menu-toggle:hover {
+  background: linear-gradient(135deg, #ffd95a, #f8bf4d);
+  transform: scale(1.05);
+}

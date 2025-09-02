@@ -1,6 +1,7 @@
 {% load static %}
 
 {% block style %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'dashboard/css/header.css' %}">
 {% endblock %}
 
@@ -20,6 +21,7 @@
       <li><a href="{% url 'dados' %}">DADOS</a></li>
       <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
       <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
+    <!-- <li><a href="{% url 'accounts' %}">USUÁRIO</a></li> -->
     </ul>
 
     <!-- User -->
@@ -35,5 +37,3 @@
     </div>
   </nav>
 </header>
-
-<script src="{% static 'dashboard/js/header.js' %}"></script>
