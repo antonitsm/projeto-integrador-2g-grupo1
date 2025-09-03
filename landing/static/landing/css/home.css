@@ -377,7 +377,6 @@ a {
 }
 
 @media (max-width: 480px) {
-  /* Further reduce hero decorations for mobile */
   section {
     padding: 20px 15px;
   }
@@ -385,12 +384,12 @@ a {
   .hero {
     gap: 1rem;
     padding: 30px 15px;
-    align-items: center; /* Ensure center alignment on small mobile screens */
+    align-items: center; 
     justify-content: center;
   }
 
   .imagem_banner {
-    margin-top: 0; /* Remove top margin on mobile since alignment is now centered */
+    margin-top: 45px; 
   }
 
   .imagem_banner img {

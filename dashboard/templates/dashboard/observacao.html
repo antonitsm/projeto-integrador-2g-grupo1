@@ -10,8 +10,11 @@
 </head>
 
 <body>
-  <!--NAVBAR-->
-  {% include './header.html' %}
+
+    <header>
+    {% include './header.html' %}
+  </header>
+
   <div class="registros">
     <h1 class="titulo">REGISTRO DE OBSERVAÇÕES</h1>
 
@@ -60,9 +63,9 @@
     {% endif %}
   </div>
 
-  <!-- FOOTER -->
+ <!-- FOOTER -->
   <footer>
-    {% include './footer.html' %}
+    {% include './footer.html ' %}
   </footer>
 
   <script src="{% static 'dashboard/js/observacao.js' %}"></script>

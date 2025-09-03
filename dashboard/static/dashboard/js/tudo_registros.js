@@ -19,14 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
             item.classList.toggle("active");
             detalhes.classList.toggle("show");
 
-            // Preenche detalhes
-            if (detalhes.classList.contains("show")) {
-                detalhes.innerHTML = `
-                    <h4 class="detalhe-subtitulo">Observação:</h4>
-                    <p class="registro-observacao">${item.dataset.observacao}</p>
-                `;
-            }
-
             // Botão editar não fecha registro
             const editarBotoes = document.querySelectorAll(".btn-editar");
             editarBotoes.forEach(botao => {
@@ -35,33 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             });
         });
-    });
-});
-
-
-// ===== LIMPAR FORM =====
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("form-registro");
-    const limparBtn = document.getElementById("btn-limpar");
-
-    if (!form || !limparBtn) return;
-
-    limparBtn.addEventListener("click", () => {
-        form.reset();
-
-        form.querySelectorAll("input[type='text'], input[type='number'], input[type='date'], input[type='email'], input[type='time'], textarea")
-            .forEach(el => el.value = "");
-
-        form.querySelectorAll("select").forEach(el => {
-            el.selectedIndex = 0;
-            el.dispatchEvent(new Event("change"));
-        });
-
-        form.querySelectorAll("input[type='checkbox'], input[type='radio']").forEach(el => {
-            el.checked = false;
-        });
-
-        form.querySelectorAll("input[type='file']").forEach(el => el.value = "");
     });
 });
 

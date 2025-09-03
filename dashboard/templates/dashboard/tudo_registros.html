@@ -29,7 +29,9 @@
         <select name="colmeia" id="colmeia">
           <option value="">Todas</option>
           {% for colmeia in colmeias %}
-            <option value="{{ colmeia.id }}" {% if request.GET.colmeia == colmeia.id|stringformat:"s" %}selected{% endif %}>{{ colmeia.nome }}</option>
+            <option value="{{ colmeia.id }}" {% if request.GET.colmeia == colmeia.id|stringformat:"s" %}selected{% endif %}>
+              {{ colmeia.nome }}
+            </option>
           {% endfor %}
         </select>
 
@@ -46,31 +48,43 @@
     <!-- Lista de registros -->
     <div class="registros-lista">
       {% for registro in registros %}
-      <div class="registro-wrapper">
+        <div class="registro-wrapper">
 
-        <div class="registro-item">
-          <div class="registro-info">
-            <h3>{{ registro.titulo }}</h3>
-            <p class="registro-data">Data: {{ registro.data_observacao }}</p>
-            <p class="registro-colmeia">Colmeia: {{ registro.colmeia.nome }}</p>
+          <!-- Item principal -->
+          <div class="registro-item">
+            <div class="registro-info">
+              <h3>{{ registro.titulo }}</h3>
+              <p class="registro-data">Data: {{ registro.data_observacao }}</p>
+              <p class="registro-colmeia">Colmeia: {{ registro.colmeia.nome }}</p>
+            </div>
+
+            <div class="registro-arrow">▶</div>
+
+            <!-- Botões (Editar + Excluir) -->
+            <div class="registro-acoes">
+              <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar</a>
+
+              <form action="{% url 'excluir_registro' registro.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir este registro?');">
+                  Excluir
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div class="registro-arrow">▶</div>
+          <!-- Detalhes -->
+          <div class="registro-detalhes">
+            <p><span class="observacoes-label">Observações:</span> {{ registro.observacoes }}</p>
+          </div>
 
-          <!-- Botão editar no canto inferior direito -->
-          <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar</a>
         </div>
-
-        <div class="registro-detalhes">
-          <p>{{ registro.observacoes }}</p>
-        </div>
-
-      </div>
       {% empty %}
-      <div class="sem-registros">
-        <p>Nenhum registro encontrado.</p>
-        <a href="{% url 'observacao' %}" class="btn-novo-registro">Criar Primeiro Registro</a>
-      </div>
+        <!-- Mensagem quando não há registros -->
+        <div class="sem-registros">
+          <p>Nenhum registro encontrado.</p>
+          <a href="{% url 'observacao' %}" class="btn-novo-registro">Criar Primeiro Registro</a>
+        </div>
       {% endfor %}
     </div>
 

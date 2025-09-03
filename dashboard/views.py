@@ -84,9 +84,6 @@ def editar_colmeia(request, pk):
     return render(request, 'dashboard/dados.html', {'form': form, 'colmeia': colmeia})
 
 
-
-  # vamos criar um form para facilitar
-
 @login_required
 def tudo_registros_view(request):
     registros = Registro.objects.filter(owner=request.user)

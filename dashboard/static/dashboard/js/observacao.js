@@ -280,3 +280,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 })
+// ================= VALIDAÇÃO DE DATA =================
+(function() {
+    const dataInput = document.getElementById("data-registro");
+    if (!dataInput) return;
+
+    // Cria container de aviso caso não exista
+    let aviso = dataInput.parentNode.querySelector(".erro-data");
+    if (!aviso) {
+        aviso = document.createElement("div");
+        aviso.className = "erro-data";
+        aviso.style.color = "#e74c3c"; // vermelho
+        aviso.style.fontSize = "12px";
+        aviso.style.marginTop = "4px";
+        aviso.style.display = "block";
+        dataInput.parentNode.appendChild(aviso);
+    }
+
+    // Função de validação
+    function validarData() {
+        const dataSelecionada = new Date(dataInput.value);
+        const hoje = new Date();
+        hoje.setHours(0,0,0,0);
+
+        if (!dataInput.value) {
+            aviso.textContent = "Por favor, selecione uma data.";
+            return false;
+        } else if (dataSelecionada > hoje) {
+            aviso.textContent = "A data não pode ser futura.";
+            return false;
+        } else {
+            aviso.textContent = "";
+            return true;
+        }
+    }
+
+    // Validação em tempo real
+    dataInput.addEventListener("input", validarData);
+
+    // Bloqueia envio do formulário se a data for inválida
+    const form = document.querySelector(".formulario-registro");
+    if (form) {
+        form.addEventListener("submit", function(e) {
+            if (!validarData()) {
+                e.preventDefault();
+                dataInput.focus();
+            }
+        });
+    }
+})();

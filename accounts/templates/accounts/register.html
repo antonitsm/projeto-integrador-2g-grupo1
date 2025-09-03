@@ -4,18 +4,17 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'accounts/css/cadastro.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/css/header.css' %}">
 {% endblock %}
 
 {% block content %}
 
-
-
 <!-- DECORAÇÃO -->
 <div class="decoracao esquerda">
-  <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Esquerda">
+    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Esquerda">
 </div>
 <div class="decoracao direita">
-  <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Direita">
+    <img src="{% static 'accounts/img/favo_de_mel.png' %}" alt="Favo Direita">
 </div>
 
 <!-- CONTEÚDO CADASTRO -->
@@ -27,28 +26,29 @@
         <h2>Cadastro</h2>
 
         {% for field in form %}
-            <div class="campo-formulario {% if field.name in 'password1 password2' %}senha-container{% endif %}">
-                {{ field.label_tag }}
+        <div class="campo-formulario {% if field.name in 'password1 password2' %}senha-container{% endif %}">
+            {{ field.label_tag }}
 
-                {% if field.name in 'password1 password2' %}
-                    <div class="input-senha-wrapper">
-                        {{ field }}
-                        <button type="button" class="toggle-senha" data-target="{{ field.id_for_label }}">
-                          <svg class="icon-olho" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path class="olho-contorno" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
-                            <circle class="olho-pupila" cx="12" cy="12" r="3"/>
-                            <line class="olho-risco" x1="2" y1="22" x2="22" y2="2"/>
-                          </svg>
-                        </button>
-                    </div>
-                {% else %}
-                    {{ field }}
-                {% endif %}
-
-                {% for error in field.errors %}
-                    <p style="color: #ff5c5c; font-size: 0.8rem;">{{ error }}</p>
-                {% endfor %}
+            {% if field.name in 'password1 password2' %}
+            <div class="input-senha-wrapper">
+                {{ field }}
+                <button type="button" class="toggle-senha" data-target="{{ field.id_for_label }}">
+                    <svg class="icon-olho" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path class="olho-contorno" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                        <circle class="olho-pupila" cx="12" cy="12" r="3" />
+                        <line class="olho-risco" x1="2" y1="22" x2="22" y2="2" />
+                    </svg>
+                </button>
             </div>
+            {% else %}
+            {{ field }}
+            {% endif %}
+
+            {% for error in field.errors %}
+            <p style="color: #ff5c5c; font-size: 0.8rem;">{{ error }}</p>
+            {% endfor %}
+        </div>
         {% endfor %}
 
         <button type="submit" class="botao-enviar">Cadastrar</button>

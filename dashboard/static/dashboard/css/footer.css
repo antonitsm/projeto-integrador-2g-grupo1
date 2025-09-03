@@ -1,4 +1,4 @@
-/* ================== FOOTER ================== */
+/* ================== FOOTER OTIMIZADO ================== */
 .footer {
   position: relative;
   background: linear-gradient(135deg,
@@ -10,11 +10,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-top: 1px solid rgba(248, 191, 77, 0.2);
   backdrop-filter: blur(10px);
-  margin-top: 4rem;
-  padding: 4rem 0 0;
+  margin-top: 2rem;
+  padding: 2rem 0 0;
 }
 
-/* ================== HEXAGONOS ================== */
+/* ================== HEXAGONOS REDUZIDOS ================== */
 .hexagonpa {
   position: absolute;
   top: 0;
@@ -27,27 +27,24 @@
 
 .hexagon {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, rgba(248, 191, 77, 0.1), rgba(212, 160, 23, 0.05));
-  border: 1px solid rgba(248, 191, 77, 0.2);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(248, 191, 77, 0.08), rgba(212, 160, 23, 0.03));
+  border: 1px solid rgba(248, 191, 77, 0.15);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
-.hex-1 { top: 10%; left: 5%; animation-delay: 0s; animation-duration: 8s; }
-.hex-2 { top: 20%; right: 8%; animation-delay: 1s; animation-duration: 7s; }
-.hex-3 { top: 60%; left: 3%; animation-delay: 2s; animation-duration: 9s; }
-.hex-4 { top: 70%; right: 5%; animation-delay: 3s; animation-duration: 6s; }
-.hex-5 { top: 40%; left: 50%; animation-delay: 4s; animation-duration: 10s; transform: translateX(-50%); }
-.hex-6 { top: 85%; left: 30%; animation-delay: 5s; animation-duration: 8s; }
+.hex-1 { top: 15%; left: 8%; animation-delay: 0s; }
+.hex-2 { top: 25%; right: 10%; animation-delay: 2s; }
+.hex-3 { top: 65%; left: 50%; animation-delay: 4s; transform: translateX(-50%); }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-  50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-15px) rotate(180deg); opacity: 0.4; }
 }
 
-/* ================== PARTÍCULAS ================== */
+/* ================== PARTÍCULAS REDUZIDAS ================== */
 .particles {
   position: absolute;
   top: 0;
@@ -60,67 +57,65 @@
 
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: #f8bf4d;
   border-radius: 50%;
-  opacity: 0.6;
-  animation: particle-float 15s linear infinite;
+  opacity: 0.4;
+  animation: particle-float 20s linear infinite;
 }
 
-.particle-1 { left: 10%; animation-delay: 0s; }
-.particle-2 { left: 30%; animation-delay: 3s; }
-.particle-3 { left: 50%; animation-delay: 6s; }
-.particle-4 { left: 70%; animation-delay: 9s; }
-.particle-5 { left: 90%; animation-delay: 12s; }
+.particle-1 { left: 20%; animation-delay: 0s; }
+.particle-2 { left: 50%; animation-delay: 7s; }
+.particle-3 { left: 80%; animation-delay: 14s; }
 
 @keyframes particle-float {
   0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.6; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
   100% { transform: translateY(-100px) scale(1); opacity: 0; }
 }
 
-/* ================== CONTEÚDO ================== */
+/* ================== CONTEÚDO COMPACTO ================== */
 .footer-content {
   position: relative;
   z-index: 1;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .footer-main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
-  gap: 60px;
-  margin-bottom: 60px;
-  padding-bottom: 3rem;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(248, 191, 77, 0.2);
 }
 
-/* ======= Brand ======= */
-.footer-brand { max-width: 400px; }
+/* ======= Brand Compacto ======= */
+.footer-brand { max-width: 350px; }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 12px;
+  margin-bottom: 1rem;
 }
 
 .brand-logo img {
-  height: 60px;
+  height: 45px;
   width: auto;
-  filter: drop-shadow(0 4px 12px rgba(248, 191, 77, 0.4));
+  filter: drop-shadow(0 3px 8px rgba(248, 191, 77, 0.3));
   transition: filter 0.3s ease;
 }
 
-.brand-logo:hover img { filter: drop-shadow(0 6px 20px rgba(248, 191, 77, 0.6)); }
+.brand-logo:hover img { filter: drop-shadow(0 4px 12px rgba(248, 191, 77, 0.5)); }
 
 .brand-text h2 {
   color: #f8bf4d;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -128,23 +123,23 @@
 
 .brand-description {
   color: #bbb;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  font-size: 14px;
 }
 
-/* ======= Social Links ======= */
-.social-links { display: flex; gap: 15px; }
+/* ======= Social Links Compactos ======= */
+.social-links { display: flex; gap: 10px; }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(135deg, rgba(248, 191, 77, 0.1), rgba(212, 160, 23, 0.05));
   border: 1px solid rgba(248, 191, 77, 0.3);
-  border-radius: 12px;
+  border-radius: 8px;
   color: #f8bf4d;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -167,25 +162,25 @@
   background: linear-gradient(135deg, rgba(248, 191, 77, 0.2), rgba(212, 160, 23, 0.1));
   border-color: rgba(248, 191, 77, 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(248, 191, 77, 0.3);
+  box-shadow: 0 6px 20px rgba(248, 191, 77, 0.25);
 }
 
 .social-link svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   z-index: 1;
   position: relative;
 }
 
-/* ======= Nav Columns ======= */
+/* ======= Nav Columns Compactas ======= */
 .nav-column h3,
 .footer-contact h3 {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   position: relative;
 }
 
@@ -193,21 +188,21 @@
 .footer-contact h3::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -6px;
   left: 0;
-  width: 30px;
+  width: 25px;
   height: 2px;
   background: linear-gradient(90deg, #f8bf4d, #d4a017);
   border-radius: 2px;
 }
 
 .nav-column ul { list-style: none; padding: 0; margin: 0; }
-.nav-column li { margin-bottom: 12px; }
+.nav-column li { margin-bottom: 8px; }
 
 .nav-column a {
   color: #ccc;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   transition: all 0.3s ease;
   position: relative;
   padding-left: 0;
@@ -216,7 +211,7 @@
 .nav-column a::before {
   content: '';
   position: absolute;
-  left: -15px;
+  left: -12px;
   top: 50%;
   transform: translateY(-50%);
   width: 0;
@@ -225,80 +220,196 @@
   transition: width 0.3s ease;
 }
 
-.nav-column a:hover { color: #f8bf4d; padding-left: 20px; }
-.nav-column a:hover::before { width: 10px; }
+.nav-column a:hover { color: #f8bf4d; padding-left: 15px; }
+.nav-column a:hover::before { width: 8px; }
 
-/* ======= Contato ======= */
-.contact-info { margin-bottom: 30px; }
+/* ======= Contato Compacto ======= */
+.contact-info { margin-bottom: 1rem; }
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 10px;
   color: #ccc;
-  font-size: 15px;
+  font-size: 13px;
 }
 .contact-item svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   color: #f8bf4d;
   flex-shrink: 0;
 }
 
-/* ======= Bottom ======= */
+/* ======= Bottom Compacto ======= */
 .footer-bottom {
   background: rgba(0, 0, 0, 0.3);
   border-top: 1px solid rgba(248, 191, 77, 0.1);
-  padding: 20px 0;
-  margin: 0 -40px;
+  padding: 15px 0;
+  margin: 0 -30px;
   width: 100vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
 }
 
+/* Container para navegação e contato - apenas no mobile */
+.footer-nav-contact-container {
+  display: contents;
+}
+
 .footer-bottom-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 }
 
-.footer-bottom p { color: #999999; font-size: 14px; margin: 0; }
+.footer-bottom p { color: #999999; font-size: 13px; margin: 0; }
 
-.footer-bottom-links { display: flex; gap: 30px; }
+.footer-bottom-links { display: flex; gap: 20px; }
 .footer-bottom-links a {
   color: #999999;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   transition: color 0.3s ease;
 }
 .footer-bottom-links a:hover { color: #f8bf4d; }
 
-/* ================== RESPONSIVIDADE ================== */
+/* ================== RESPONSIVIDADE MELHORADA ================== */
 @media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 0 0;
+    margin-top: 1.5rem;
+  }
+  
   .footer-main {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
     text-align: center;
   }
-  .brand-logo { justify-content: center; }
-  .social-links { justify-content: center; }
-  .footer-bottom-container { flex-direction: column; text-align: center; }
-  .footer-bottom-links { gap: 1rem; }
-  .hexagon { width: 40px; height: 40px; }
-}
-
-@media (max-width: 480px) {
-  .brand-text h2 { font-size: 22px; }
-  .brand-description { font-size: 14px; }
-  .nav-column h3 { font-size: 16px; }
-  .nav-column a { font-size: 14px; }
-  .footer-bottom-links { flex-direction: column; gap: 0.5rem; }
-  .contact-info { align-items: center; }
+  
+  /* Seção da logo/nome no topo centralizada */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    order: 1;
+  }
+  
+  .brand-logo { 
+    justify-content: center; 
+  }
+  
+  .social-links { 
+    justify-content: center; 
+  }
+  
+  .brand-description {
+    text-align: center;
+  }
+  
+  /* Container para navegação e contato lado a lado */
+  .footer-nav-contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    order: 2;
+  }
+  
+  .footer-nav {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-contact {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-item {
+    justify-content: center;
+  }
+  
+  .footer-bottom-container { 
+    flex-direction: column; 
+    text-align: center;
+    gap: 10px;
+  }
+  .footer-bottom-links { gap: 15px; }
   .hexagon { width: 30px; height: 30px; }
+  .brand-text h2 { font-size: 20px; }
+  .brand-description { font-size: 13px; }
+}
+@media (max-width: 768px) {
+
+  /* Footer main: logo/nome centralizado */
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(248, 191, 77, 0.2);
+    padding-bottom: 0;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    order: 1;
+  }
+
+  .brand-logo { justify-content: center; }
+  .brand-description { text-align: center; font-size: 13px; }
+  .social-links { justify-content: center; }
+
+  /* Nav e contato lado a lado e centralizados */
+  .footer-nav-contact-container {
+    display: flex;
+    justify-content: center; /* centraliza ambos */
+    gap: 3rem; /* espaço entre nav e contato */
+    order: 2;
+    width: 100%;
+  }
+
+  .footer-nav, .footer-contact {
+    flex: 0 0 auto; /* mantém o tamanho do conteúdo */
+    text-align: center; /* centraliza os links e contato */
+  }
+
+  .nav-column ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center; /* centraliza os itens da lista */
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center; /* centraliza os itens de contato */
+  }
+
+  /* Footer bottom centralizado */
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
 }
