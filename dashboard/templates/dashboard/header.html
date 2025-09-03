@@ -4,8 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'dashboard/css/header.css' %}">
 {% endblock %}
-
-<header>
+<header id="header">
   <nav>
     <!-- Logo -->
     <div class="logo">
@@ -15,13 +14,13 @@
     </div>
 
     <!-- Navbar -->
-   <ul class="navbar" id="navbar">
-    <li><a href="{% url 'home' %}">INÍCIO</a></li>
-    <li><a href="{% url 'minhas_colmeias' %}">MINHAS COLMEIAS</a></li>
-    <li><a href="{% url 'dados' %}">DADOS</a></li>
-    <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
-    <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
-  </ul>
+    <ul class="navbar" id="navbar">
+      <li><a href="{% url 'home' %}">INÍCIO</a></li>
+      <li><a href="{% url 'minhas_colmeias' %}">MINHAS COLMEIAS</a></li>
+      <li><a href="{% url 'dados' %}">DADOS</a></li>
+      <li><a href="{% url 'tudo_registros' %}">REGISTRO</a></li>
+      <li><a href="{% url 'producao' %}">PRODUÇÃO</a></li>
+    </ul>
 
     <!-- User -->
     <div class="user-profile">

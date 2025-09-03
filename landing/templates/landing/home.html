@@ -5,17 +5,18 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added viewport meta tag -->
   <title>Ecolmeia</title>
   {% block style %}
   <link rel="stylesheet" href="{% static 'landing/css/home.css' %}">{% endblock %}
 </head>
 
   {% block content %}
-  <!--NAVBAR-->
+  
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main>
-    <section class="hero">
+    <section class="hero" id="home">
       <!-- Imagem principal -->
       <div class="imagem_banner">
         <img src="{% static 'landing/img/Imagem_banner.png' %}" alt="Imagem_banner">
@@ -33,8 +34,10 @@
             <img class="colmeia_baixo" src="{% static 'landing/img/favo_menor.png' %}" alt="Colmeia baixo">
           </div>
         </div>
+      </div>
     </section>
-    <section class="section_1" style="
+    
+    <section class="section_1" id="about" style="
         --decor-left: url('{% static 'landing/img/favo_de_mel.png' %}');
         --decor-right: url('{% static 'landing/img/favo_de_mel.png' %}');
       ">
@@ -47,7 +50,7 @@
         colmeia em um verdadeiro exemplo de sustentabilidade e produtividade.</p>
     </section>
 
-    <section class="section_2" style="
+    <section class="section_2" id="services" style="
         --decor-left: url('{% static 'landing/img/favo_esticado.png' %}');">
       <div class="container">
         <h1>O QUE OFERECEMOS A VOCÊ:</h1>
@@ -83,7 +86,7 @@
 
   <!-- FOOTER -->
 
-  <script src="{% static 'landing/js/home.js' %}"></script>
+  <script src="{% static 'landing/js/mobile-toggle.js' %}"></script> <!-- Updated script path -->
 </html>
 
 {% endblock %}

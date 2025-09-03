@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'dashboard/css/footer.css' %}">{% endblock %}
 
 <footer class="footer">
-     Hexágonos animados 
+    
     <div class="hexagonpa">
         <div class="hexagon hex-1"></div>
         <div class="hexagon hex-2"></div>
@@ -14,7 +14,7 @@
         <div class="hexagon hex-6"></div>
     </div>
 
-     Partículas flutuantes 
+   
     <div class="particles">
         <div class="particle particle-1"></div>
         <div class="particle particle-2"></div>
@@ -27,7 +27,7 @@
         <div class="footer-main">
             <div class="footer-brand">
                 <div class="brand-logo">
-                    <img src="{% static 'images/bee-logo-golden.png' %}" alt="Ecolmeia Logo">
+                    <img src="{% static 'landing/img/logo.png' %}" alt="Logo Ecolmeia">
                     <div class="brand-text">
                         <h2>ECOLMEIA</h2>
                     </div>
@@ -63,11 +63,11 @@
                 <div class="nav-column">
                     <h3>Navegação</h3>
                     <ul>
-                        <li><a href="/">Início</a></li>
-                        <li><a href="/colmeias">Minhas Colmeias</a></li>
-                        <li><a href="/dados">Dados</a></li>
-                        <li><a href="/registros">Registro</a></li>
-                        <li><a href="/producao">Produção</a></li>
+                        <li><a href="{% url 'home' %}">Início</a></li>
+                        <li><a href="{% url 'minhas_colmeias' %}">Minhas Colmeias</a></li>
+                        <li><a href="{% url 'dados' %}">Dados</a></li>
+                        <li><a href="{% url 'tudo_registros' %}">Registro</a></li>
+                        <li><a href="{% url 'producao' %}">Produção</a></li>
                     </ul>
                 </div>
             </div>

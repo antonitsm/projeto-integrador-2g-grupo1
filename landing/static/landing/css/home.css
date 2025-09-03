@@ -8,6 +8,7 @@
 body {
   background: #f0f0f0;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 section {
@@ -32,35 +33,28 @@ a {
   font-weight: bold;
 }
 
-
-
-
 /* HERO */
 .hero {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Changed from center to flex-end to push image down */
   justify-content: center;
-  height: 630px;
-  gap: 8rem;
+  height: 550px;
+  gap: 3rem;
+  padding-bottom: 80px; /* Added bottom padding to create space from bottom */
 }
 
-.hero img {
+.imagem_banner {
+  margin-top: 40px; /* Added top margin to push image down further */
+}
+
+.imagem_banner img {
   max-width: 400px;
   height: auto;
 }
 
-
 .titulo_colmeia {
   position: relative;
   display: inline-block;
-}
-
-.hero h1 {
-  font-size: 70px;
-  font-weight: bold;
-  position: relative;
-  z-index: 2;
-  color: #f4b63f;
 }
 
 .texto_principal h1 {
@@ -78,34 +72,27 @@ a {
 }
 
 /* Colmeias decorativas */
-.decoracoes img {
+.decoracoes {
+  position: relative;
+}
+
+.img_decora img {
   position: absolute;
   opacity: 0.9;
 }
 
 .colmeia_direita {
   bottom: -42.5%;
-  /* sobe um pouco */
   right: -27.5%;
-  /* coloca na direita */
   width: 65%;
 }
 
 .colmeia_baixo {
   top: 80%;
-  /* desce embaixo do texto */
   left: 20%;
-  /* centraliza */
   transform: translateX(-50%);
   width: 65%;
 }
-
-
-
-
-
-
-
 
 /* SEÇÃO 1 */
 .section_1 {
@@ -167,13 +154,6 @@ a {
   transform-origin: center;
 }
 
-
-
-
-
-
-
-
 /* SEÇÃO 2  */
 .section_2 {
   position: relative;
@@ -188,7 +168,6 @@ a {
   font-size: 2.7rem;
   font-weight: bold;
   margin-bottom: 30px;
-  margin-left: -40%;
   color: #000;
 }
 
@@ -203,8 +182,6 @@ a {
 
 .section_2 li {
   text-align: justify;
-  margin-left: -30%;
-  justify-content: center;
   margin-bottom: 20px;
   font-size: 1.6rem;
 }
@@ -231,12 +208,13 @@ a {
   transform-origin: center;
 }
 
-
-
-
-
-
-
+.section_2::after {
+  right: 0;
+  top: 90%;
+  background-image: var(--decor-right);
+  transform: translate(70%, -100%) rotate(290deg);
+  transform-origin: center;
+}
 
 /* SEÇÃO 3 */
 .section_3 {
@@ -291,13 +269,6 @@ a {
   transform-origin: center;
 }
 
-
-
-
-
-
-
-
 /* BOTÕES */
 .button-container {
   text-align: center;
@@ -322,3 +293,168 @@ a {
   cursor: pointer;
 }
 
+/* Added responsive media queries for honeycomb decorations */
+@media (max-width: 768px) {
+  /* Adjust hero decorations for tablet */
+  section {
+    padding: 30px 40px;
+  }
+
+  .hero {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+    padding: 40px 20px;
+    align-items: center; /* Center align items in mobile instead of flex-end */
+    justify-content: center;
+  }
+
+  .imagem_banner img {
+    max-width: 300px;
+  }
+
+  .texto_principal h1 {
+    font-size: clamp(50px, 9vw, 70px);
+    text-align: center;
+  }
+
+  .section_1,
+  .section_2,
+  .section_3 {
+    height: auto;
+    padding: 60px 30px;
+  }
+
+  .section_1 h1,
+  .section_3 h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .section_1 p,
+  .section_3 p {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+  }
+
+  .section_2 h1 {
+    font-size: clamp(2rem, 6vw, 2.3rem);
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .section_2 li {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    margin-left: 0;
+  }
+
+  .btn {
+    padding: 18px 45px;
+    font-size: 18px;
+  }
+
+  .colmeia_direita {
+    bottom: -35%;
+    right: -20%;
+    width: 50%;
+  }
+
+  .colmeia_baixo {
+    top: 75%;
+    left: 15%;
+    width: 50%;
+  }
+
+  .section_1::before,
+  .section_1::after {
+    width: min(35vw, 350px);
+  }
+
+  .section_2::before,
+  .section_2::after,
+  .section_3::before,
+  .section_3::after {
+    width: min(40vw, 400px);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce hero decorations for mobile */
+  section {
+    padding: 20px 15px;
+  }
+
+  .hero {
+    gap: 1rem;
+    padding: 30px 15px;
+    align-items: center; /* Ensure center alignment on small mobile screens */
+    justify-content: center;
+  }
+
+  .imagem_banner {
+    margin-top: 0; /* Remove top margin on mobile since alignment is now centered */
+  }
+
+  .imagem_banner img {
+    max-width: 250px;
+  }
+
+  .texto_principal h1 {
+    font-size: clamp(40px, 12vw, 55px);
+  }
+
+  .section_1,
+  .section_2,
+  .section_3 {
+    padding: 40px 20px;
+  }
+
+  .section_1 h1,
+  .section_3 h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .section_1 p,
+  .section_3 p {
+    font-size: clamp(1rem, 5vw, 1.2rem);
+  }
+
+  .section_2 h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .section_2 li {
+    font-size: clamp(1rem, 5vw, 1.2rem);
+  }
+
+  .btn {
+    padding: 15px 35px;
+    font-size: 16px;
+  }
+
+  .colmeia_direita {
+    bottom: -30%;
+    right: -15%;
+    width: 40%;
+    opacity: 0.7;
+  }
+
+  .colmeia_baixo {
+    top: 70%;
+    left: 10%;
+    width: 40%;
+    opacity: 0.7;
+  }
+
+  .section_1::before,
+  .section_1::after {
+    width: min(45vw, 250px);
+    opacity: 0.6;
+  }
+
+  .section_2::before,
+  .section_2::after,
+  .section_3::before,
+  .section_3::after {
+    width: min(50vw, 300px);
+    opacity: 0.6;
+  }
+}

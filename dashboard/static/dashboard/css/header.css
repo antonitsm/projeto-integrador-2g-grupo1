@@ -189,13 +189,14 @@ nav {
   }
 
   /* Corrigindo o menu mobile para aparecer quando ativo */
+ @media (max-width: 768px) {
   .navbar.active {
     display: flex !important;
     flex-direction: column;
-    position: absolute;
+    position: fixed;      /* antes era absolute */
     top: 80px;
     right: 20px;
-    width: 220px;
+    max-width: calc(100% - 40px); /* evita estourar */
     background: rgba(20, 20, 20, 0.98);
     border: 1px solid rgba(248, 191, 77, 0.2);
     padding: 20px;
@@ -203,8 +204,9 @@ nav {
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     animation: slideDown 0.3s ease forwards;
+    z-index: 2000; /* acima do formulário */
   }
-
+}
   .navbar.active a {
     text-align: left;
     font-size: 15px;

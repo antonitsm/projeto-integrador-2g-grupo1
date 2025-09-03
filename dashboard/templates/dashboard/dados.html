@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
-  {% include 'dashboard/header.html' %}
+{% include 'dashboard/header.html' %}
 
 <!-- DECORAÇÃO -->
 <div class="decoracao esquerda">
@@ -18,21 +17,20 @@
 
 <div class="container-autenticacao">
   <form class="formulario-autenticacao ativo" method="post"
-    action="{% if colmeia and colmeia.id %}{% url 'editar_colmeia' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
+        action="{% if colmeia and colmeia.id %}{% url 'editar_colmeia' colmeia.id %}{% else %}{% url 'nova_colmeia' %}{% endif %}">
     {% csrf_token %}
     <h2>Dados da Colmeia</h2>
 
-    {# 🔹 Bloco de erros no topo #}
-   {% if form.errors %}
+    {% if form.errors %}
       <div class="alert-danger">
-          <strong>Atenção! Verifique os seguintes erros:</strong>
-          <ul>
-              {% for field, errors in form.errors.items %}
-                  {% for error in errors %}
-                      <li>{{ field|capfirst }}: {{ error }}</li>
-                  {% endfor %}
-              {% endfor %}
-          </ul>
+        <strong>Atenção! Verifique os seguintes erros:</strong>
+        <ul>
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <li>{{ field|capfirst }}: {{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
 
@@ -61,7 +59,6 @@
     </button>
   </form>
 </div>
-
 {% endblock %}
 
 {% block scripts %}

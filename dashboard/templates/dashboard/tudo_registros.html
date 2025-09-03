@@ -9,88 +9,78 @@
 </head>
 <body>
 
+<header>
   {% include './header.html' %}
-  
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main>
-    <section class="registros-section">
-      <div class="container">
-  
-        <div class="section-header">
-          <h2>Lista de Registros</h2>
-          <a href="{% url 'observacao' %}" class="btn-novo-registro">+ Novo Registro</a>
-        </div>
-        <div class="filtros">
-          <form method="get" id="form-filtros">
-            <label for="colmeia">Filtrar por Colmeia:</label>
-            <select name="colmeia" id="colmeia">
-              <option value="">Todas</option>
-              {% for colmeia in colmeias %}
-                <option value="{{ colmeia.id }}" {% if request.GET.colmeia == colmeia.id|stringformat:"s" %}selected{% endif %}>{{ colmeia.nome }}</option>
-              {% endfor %}
-            </select>
+</header>
 
-            <label for="ordem">Ordenar por Data:</label>
-            <select name="ordem" id="ordem">
-              <option value="desc" {% if request.GET.ordem == "desc" %}selected{% endif %}>Mais recente</option>
-              <option value="asc" {% if request.GET.ordem == "asc" %}selected{% endif %}>Mais antigo</option>
-            </select>
-
-            <button type="submit" class="btn-filtro">Filtrar</button>
-          </form>
-        </div>
-
-  
-        <div class="registros-lista">
-          {% for registro in registros %}
-          <div class="registro-wrapper">
-            <div class="registro-item" data-registro="{{ registro.id }}" data-observacao="{{ registro.observacoes }}">
-              <div class="registro-info">
-                <h3>{{ registro.titulo }}</h3>
-                <p class="registro-data">Data: {{ registro.data_observacao }}</p>
-                <p class="registro-colmeia">Colmeia: {{ registro.colmeia.nome }}</p>
-              </div>
-
-                 <div class="registro-arrow"><span>▶</span></div>
-  
-              <!-- Botão visível sempre -->
-               <button>
-                <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar Registro</a>
-               </button>
-              
-
-            </div>
-  
-            <div class="registro-detalhes">
-              <h4 class="detalhe-subtitulo">Observação:</h4>
-              <p class="registro-observacao">{{ registro.observacoes }}</p>
-            </div>
-          </div>
-          {% empty %}
-          <section class="form-registro">
+<main>
   <div class="container">
-    
-    
-  </div>
-</section>
-          <div class="sem-registros">
-            <p>Nenhum registro encontrado.</p>
-            <a href="{% url 'observacao' %}" class="btn-primeiro-registro">Criar Primeiro Registro</a>
-          </div>
+
+    <!-- Cabeçalho da seção -->
+    <div class="section-header">
+      <h2>Lista de Registros</h2>
+      <a href="{% url 'observacao' %}" class="btn-novo-registro">+ Novo Registro</a>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros">
+      <form method="get" id="form-filtros">
+        <label for="colmeia">Colmeia:</label>
+        <select name="colmeia" id="colmeia">
+          <option value="">Todas</option>
+          {% for colmeia in colmeias %}
+            <option value="{{ colmeia.id }}" {% if request.GET.colmeia == colmeia.id|stringformat:"s" %}selected{% endif %}>{{ colmeia.nome }}</option>
           {% endfor %}
+        </select>
+
+        <label for="ordem">Data:</label>
+        <select name="ordem" id="ordem">
+          <option value="desc" {% if request.GET.ordem == "desc" %}selected{% endif %}>Mais recente</option>
+          <option value="asc" {% if request.GET.ordem == "asc" %}selected{% endif %}>Mais antigo</option>
+        </select>
+
+        <button type="submit" class="btn-filtro">Filtrar</button>
+      </form>
+    </div>
+
+    <!-- Lista de registros -->
+    <div class="registros-lista">
+      {% for registro in registros %}
+      <div class="registro-wrapper">
+
+        <div class="registro-item">
+          <div class="registro-info">
+            <h3>{{ registro.titulo }}</h3>
+            <p class="registro-data">Data: {{ registro.data_observacao }}</p>
+            <p class="registro-colmeia">Colmeia: {{ registro.colmeia.nome }}</p>
+          </div>
+
+          <div class="registro-arrow">▶</div>
+
+          <!-- Botão editar no canto inferior direito -->
+          <a href="{% url 'editar_registro' registro.id %}" class="btn-editar">Editar</a>
         </div>
+
+        <div class="registro-detalhes">
+          <p>{{ registro.observacoes }}</p>
+        </div>
+
       </div>
-    </section>
-  </main>
-x
-  <!-- FOOTER -->
-  <footer>
-        {% include './footer.html' %}
+      {% empty %}
+      <div class="sem-registros">
+        <p>Nenhum registro encontrado.</p>
+        <a href="{% url 'observacao' %}" class="btn-novo-registro">Criar Primeiro Registro</a>
+      </div>
+      {% endfor %}
+    </div>
 
-  </footer>
+  </div>
+</main>
 
-  <script src="{% static 'dashboard/js/tudo_registros.js' %}"></script>
+<footer>
+  {% include './footer.html' %}
+</footer>
+
+<script src="{% static 'dashboard/js/tudo_registros.js' %}"></script>
 </body>
 </html>
-
-

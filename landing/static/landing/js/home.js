@@ -1,67 +1,19 @@
-console.log("Header carregado!");
-
-document.getElementById("cadastro2")?.addEventListener("click", function() {
-    window.location.href = "loginP2.html";
-});
-
-// Script para menu mobile
-const mobileToggle = document.getElementById("mobile-toggle");
-const navbar = document.getElementById("navbar");
-const header = document.getElementById("header");
-
-mobileToggle.addEventListener("click", function() {
-    this.classList.toggle("active");
-    navbar.classList.toggle("active");
-});
-
-// Script para efeito de scroll no header
-window.addEventListener("scroll", function() {
-    if (window.scrollY > 50) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-});
-
-// Script para destacar link ativo
-const navLinks = document.querySelectorAll(".navbar a");
-
-navLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-        e.preventDefault();
-        
-        // Remove active de todos os links
-        navLinks.forEach(l => l.classList.remove("active"));
-        
-        // Adiciona active ao link clicado
-        this.classList.add("active");
-        
-        // Fecha menu mobile se estiver aberto
-        if (navbar.classList.contains("active")) {
-            navbar.classList.remove("active");
-            mobileToggle.classList.remove("active");
-        }
-    });
-});
-
-// Fechar menu mobile ao clicar fora
-document.addEventListener("click", function(e) {
-    if (!navbar.contains(e.target) && !mobileToggle.contains(e.target)) {
-        navbar.classList.remove("active");
-        mobileToggle.classList.remove("active");
-    }
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-  const mobileMenuToggle = document.getElementById("mobile-toggle")
-  const navbar = document.getElementById("navbar")
+  console.log("Header carregado!")
 
-  mobileMenuToggle.addEventListener("click", () => {
+  const mobileToggle = document.getElementById("mobile-toggle")
+  const navbar = document.getElementById("navbar")
+  const header = document.querySelector("header")
+  const navLinks = navbar.querySelectorAll("a")
+
+  // Toggle menu mobile
+  mobileToggle.addEventListener("click", () => {
+    mobileToggle.classList.toggle("active")
     navbar.classList.toggle("active")
   })
 
+  // Efeito scroll no header
   window.addEventListener("scroll", () => {
-    const header = document.querySelector("header")
     if (window.scrollY > 50) {
       header.classList.add("scrolled")
     } else {
@@ -69,18 +21,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  const menuLinks = navbar.querySelectorAll("a")
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navbar.classList.remove("active")
+  // Destaque do link ativo e fechamento do menu mobile
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      // Remove active de todos os links
+      navLinks.forEach((l) => l.classList.remove("active"))
+
+      // Adiciona active ao link clicado
+      link.classList.add("active")
+
+      // Se for link interno (hash) rola para a seção
+      if (link.hash) {
+        const target = document.querySelector(link.hash)
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+
+      // Fecha menu mobile
+      if (navbar.classList.contains("active")) {
+        navbar.classList.remove("active")
+        mobileToggle.classList.remove("active")
+      }
     })
   })
 
-  document.addEventListener("click", (event) => {
-    if (!mobileMenuToggle.contains(event.target) && !navbar.contains(event.target)) {
+  // Fechar menu ao clicar fora
+  document.addEventListener("click", (e) => {
+    if (!navbar.contains(e.target) && !mobileToggle.contains(e.target)) {
       navbar.classList.remove("active")
+      mobileToggle.classList.remove("active")
     }
   })
 })
-
-
