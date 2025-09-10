@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1a1a1a;
+  background-color: #ffffff;
   color: #ffffff;
   line-height: 1.6;
 
@@ -41,6 +41,7 @@ header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
+
 header.scrolled {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%);
   height: 70px;
@@ -82,11 +83,13 @@ header.scrolled {
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .section-header h2 {
   font-size: 1.8rem;
-  color: #f8bf4d;
+  color: #1a1a1a;
   margin-bottom: 10px;
 }
+
 .section-description {
   color: #cccccc;
   font-size: 1rem;
@@ -102,22 +105,26 @@ header.scrolled {
   border: none;
   cursor: pointer;
 }
+
 .btn-novo-registro:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(248, 191, 77, 0.3);
 }
+
 /* ===== FILTROS MELHORADOS ===== */
 .filtros {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px; /* mais espaço entre elementos */
+  gap: 15px;
+  /* mais espaço entre elementos */
   align-items: center;
   padding: 15px 20px;
   border-radius: 12px;
-  background-color: #2a2a2a; /* mantém tema dark */
+  background-color: #2a2a2a;
+  /* mantém tema dark */
   border: 1px solid #404040;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   margin-bottom: 2vh;
   transition: all 0.3s ease;
 }
@@ -143,7 +150,7 @@ header.scrolled {
 .filtros select:focus {
   border-color: #f8bf4d;
   outline: none;
-  box-shadow: 0 0 5px rgba(248,191,77,0.5);
+  box-shadow: 0 0 5px rgba(248, 191, 77, 0.5);
 }
 
 .filtros button.btn-filtro {
@@ -162,25 +169,29 @@ header.scrolled {
 .filtros button.btn-filtro:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(248,191,77,0.4);
+  box-shadow: 0 4px 15px rgba(248, 191, 77, 0.4);
 }
+
 @media screen and (max-width: 768px) {
   .filtros {
     flex-direction: column;
-    align-items: flex-start; /* ou center se quiser centralizado */
+    align-items: flex-start;
+    /* ou center se quiser centralizado */
     gap: 10px;
   }
 
-  .filtros label, 
-  .filtros select, 
+  .filtros label,
+  .filtros select,
   .filtros button.btn-filtro {
     width: 100%;
-    margin: 0; /* remove margens que empurravam o botão para a direita */
+    margin: 0;
+    /* remove margens que empurravam o botão para a direita */
   }
 
   .filtros button.btn-filtro {
-    text-align: center; /* mantém o texto centralizado */
-    margin-top:2vh;
+    text-align: center;
+    /* mantém o texto centralizado */
+    margin-top: 2vh;
   }
 }
 
@@ -210,6 +221,7 @@ header.scrolled {
   position: relative;
   overflow: hidden;
 }
+
 .registro-item::before {
   content: '';
   position: absolute;
@@ -221,19 +233,23 @@ header.scrolled {
   transform: scaleY(0);
   transition: transform 0.3s ease;
 }
+
 .registro-item:hover {
   background-color: #333333;
   border-color: #f8bf4d;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(248, 191, 77, 0.15);
 }
+
 .registro-item:hover::before {
   transform: scaleY(1);
 }
+
 .registro-item.active {
   background-color: #3a3a3a;
   border-color: #d4a017;
 }
+
 .registro-item.active::before {
   transform: scaleY(1);
   background-color: #d4a017;
@@ -245,6 +261,7 @@ header.scrolled {
   margin-bottom: 8px;
   font-weight: 600;
 }
+
 .registro-data,
 .registro-colmeia,
 .registro-tipo {
@@ -252,10 +269,12 @@ header.scrolled {
   color: #cccccc;
   margin-bottom: 4px;
 }
+
 .registro-colmeia {
   color: #f8bf4d;
   font-weight: 500;
 }
+
 .registro-tipo {
   color: #a0a0a0;
   font-style: italic;
@@ -270,10 +289,12 @@ header.scrolled {
   transition: transform 0.3s ease;
   cursor: pointer;
 }
+
 .registro-item:hover .registro-arrow {
   transform: translateX(5px);
   color: #d4a017;
 }
+
 .registro-item.active .registro-arrow {
   transform: rotate(90deg);
 }
@@ -283,7 +304,7 @@ header.scrolled {
 .btn-excluir {
   position: absolute;
   right: 15px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 6px;
   font-weight: bold;
   font-size: 0.85rem;
@@ -291,16 +312,20 @@ header.scrolled {
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
-  width: 70px; /* largura fixa para ambos */
-  text-align: center; /* centraliza o texto */
+  width: 80px;
+  /* largura fixa para ambos */
+  text-align: center;
+  /* centraliza o texto */
 }
 
 /* Estilo específico do Excluir - agora em cima do Editar */
 .btn-excluir {
-  bottom: 50px; /* ajuste a distância do fundo */
+  bottom: 50px;
+  /* ajuste a distância do fundo */
   background-color: #e74c3c;
   color: #000000;
 }
+
 .btn-excluir:hover {
   background-color: #c0392b;
   transform: translateY(-2px);
@@ -313,6 +338,7 @@ header.scrolled {
   background-color: #f8bf4d;
   color: #000;
 }
+
 .btn-editar:hover {
   background-color: #d4a017;
   transform: translateY(-2px);
@@ -328,13 +354,21 @@ header.scrolled {
   display: none;
   animation: slideDown 0.3s ease;
 }
+
 .registro-detalhes.show {
   display: block;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .detalhes-header {
@@ -348,7 +382,8 @@ header.scrolled {
 /* ===== LABEL "Observações:" ===== */
 .observacoes-label {
   font-weight: bold;
-  color:#959595;   /* dourado do tema */
+  color: #959595;
+  /* dourado do tema */
   margin-right: 6px;
 }
 
@@ -356,10 +391,13 @@ header.scrolled {
 .sem-registros {
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* centraliza vertical */
-  align-items: center;      /* centraliza horizontal */
+  justify-content: center;
+  /* centraliza vertical */
+  align-items: center;
+  /* centraliza horizontal */
   text-align: center;
-  min-height: 50vh; /* ocupa metade da tela (ajuste se quiser mais ou menos) */
+  min-height: 50vh;
+  /* ocupa metade da tela (ajuste se quiser mais ou menos) */
   gap: 20px;
   color: #cccccc;
   font-size: 1.1rem;

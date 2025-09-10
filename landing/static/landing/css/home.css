@@ -273,6 +273,7 @@ a {
 .button-container {
   text-align: center;
   margin-top: 50px;
+  
 }
 
 .btn {
@@ -282,7 +283,7 @@ a {
   background-color: #f4b63f;
   color: white;
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.3s, transform 0.2s;
 }
